@@ -1,0 +1,35 @@
+skill-security-scan — Security Inspector Skill for Claude Code
+
+This skill (`skill-security-scan`) vendors and adapts the threat taxonomy,
+scoring model, and MCP/YARA pattern descriptions from NVIDIA SkillSpector
+(https://github.com/NVIDIA/SkillSpector), licensed under Apache-2.0.
+
+  Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+  SPDX-License-Identifier: Apache-2.0
+
+This is a derivative, LLM-first reimplementation of the SkillSpector detection
+taxonomy. It is NOT a redistribution of the SkillSpector source code. Pattern
+IDs (P1-P8, E1-E4, PE1-PE3, SC1-SC6, EA1-EA4, OH1-OH3, MP1-MP3, TM1-TM3,
+RA1-RA2, TR1-TR3, TP1-TP4, LP1-LP4, TT1-TT5, AST1-AST8, YR1-YR4) are
+reproduced verbatim for interoperability. Explanations and remediations are
+adapted from DEFAULT_EXPLANATIONS and DEFAULT_REMEDIATIONS in
+`src/skillspector/nodes/analyzers/pattern_defaults.py`.
+
+YARA rule textual signatures adapted from NVIDIA SkillSpector YARA rules
+(`src/skillspector/yara_rules/`), which are in turn based on patterns from
+Neo23x0/signature-base and community threat intelligence.
+
+Taxonomy snapshot: SkillSpector pattern_defaults.py as of 2026-06-01.
+
+Research basis: "Agent Skills in the Wild: An Empirical Study of Security
+Vulnerabilities at Scale" (Liu et al., 2026). Dataset: 42,447 skills;
+26.1% contain vulnerabilities; 5.2% show likely malicious intent.
+
+See LICENSE for the full Apache License 2.0 text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-09-28 — The `description` field in SKILL.md was extended with Spanish
+trigger phrases and a scope exclusion, so the skill activates in
+Spanish-language sessions. No change to the threat taxonomy, the scoring
+rubric, the analysis passes, or any file under references/.

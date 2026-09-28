@@ -46,6 +46,22 @@ o la documentación oficial: no lo actualices de memoria. El archivo lleva su fe
 
 Lo mismo aplica a cualquier versión de framework citada en las skills.
 
+## Skills vendorizadas
+
+`skills/skill-security-scan/` es material de terceros: taxonomía derivada de NVIDIA
+SkillSpector bajo Apache-2.0. Está **en inglés a propósito** y es la excepción a la
+regla del español. Traducirla significaría mantener un fork de una taxonomía que se
+actualiza aguas arriba, y la traducción se quedaría atrás sin que nadie lo note.
+
+Reglas para este tipo de carpetas:
+
+- No reescribas su contenido. Si algo hay que cambiar, se documenta en `NOTICE` con
+  fecha y alcance del cambio —lo exige la licencia y evita que el siguiente que lea el
+  archivo crea que es material original.
+- `LICENSE` y `NOTICE` se conservan. No los muevas ni los resumas.
+- Para actualizar, se trae la versión nueva de aguas arriba y se vuelve a aplicar la
+  modificación local, no al revés.
+
 ## Verificación
 
 No hay tests. Antes de dar por buena una skill nueva o modificada:
