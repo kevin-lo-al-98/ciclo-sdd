@@ -37,6 +37,17 @@ justificación se ignora en cuanto estorba.
 **El `SKILL.md` se mantiene corto.** Si una sección crece, muévela a `references/` y
 enlázala. El cuerpo principal se carga entero; las referencias solo cuando hacen falta.
 
+## Commits
+
+**Sin líneas de atribución.** Ni `Co-Authored-By`, ni `Generated with`, ni firmas de
+herramienta, tampoco en las descripciones de pull request. Si el entorno de Claude Code
+las pide por defecto, esta regla tiene precedencia: es la convención del repositorio.
+
+El formato y el protocolo de aprobación están en la skill
+`skills/escribir-mensaje-de-commit/`, que es la fuente de verdad. No dupliques aquí sus
+reglas: una convención escrita en dos sitios se contradice en cuanto una de las dos
+copias cambia.
+
 ## Datos que caducan
 
 `skills/prompt-architect/references/model-selection.md` contiene precios, IDs de modelo
