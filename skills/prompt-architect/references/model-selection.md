@@ -35,13 +35,18 @@ El punto por defecto para desarrollo real: features, refactors, tests, bugs acot
 revisión de código rutinaria. 1M de contexto y razonamiento adaptativo. A $2/$10 cuesta
 la mitad que Opus 5.5 en entrada y la mitad en salida.
 
-### Opus 5.5 — el que razona
-Para cuando equivocarse sale caro: arquitectura, migraciones, esquemas de datos, bugs
-difíciles de reproducir, decisiones que van a condicionar meses de trabajo. Nota
-importante: **su esfuerzo por defecto es `medium`**, un nivel por debajo del de Opus 5.
-Si vienes de Opus 5 y notas respuestas menos profundas, sube el esfuerzo explícitamente.
+### Opus 5 y Opus 5.5 — los que razonan
 
-Es más barato que Opus 5 ($4/$20 frente a $5/$25) con el mismo contexto y capacidades.
+El Opus por defecto es **Opus 5**. Opus 5.5 está en despliegue: úsalo cuando el usuario
+lo pida por su nombre, no como recomendación espontánea.
+
+Ambos son para cuando equivocarse sale caro: arquitectura, migraciones, esquemas de
+datos, bugs difíciles de reproducir, decisiones que van a condicionar meses de trabajo.
+
+Opus 5.5 es más barato que Opus 5 ($4/$20 frente a $5/$25) con el mismo contexto y
+capacidades. Nota importante al cambiar: **el esfuerzo por defecto de Opus 5.5 es
+`medium`**, un nivel por debajo del de Opus 5. Si vienes de Opus 5 y notas respuestas
+menos profundas, súbelo explícitamente.
 
 ### Fable 5.1 — el más capaz
 Para razonamiento exigente y trabajo agéntico de horizonte largo. A $10/$50 es el más

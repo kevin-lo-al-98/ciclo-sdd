@@ -48,21 +48,28 @@ Regla corta, para no tener que releer la tabla cada vez:
 |---|---|---|
 | Formateo, renombrados, extracción, clasificación, commits | **Haiku 4.5** | Barato y rápido; la tarea no tiene ramificaciones |
 | Desarrollo diario: features, refactors, tests, bugs acotados | **Sonnet 5** | El equilibrio por defecto para trabajo real |
-| Arquitectura, migraciones, bugs que no sabes reproducir, revisión crítica | **Opus 5.5** | Razonamiento profundo cuando el error sale caro |
+| Arquitectura, migraciones, bugs que no sabes reproducir, revisión crítica | **Opus 5** | Razonamiento profundo cuando el error sale caro |
+| Lo mismo, cuando el usuario pide Opus 5.5 por su nombre | **Opus 5.5** | Mismo tier más barato ($4/$20), pero aún en despliegue |
 | Tareas largas y autónomas, problemas donde Opus ya falló | **Fable 5.1** | El más capaz; también el más caro |
 
 **Por defecto, Sonnet 5.** Es el punto correcto para la mayor parte del desarrollo
-fullstack. Sube a Opus 5.5 cuando el coste de equivocarse sea alto; baja a Haiku 4.5
+fullstack. Sube a Opus 5 cuando el coste de equivocarse sea alto; baja a Haiku 4.5
 cuando la tarea sea mecánica y verificable de un vistazo.
 
+El Opus por defecto es **Opus 5**, no Opus 5.5. Opus 5.5 es más barato y está en el
+mismo tier, pero sigue en despliegue: recomiéndalo solo si el usuario lo nombra. Y si
+lo hace, avísale de que su esfuerzo por defecto es `medium`, un nivel por debajo del de
+Opus 5 —de ahí la sensación de respuestas menos profundas al cambiar.
+
 En Claude Code el modelo se cambia con `/model`. En la API se pasa el ID exacto
-(`claude-sonnet-5`, `claude-opus-5-5`, `claude-haiku-4-5`, `claude-fable-5-1`) —
-nunca inventes sufijos de fecha.
+(`claude-sonnet-5`, `claude-opus-5`, `claude-opus-5-5`, `claude-haiku-4-5`,
+`claude-fable-5-1`) — nunca inventes sufijos de fecha.
 
 ### El segundo dial: el esfuerzo
 
-El modelo no es la única palanca. Los modelos actuales aceptan un nivel de esfuerzo
-(`low` → `max`) que regula cuánto razonan. Esto importa porque **un modelo grande con
+El modelo no es la única palanca. Los modelos actuales —salvo Haiku 4.5— aceptan un
+nivel de esfuerzo (`low` → `max`) que regula cuánto razonan. Esto importa porque
+**un modelo grande con
 esfuerzo bajo suele rendir mejor, y costar menos, que un modelo pequeño al máximo**.
 Antes de recomendar bajar de modelo para ahorrar, considera bajar el esfuerzo.
 
