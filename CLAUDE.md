@@ -5,11 +5,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Qué es este repositorio
 
 No contiene una aplicación: contiene **skills de Claude Code** y documentación de
-referencia. No hay build, ni dependencias, ni tests. El "producto" son archivos
-Markdown que otras sesiones de Claude Code cargan como instrucciones.
+referencia. El "producto" son archivos Markdown que otras sesiones de Claude Code
+cargan como instrucciones.
 
 Eso cambia el criterio de calidad: aquí un error no rompe un test, se propaga
 silenciosamente a todas las sesiones que carguen esa skill.
+
+La única excepción es `mcp/`, que sí es código con dependencias. El resto del
+repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa carpeta.
 
 ## Estructura
 
@@ -19,6 +22,9 @@ silenciosamente a todas las sesiones que carguen esa skill.
   de incluir.
 - `sources/README.md` — enlaces a documentación oficial.
 - `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`.
+- `mcp/` — servidor MCP que sirve las mismas skills por protocolo, como alternativa a
+  instalarlas. Node con ESM, sin TypeScript. Su `README.md` explica la estructura y por
+  qué la lectura de disco vive aislada del resto.
 
 ## Convenciones
 
