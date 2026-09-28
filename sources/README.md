@@ -11,9 +11,18 @@ sueltos envejecen mal y no van en esta lista.
 - [Claude Code](https://code.claude.com/docs) — CLI, hooks, skills, MCP, comandos.
 - [Agent SDK](https://code.claude.com/docs/en/agent-sdk) — construir agentes propios.
 
+## Git
+
+- [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/) — la
+  especificación, en español.
+- [git worktree](https://git-scm.com/docs/git-worktree) — la página de manual; el
+  apartado "DETAILS" es el que explica qué se comparte entre worktrees y qué no.
+
 ## TypeScript
 
 - [Manual de TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [Referencia de tsconfig](https://www.typescriptlang.org/tsconfig/) — qué activa
+  exactamente cada flag del perfil estricto.
 - [Type Challenges](https://github.com/type-challenges/type-challenges) — para el
   sistema de tipos avanzado, mediante ejercicios.
 
