@@ -67,6 +67,18 @@ sueltos envejecen mal y no van en esta lista.
 - [web.dev](https://web.dev) — rendimiento y Core Web Vitals.
 - [Can I Use](https://caniuse.com) — soporte por navegador.
 
+## Calidad de código
+
+- [SonarQube Community Build](https://docs.sonarsource.com/sonarqube-community-build/) —
+  la documentación de la edición gratuita. **No la confundas con la de SonarQube Server**
+  (`/sonarqube-server/`): describen productos con versionado distinto y sin correspondencia
+  entre sí, y mezclarlas es la causa habitual de seguir una instrucción que no aplica.
+- [Parámetros de análisis](https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/analysis-parameters)
+  — la lista completa de propiedades `sonar.*`.
+- [sonarqube-community-branch-plugin](https://github.com/mc1arke/sonarqube-community-branch-plugin)
+  — plugin de terceros para analizar ramas y PRs en Community. Su README es la fuente de sus
+  propias advertencias.
+
 ## Seguridad
 
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
