@@ -17,6 +17,14 @@ tenga delante.
 | [`frontend-astro`](skills/frontend-astro/) | Astro: islas, estático vs servidor, content collections |
 | [`backend-node-ts`](skills/backend-node-ts/) | APIs en Node + TypeScript: capas, validación, errores, seguridad |
 | [`database-sql`](skills/database-sql/) | Modelado, índices, consultas, migraciones sin downtime |
+| [`typescript-estricto`](skills/typescript-estricto/) | Satisfacer el perfil estricto del compilador sin relajarlo |
+| [`escribir-mensaje-de-commit`](skills/escribir-mensaje-de-commit/) | Mensajes con Conventional Commits y protocolo de aprobación |
+| [`git-worktree`](skills/git-worktree/) | Varias ramas a la vez con `git worktree`, sin `stash` |
+| [`resolver-merge`](skills/resolver-merge/) | Resolver conflictos de merge |
+| [`sonarqube-community`](skills/sonarqube-community/) | SonarQube Community: puesta en marcha, ramas y PRs, triage |
+| [`skill-security-scan`](skills/skill-security-scan/) | Auditar la seguridad de una skill de terceros (material vendorizado) |
+| [`documentar-decisiones`](skills/documentar-decisiones/) | ADRs en formato MADR y specs |
+| [`adoptar-estructura-de-docs`](skills/adoptar-estructura-de-docs/) | Montar `docs/decisions/` y `docs/specs/` en otro proyecto |
 
 `prompt-architect` es la que más se usa fuera de una tarea concreta: responde "¿qué
 modelo uso para esto?" y "¿cómo le pido esto bien?".
@@ -48,6 +56,17 @@ Reinicia Claude Code después de instalar.
 
 [`sources/README.md`](sources/README.md) reúne la documentación oficial por tecnología.
 Solo entra ahí fuente primaria o material que se mantiene al día.
+
+## Decisiones y specs
+
+Las decisiones de este repositorio están en [`docs/decisions/`](docs/decisions/), en
+formato MADR; empieza por la
+[0000](docs/decisions/0000-usar-madr-para-registrar-decisiones.md), que explica el
+formato. Las specs de trabajo pendiente están en [`docs/specs/`](docs/specs/).
+
+Para llevar esta misma estructura a otro proyecto, ver
+[`adoptar-estructura-de-docs`](skills/adoptar-estructura-de-docs/) y la sección
+"Adoptar en otro proyecto" de [`mcp/README.md`](mcp/README.md).
 
 ## Añadir una skill
 

@@ -42,6 +42,26 @@ claude mcp add docs-skills --env SKILLS_DIR=/ruta/a/skills -- node /ruta/a/mcp/s
 Las skills se leen **al arrancar**. Si editas un `SKILL.md`, reinicia el servidor
 (`/mcp` en Claude Code) para que el cambio se vea.
 
+## Adoptar en otro proyecto
+
+Para usar las skills desde otro proyecto sin instalarlas en él, registra el servidor con
+alcance de usuario, de modo que esté disponible en todos tus proyectos y no solo en el
+actual:
+
+```bash
+claude mcp add docs-skills -s user -- node C:/Users/klopez/git/SKILLS/docs-skills/mcp/src/stdio.js
+```
+
+**Por MCP las skills no se activan solas.** Claude Code carga por `description` solo las
+skills instaladas en `~/.claude/skills`; por MCP, el modelo tiene que llamar a
+`buscar_skills` o `leer_skill`, y no lo hará si nada se lo sugiere. Por eso el proyecto
+que las consuma necesita un aviso corto en su `CLAUDE.md`. La skill
+[`adoptar-estructura-de-docs`](../skills/adoptar-estructura-de-docs/SKILL.md) lo deja
+puesto junto con la carpeta `docs/decisions/`.
+
+Solo funciona en la máquina donde está el repositorio: el servidor es local. Para
+otras máquinas hace falta la variante remota, que sigue pendiente.
+
 ## Estructura
 
 | Archivo | Qué es |
@@ -56,6 +76,8 @@ sistema de archivos, así que `cargar-disco.js` es el único archivo que no pued
 allí. `skills.js` y `servidor.js` sí, sin tocarlos.
 
 ## Desplegar en Cloudflare (pendiente)
+
+La propuesta completa está en [`docs/specs/worker-cloudflare.md`](../docs/specs/worker-cloudflare.md).
 
 Es posible: Workers sirve servidores MCP remotos por HTTP y Claude Code se conecta con
 `claude mcp add --transport http <nombre> <url>`. Lo que falta por montar:

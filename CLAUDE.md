@@ -12,7 +12,8 @@ Eso cambia el criterio de calidad: aquí un error no rompe un test, se propaga
 silenciosamente a todas las sesiones que carguen esa skill.
 
 La única excepción es `mcp/`, que sí es código con dependencias. El resto del
-repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa carpeta.
+repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa carpeta
+([ADR 0003](docs/decisions/0003-solo-mcp-contiene-codigo.md)).
 
 ## Estructura
 
@@ -24,12 +25,16 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
 - `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`.
 - `mcp/` — servidor MCP que sirve las mismas skills por protocolo, como alternativa a
   instalarlas. Node con ESM, sin TypeScript. Su `README.md` explica la estructura y por
-  qué la lectura de disco vive aislada del resto.
+  qué la lectura de disco vive aislada del resto. Solo carga `references/`: un archivo
+  en otra subcarpeta (`assets/`, `scripts/`) no llega al cliente.
+- `docs/decisions/` — ADRs en formato MADR, uno por decisión, numerados `NNNN-…`.
+- `docs/specs/` — specs de trabajo por hacer o en curso.
 
 ## Convenciones
 
 **Todo el contenido va en español**, incluidos comentarios de ejemplos de código. Los
-identificadores, nombres de API y términos técnicos se mantienen en su forma original.
+identificadores, nombres de API y términos técnicos se mantienen en su forma original
+([ADR 0001](docs/decisions/0001-contenido-de-las-skills-en-espanol.md)).
 
 **El `description` del frontmatter es el disparador.** Determina si la skill se carga.
 Debe enumerar condiciones concretas —tecnologías, palabras que el usuario usaría,
@@ -42,6 +47,15 @@ justificación se ignora en cuanto estorba.
 
 **El `SKILL.md` se mantiene corto.** Si una sección crece, muévela a `references/` y
 enlázala. El cuerpo principal se carga entero; las referencias solo cuando hacen falta.
+
+## Decisiones y specs
+
+Una decisión con alternativas reales y difícil de revertir va a un ADR en
+`docs/decisions/`, no a este archivo: `CLAUDE.md` se carga entero en cada sesión y solo
+debe llevar la regla y el enlace, no el debate. La skill
+`skills/documentar-decisiones/` es la fuente de verdad del formato y de cuándo escribir
+uno; no dupliques aquí su plantilla ni sus reglas. Los ADRs aceptados no se reescriben:
+los sustituye uno nuevo.
 
 ## Commits
 
@@ -67,8 +81,8 @@ Lo mismo aplica a cualquier versión de framework citada en las skills.
 
 `skills/skill-security-scan/` es material de terceros: taxonomía derivada de NVIDIA
 SkillSpector bajo Apache-2.0. Está **en inglés a propósito** y es la excepción a la
-regla del español. Traducirla significaría mantener un fork de una taxonomía que se
-actualiza aguas arriba, y la traducción se quedaría atrás sin que nadie lo note.
+regla del español; el porqué está en el
+[ADR 0002](docs/decisions/0002-skills-vendorizadas-en-su-idioma-original.md).
 
 Reglas para este tipo de carpetas:
 
@@ -84,8 +98,10 @@ Reglas para este tipo de carpetas:
 No hay tests. Antes de dar por buena una skill nueva o modificada:
 
 1. El frontmatter tiene `name` (kebab-case, igual al nombre de la carpeta) y
-   `description`.
-2. Los enlaces relativos a `references/` resuelven.
+   `description`. Límites de la especificación de skills: `name` de hasta 64
+   caracteres y sin `--`; `description` de hasta 1024.
+2. Los enlaces relativos a `references/` resuelven, y el `SKILL.md` tiene menos de 500
+   líneas.
 3. La skill se activa: instálala y comprueba en una sesión nueva que Claude la carga
    ante una petición que debería dispararla.
 
