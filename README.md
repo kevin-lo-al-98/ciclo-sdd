@@ -25,6 +25,8 @@ tenga delante.
 | [`skill-security-scan`](skills/skill-security-scan/) | Auditar la seguridad de una skill de terceros (material vendorizado) |
 | [`documentar-decisiones`](skills/documentar-decisiones/) | ADRs en formato MADR y specs |
 | [`adoptar-estructura-de-docs`](skills/adoptar-estructura-de-docs/) | Montar `docs/decisions/` y `docs/specs/` en otro proyecto |
+| [`mantener-claude-md`](skills/mantener-claude-md/) | Mantener corto el `CLAUDE.md`, índice de documentación y protocolo de lectura |
+| [`flujo-de-requerimientos`](skills/flujo-de-requerimientos/) | Cadena requerimiento → PRD → tarea → spec con trazabilidad (experimental) |
 
 `prompt-architect` es la que más se usa fuera de una tarea concreta: responde "¿qué
 modelo uso para esto?" y "¿cómo le pido esto bien?".
