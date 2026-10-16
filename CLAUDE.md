@@ -30,6 +30,24 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
 - `docs/decisions/` — ADRs en formato MADR, uno por decisión, numerados `NNNN-…`.
 - `docs/specs/` — specs de trabajo por hacer o en curso.
 
+## Comandos
+
+```powershell
+.\scripts\install.ps1                        # enlaza todas las skills en ~/.claude/skills
+.\scripts\install.ps1 -Skill <nombre>        # solo una (en bash: ./scripts/install.sh)
+```
+
+Sin Modo de desarrollador en Windows, el script copia en lugar de enlazar y las
+ediciones del repositorio dejan de propagarse: hay que reinstalar.
+
+```bash
+cd mcp && npm install && npm start           # servidor MCP por stdio (Node >= 20)
+```
+
+El servidor lee las skills **solo al arrancar**: tras editar un `SKILL.md`, reinícialo
+(`/mcp` en Claude Code). Al arrancar escribe en stderr cuántas skills cargó, lo que
+sirve de comprobación rápida de que ninguna carpeta se quedó fuera.
+
 ## Convenciones
 
 **Todo el contenido va en español**, incluidos comentarios de ejemplos de código. Los
@@ -47,6 +65,23 @@ justificación se ignora en cuanto estorba.
 
 **El `SKILL.md` se mantiene corto.** Si una sección crece, muévela a `references/` y
 enlázala. El cuerpo principal se carga entero; las referencias solo cuando hacen falta.
+
+**`name` y `description` van en una sola línea cada uno.** El servidor MCP no usa un
+parser de YAML completo (`mcp/src/skills.js`): un `description: >` multilínea llega
+vacío por MCP aunque Claude Code lo cargue bien instalado.
+
+**Una skill nueva se añade también a la tabla del `README.md`.**
+
+## Servidor MCP
+
+**Nada escribe en stdout salvo el transporte.** En stdio, stdout es el canal JSON-RPC:
+un `console.log` rompe la conexión con un error que no lo menciona. Para depurar,
+`console.error`.
+
+`skills.js` y `servidor.js` no pueden importar `node:fs` ni nada de Node que no exista
+en un Worker de Cloudflare: toda la lectura de disco vive en `cargar-disco.js`, que es
+lo único que no viajará al despliegue remoto
+([spec](docs/specs/worker-cloudflare.md)).
 
 ## Decisiones y specs
 
@@ -99,7 +134,9 @@ No hay tests. Antes de dar por buena una skill nueva o modificada:
 
 1. El frontmatter tiene `name` (kebab-case, igual al nombre de la carpeta) y
    `description`. Límites de la especificación de skills: `name` de hasta 64
-   caracteres y sin `--`; `description` de hasta 1024.
+   caracteres y sin `--`; `description` de hasta 1024. La tool `listar_skills` del
+   servidor MCP marca con ⚠ la skill sin `description` o cuyo `name` no coincide con
+   la carpeta.
 2. Los enlaces relativos a `references/` resuelven, y el `SKILL.md` tiene menos de 500
    líneas.
 3. La skill se activa: instálala y comprueba en una sesión nueva que Claude la carga
