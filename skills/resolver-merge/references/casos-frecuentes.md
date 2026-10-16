@@ -53,7 +53,7 @@ previo del esquema, la segunda en aplicarse falla, o peor, aplica sobre un esque
 no es el que esperaba.
 
 Nunca fusiones dos migraciones en una ni reordenes timestamps por tu cuenta: pregunta.
-Y si el proyecto tiene un archivo de esquema consolidado (`schema.rb`, `schema.prisma`
+Y si el proyecto tiene un archivo de esquema consolidado (p. ej. `schema.rb`, `schema.sql`
 generado), ese se regenera, no se mergea.
 
 ### Archivos generados
