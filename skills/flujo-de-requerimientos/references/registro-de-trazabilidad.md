@@ -36,12 +36,32 @@ una afirmación, no un pendiente, y por eso puede contradecirse.
 | Quien valida | La columna Validación y el estado `Validado` |
 | Quien escribe el PRD | La columna PRD y pasa el REQ a `En PRD` |
 | El área que abre su spec | La celda de **su** área |
-| Quien archiva la última spec pendiente | El estado `Entregado` |
+| El dueño del producto, cuando todas las tareas del REQ están entregadas (o descartadas) | El estado `Entregado`, en su propio cambio. Sin tareas (versión ligera): quien archiva la última spec |
 
 Que varias personas escriban en la misma tabla es deliberado. Es lo que la hace neutral: no
 pertenece a un lado de la cadena. A cambio, dos personas pueden coger el mismo «próximo
 número libre» a la vez; el segundo cambio en integrarse choca y renumera. Es un conflicto
 barato y visible, mucho mejor que un número duplicado que nadie nota.
+
+## El registro de tareas es solo un índice
+
+Si hay tareas, llevan su propio registro (`tareas/_registro.md`), pero **no es una segunda
+tabla de trazabilidad**: la cadena REQ ↔ PRD ↔ tarea ↔ spec vive solo en la de arriba. Deja
+el registro de tareas en lo mínimo: número, título, nivel, responsable y fecha de entrega,
+agrupado en activas, entregadas y descartadas.
+
+Lo que **no** lleva, y por qué:
+
+- **Ni estado ni avance.** Son del frontmatter de la tarea y del archivo de reporte del área.
+  Copiarlos aquí hace que dueño del producto y área vuelvan a editar la misma línea, y la
+  separación de dueños que justificó no escribir en la tarea se pierde en el registro.
+- **Ni «próximo número libre» a mano.** El número que toca es el mayor de los archivos
+  `TAREA-NNN-*` más uno, descartadas incluidas: **un número no se reutiliza**. Si dos altas en
+  paralelo con títulos distintos ya no chocan en el control de versiones, lo que las delata es
+  que dos archivos lleven el mismo número, y eso se comprueba.
+
+El «próximo número libre» del registro de REQ sí se mantiene a mano en esta librería, y
+conserva el conflicto barato del que habla la sección anterior.
 
 ## Qué es la fuente de verdad
 
@@ -68,7 +88,8 @@ Al cerrar un cambio que toque el registro:
 2. Cada PRD, tarea o spec citada existe en el árbol.
 3. Un área con `n/a` no tiene spec; un área impactada no tiene `n/a`.
 4. El estado exige el artefacto que le corresponde: `En PRD` sin PRD es incoherente;
-   `Entregado` con un área impactada sin spec también.
+   `Entregado` con una tarea que no está entregada (o descartada), o con un área impactada
+   sin spec, también.
 5. El REQ y el PRD se citan **en los dos sentidos**: la fila cita un PRD que declara ese REQ
    en su frontmatter, y viceversa.
 6. El «próximo número libre» no coincide con ninguna fila existente.

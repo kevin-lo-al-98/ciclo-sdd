@@ -5,9 +5,11 @@ contratos con clientes que auditan, equipos donde producto y construcción son
 organizaciones distintas. Es **opt-in**. En un equipo que se fía de su propio historial de
 git, estas reglas son coste sin beneficio.
 
-> **Coste.** El proceso de origen de esta variante contaba al menos seis cambios separados
-> para una sola tarea de un área, y tenía a producto como firmante o revisor
-> en las nueve etapas. Antes de adoptarla, comprueba que alguien va a leer esas firmas.
+> **Coste.** El proceso de origen de esta variante contaba ocho cambios en serie para una sola
+> tarea de un área, y tenía a producto como firmante o revisor en las nueve etapas. Lo bajó
+> moviendo lo que el área reporta a su propia spec ([`reporte-del-area.md`](reporte-del-area.md))
+> y el cierre de la tarea al archivado del área; aun así, sigue siendo la variante más pesada.
+> Antes de adoptarla, comprueba que alguien va a leer esas firmas.
 
 ## 1. Firma nominal
 
@@ -25,12 +27,48 @@ Se firma en estos puntos:
 | Punto | Quién firma | Dónde |
 |---|---|---|
 | Alta del REQ | Quien lo solicita | Frontmatter y registro |
-| Validación | Quien confirma el problema | `validacion.firmada-por` |
-| Viabilidad | **Una persona por área impactada** | `viabilidad.<área>` |
-| PRD `Final` | Dueño del producto | Frontmatter |
-| Construcción de una tarea | Quien construyó, en el área | `construccion.firmada-por` |
-| Validación de una tarea | Producto, en **todo** nivel de evidencia | `validacion.firmada-por` |
-| Cierre | Responsable de producto | `cierre.firmada-por` |
+| Validación del REQ | Quien confirma el problema (titular o suplente, ver §1.1) | `validacion.firmada-por` del REQ |
+| Viabilidad | **Una persona por área impactada** | `viabilidad.<área>` del REQ |
+| PRD `Final` y sus enmiendas | Dueño del producto | Frontmatter y su historial |
+| Construcción de una tarea | Quien construyó, en el área | `construccion.firmada-por` del **archivo de reporte** del área |
+| Validación de una tarea | Producto, en **todo** nivel de evidencia, **una sola vez** | `validacion.firmada-por` de la tarea |
+| Aprobación de un área afectada | Una persona de esa área | `aprobacion-areas.<área>` del archivo de reporte, o el ADR |
+| Cierre de la tarea | Quien archiva el cambio, en el área | `cierre.firmada-por` del archivo de reporte |
+| Cierre del REQ | Responsable de producto | Estado `Entregado` del REQ y su fecha |
+
+El cierre de la tarea **no es de producto**: producto prueba y valida (el único acto que solo
+él puede hacer), y el área, que es quien sabe si lo construido quedó archivado, lo cierra.
+Reunir las dos cosas en la misma persona dejaba a producto como cuello de botella de todos
+los cierres; ver [`cuellos-de-botella.md`](cuellos-de-botella.md).
+
+### 1.1 Quién puede firmar por producto
+
+«Producto firma» es un único punto: si la persona no está, se detienen a la vez la validación
+del REQ, la de cada tarea y su cierre. Una lista **cerrada y nominal** resuelve eso sin
+volver anónima la firma:
+
+- Un archivo del proyecto (por ejemplo `requerimientos/_firmantes-de-producto.md`) nombra a
+  la persona titular y a sus suplentes, con nombre propio y su usuario en la plataforma. Es el
+  **único** lugar que declara quién firma por producto.
+- Un suplente firma **con su propio nombre**, en el mismo campo, nunca con el del titular.
+- Una firma vale si quien firma **figuraba en la lista al firmar**. Quitar a alguien no anula
+  lo que ya firmó; por eso comprobarlo en el cambio que añade la firma, contra la lista de ese
+  momento, y no contra la de hoy.
+- La lista la mantiene producto, mediante un cambio de producto que edita ese archivo.
+
+Se descartaron un suplente único (sigue siendo punto único) y una delegación por PRD (otro dato
+que mantener por documento).
+
+### 1.2 Cuando una herramienta firma por alguien
+
+Si el REQ, la tarea o el archivo de reporte los escribe una herramienta en nombre de una
+persona, que **el nombre salga de la identidad verificada** (la de la plataforma de código),
+no de lo que la persona declare. Y que la herramienta **no escriba una firma por un área o un
+rol que esa identidad no tiene**: la firma de un área la da alguien de esa área. Si no, la
+firma nominal solo prueba que alguien escribió un nombre.
+
+Esto solo importa si hay una herramienta que firma. Si las firmas las escriben las personas a
+mano, la revisión del cambio sigue siendo lo que las sostiene.
 
 ## 2. Frontera entre los dos lados
 
@@ -51,10 +89,17 @@ rutas de los dos lados.
 Cuando dos lados necesitan cambiar a la vez, son **dos cambios enlazados**, cada uno
 apuntando al otro.
 
-Un coste que conviene ver de entrada: las etapas de viabilidad y de seguimiento de tareas
-obligan al área a editar archivos del lado de producto. Decide **antes** de adoptar si eso
-es un caso normal con su propio revisor o una excepción, o la frontera dispara sobre el
-trabajo ordinario.
+Un coste que conviene ver de entrada: la etapa de viabilidad obliga al área a editar un
+archivo del lado de producto, el REQ, en su campo y sin tocar el resto. Decide **antes** de
+adoptar si eso es un caso normal con su propio revisor o una excepción, o la frontera
+dispara sobre el trabajo ordinario. El seguimiento de tareas era el segundo caso, y el
+origen lo eliminó sacándolo de la tarea ([`reporte-del-area.md`](reporte-del-area.md)):
+si tu frontera te estorba en el día a día, mira primero **qué escribe cada lado en el
+archivo del otro** antes de relajarla.
+
+Un cambio de un área que modifica lo que otra construye no lo cubre esta frontera, que solo
+separa producto de construcción: para eso, las áreas afectadas
+([`reporte-del-area.md`](reporte-del-area.md)).
 
 ## 3. Niveles de evidencia y doble prueba
 
@@ -77,6 +122,13 @@ Reglas para que no se baje de nivel en silencio:
 - Bajar de E3 a E2 también.
 - El cierre (el `archive` de la spec) no puede completarse mientras la tarea asociada no
   esté `Validada`.
+- En `E1` no hay prueba de usuario: la firma de producto es de presencia sobre la evidencia
+  de los tests. Una segunda firma sobre lo mismo duplica la cola sin añadir juicio, y es
+  trabajo técnico, justo el que producto peor sabe juzgar. Firma **una vez**.
+- La firma de quien responde por la materia sensible (en el origen, el usuario experto del
+  producto) es **adicional** a la de producto, en su propio campo, y nunca la sustituye. El
+  origen la dejó **opcional en todos los niveles**, `E3` incluido: hacerla obligatoria sumaba
+  una firma más a un flujo que ya sufría por firmas. Decide tú si en `E3` la exiges.
 
 Los criterios para decidir qué es «sensible» (E3) son del proyecto: escríbelos antes del
 primer REQ, porque decidirlos tarea por tarea acaba en que todo es E2.
@@ -85,5 +137,19 @@ primer REQ, porque decidirlos tarea por tarea acaba en que todo es E2.
 
 Todo lo de esta variante que sea comparar campos se puede automatizar: que el campo de
 firma no esté vacío, que cada área impactada tenga su firma de viabilidad, que un cambio no
-mezcle lados, que el cierre exija la tarea validada. Esta librería no incluye ese código
-todavía. Mientras tanto, son puntos de la revisión del cambio.
+mezcle lados, que el cierre exija la tarea validada, que el firmante figure en la lista, que
+las áreas afectadas declaradas hayan firmado, que el avance derivado cuadre. Esta librería no
+incluye ese código todavía. Mientras tanto, son puntos de la revisión del cambio.
+
+Dos cosas que el origen aprendió al escribir esos validadores y que conviene decidir antes:
+
+- **Un duro con radio global se cobra a quien no puede arreglarlo.** Un plazo vencido que
+  rompe el CI de todo el repositorio castiga a todos los equipos por el incumplimiento de uno.
+  Limita el bloqueo a los cambios que tocan lo vencido; para el resto, un aviso.
+- **Un validador que lee un registro vacío no prueba nada.** Que la comprobación salga en verde
+  con cero REQ solo significa que no hay nada que contradecir. No lo cuentes como evidencia de
+  que el proceso funciona.
+
+Y un aviso barato que no necesita el informe completo: contar los días que un REQ o una
+tarea llevan en el mismo estado, a partir de las fechas que ya existen. Sin plazos, un REQ
+puede quedarse meses en `Validado` sin que nada lo diga.

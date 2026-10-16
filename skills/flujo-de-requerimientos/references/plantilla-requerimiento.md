@@ -27,6 +27,7 @@ fecha-validacion:
 fecha-aceptacion:
 fecha-entrega:
 prd: —
+req-referencia:           # solo si este REQ regulariza un hotfix: el REQ existente que toma de referencia
 ---
 
 # REQ-NNN — {mismo título del frontmatter}
@@ -115,7 +116,9 @@ prd: —
 
      Si un área rebota el REQ —trae solución técnica, impone un diseño de pantalla,
      o mezcla más de un problema—, el rebote y su motivo se escriben aquí y vuelve
-     a quien lo pidió. -->
+     a quien lo pidió. Al volver corregido, firman de nuevo TODAS las áreas si la
+     corrección toca «Problema» o «Criterios de aceptación de negocio»; si no, solo
+     la que rebotó. Se decide por el diff, no por el juicio de quien corrige. -->
 
 | Área | Firma | Fecha | Qué le toca y notas técnicas preliminares |
 |---|---|---|---|

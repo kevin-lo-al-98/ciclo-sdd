@@ -8,16 +8,17 @@ criterios de aceptación. Es el insumo del que cada área saca su spec.
 Las secciones que no apliquen se **eliminan**, no se dejan vacías ni con «N/A»: una sección
 vacía hace que el lector siga buscando. Los comentarios `<!-- … -->` se borran al escribir.
 
-Un PRD `Final` **no se edita en el sitio**: un cambio de comportamiento es una versión
-nueva (ver [cuando-cambia-el-pedido.md](cuando-cambia-el-pedido.md)).
+Un PRD `Final` **no se edita en el sitio** salvo por una enmienda acotada (versión menor, con
+su fila en el historial); cualquier otro cambio de comportamiento es una versión nueva en un
+archivo nuevo (ver [cuando-cambia-el-pedido.md](cuando-cambia-el-pedido.md)).
 
 ```markdown
 ---
 tipo: prd
 id: PRD-NNN
 titulo: Qué comportamiento define este PRD
-version: 1.0
-estado: Borrador          # Borrador → Final
+version: 1.0              # X.Y: la menor sube con una enmienda acotada; la mayor, con un archivo nuevo
+estado: Borrador          # Borrador → Final → Superado (por una versión mayor posterior)
 autor: nombre-de-quien-lo-escribe
 fecha: AAAA-MM-DD
 requerimientos: [REQ-NNN]
@@ -112,6 +113,16 @@ areas-impactadas: []
 <!-- Si este PRD toca datos personales, autenticación, autorización o una obligación
      normativa: dilo aquí y cita el marco que aplica. Puede exigir revisión humana
      obligatoria antes de pasar a `Final`. Se omite si no aplica. -->
+
+## 13. Historial
+
+<!-- Una fila por versión. Una enmienda acotada nombra aquí, por número, TODAS las
+     secciones que modifica: es lo que permite calcular qué tareas y specs afecta.
+     Esta sección no se omite aunque el PRD sea nuevo. -->
+
+| Versión | Fecha | Quién firma | Qué cambió | REQ que lo motiva | Revisión |
+|---|---|---|---|---|---|
+| 1.0 | AAAA-MM-DD | | Primera versión | REQ-NNN | |
 ```
 
 ## Antes de pasar a `Final`

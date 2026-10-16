@@ -15,17 +15,24 @@ Un resultado que necesita 600 líneas para explicarse suele esconder tres entreg
 tipo: tarea
 id: TAREA-NNN
 titulo: Enunciado del resultado observable en una línea
-estado: Borrador        # DE PRODUCTO: Borrador → Lista → Validada → Entregada | Descartada
-avance: pendiente       # DEL ÁREA:    pendiente → en curso → construido
+estado: Borrador        # Borrador → Lista → Validada | Descartada. «Entregada» no se escribe: se deriva
 nivel-evidencia: E2     # E1 | E2 | E3  (ver variante-con-firmas.md)
 origen: prd             # prd | hotfix
 prd: PRD-NNN
-prd-secciones: []       # ej. ["§5.1", "§11.2"]
+prd-secciones: []       # ej. ["§5.1", "§11.2"]; qué secciones del PRD baja esta tarea
 requerimientos: []      # ej. [REQ-NNN]
-areas-impactadas: []
-specs: {}               # área → nombre del cambio de spec, o n/a
+areas-impactadas: []    # salen del reparto del PRD, dentro de las del REQ
+validacion:             # la escribe quien valida; ver «Cómo se prueba»
+  estado: pendiente     # pendiente | aprobada | aprobada-con-excepciones | rechazada
+  firmada-por:          # variante con firmas: nombre propio
+  fecha:
+  motivo:               # obligatorio si es aprobada-con-excepciones
+  plazo:                # plazo de regularización de la excepción
 fecha-alta: AAAA-MM-DD
-fecha-entregada:
+fecha-lista:
+fecha-validada:
+# El avance, el enlace a la spec, el responsable y las firmas del área NO van aquí: van en
+# el archivo de reporte del cambio de cada área (reporte-del-area.md).
 ---
 
 # TAREA-NNN — {mismo título del frontmatter}
@@ -92,22 +99,43 @@ fecha-entregada:
 | AAAA-MM-DD | | Alta inicial |
 ```
 
-## Dos campos de estado, cada uno con un solo dueño
+## Un solo dueño del archivo
 
-`estado` es de **producto** y `avance` es del **área que construye**. Son campos separados a
-propósito: el área no cambia el estado ni los criterios de aceptación, y producto no toca el
-avance. Un solo campo que ambos editan se pisa, y nadie sabe quién tuvo la última palabra.
+La tarea la escribe **solo quien posee el producto**. El área que construye no tiene campos
+en ella: su avance, su responsable y su cierre se **derivan** del archivo de reporte de su
+spec ([`reporte-del-area.md`](reporte-del-area.md)). Una versión anterior de este diseño daba
+al área un campo `avance` dentro de la tarea, «para no partir el dueño»; en la práctica
+cada actualización era un cambio aparte en un archivo ajeno, y por eso se movió.
+
+Ningún estado lo escribe el área. `Borrador`, `Lista` y `Descartada` los pone quien posee la
+tarea, `Validada` la deja su prueba de usuario, y `Entregada` **no existe como valor
+escrito**: es lo que resulta de estar validada y de que cada área haya cerrado su cambio.
 
 ## Si la validación rechaza la tarea
 
-El `avance` vuelve a `en curso` (es campo del área), el motivo se anota en el historial y el
-`estado` de producto no cambia. Si el rechazo muestra que el comportamiento pedido no encaja
-con la capacidad descrita, se enmienda el PRD con una versión nueva y se vuelven a destilar
-las tareas.
+La tarea se queda en `Lista`, la causa se anota en el historial y `validacion.estado` pasa a
+`rechazada`. El área **reabre su cambio y retira su firma de construcción**; con eso su avance
+vuelve a `en curso` sin que nadie lo edite. Si el rechazo muestra que el comportamiento pedido
+no encaja con la capacidad descrita, se enmienda el PRD (versión menor si es acotada, mayor si
+no: ver [`cuando-cambia-el-pedido.md`](cuando-cambia-el-pedido.md)) y se vuelven a destilar las
+tareas afectadas.
 
 ## Vía rápida para urgencias
 
-Una tarea con `origen: hotfix` puede nacer ya en `Lista` y `en curso`, sin REQ ni PRD
-previos. A cambio tiene un **plazo máximo** (el proyecto de origen usaba 5 días hábiles)
-para que alguien escriba el REQ de regularización, y **no puede pasar a `Entregada` sin
-citarlo**. Sin plazo, la vía rápida se convierte en la vía normal.
+Una tarea con `origen: hotfix` puede nacer ya en `Lista`, sin REQ ni PRD previos; su avance
+sale del cambio del área, como el de cualquier otra. A cambio tiene un **plazo máximo** (el
+proyecto de origen usaba 5 días hábiles) para que alguien escriba el REQ de regularización, y
+**no queda entregada sin citarlo**. Sin plazo, la vía rápida se convierte en la vía normal.
+
+Dos precisiones que el origen tuvo que añadir tras revisarlo:
+
+- **El REQ de regularización es un REQ nuevo** que describe el hotfix y cita, como referencia,
+  un REQ existente (campo propio en el frontmatter: `req-referencia`). Tiene que estar como
+  mínimo en `Validado`: exigir un PRD en cinco días es irreal para un hotfix, pero `Validado`
+  prueba que alguien con autoridad entendió qué se cambió. Con solo exigir «cualquier fila»,
+  bastaba un `Borrador`.
+- **El plazo vencido no debe bloquear a todo el repositorio.** Si lo comprueba un validador
+  que corre en cada cambio, al día seis **todos los cambios fallan**, también los que no
+  tocan esa tarea, sin que nadie haya cambiado nada; y quien sufre el bloqueo no puede
+  arreglarlo, porque el REQ lo escribe otro lado. El plazo vencido bloquea solo el cambio que
+  toca esa tarea; para el resto es un aviso.
