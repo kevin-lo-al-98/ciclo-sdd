@@ -59,7 +59,7 @@ Cuatro hallazgos condicionan el diseño:
 | ADR Zoom completo (14 propiedades, niveles L0–L3, espacios de nombres, copia verbatim del `Decision`, skills muy extensas) | Descartar | Ya rechazado en la ADR 0000 |
 | Material de dominio (contexto, fuentes originales, PRDs) y skills de stack, de dominio o de marca | Descartar | Dominio, stack y material corporativo |
 | `docs/migration`, planes de remediación, `ROADMAP.md` | Descartar | Historia del proyecto |
-| Su servidor MCP | Descartar | Sirve un corpus de proyecto; el `mcp/` de aquí sirve skills |
+| Su servidor MCP | Descartar | Sirve contenido del proyecto; el `mcp/` de aquí sirve skills |
 
 ### Adopción por niveles
 
@@ -90,8 +90,13 @@ skills/flujo-de-requerimientos/
     ├── plantilla-prd.md
     ├── plantilla-tarea.md
     ├── registro-de-trazabilidad.md
-    └── variante-con-firmas.md     frontera Producto/IT y firma nominal, opt-in
+    ├── reporte-del-area.md        lo que el área reporta sobre una tarea, sin escribir en ella
+    ├── variante-con-firmas.md     frontera Producto/IT, firma nominal y suplentes, opt-in
+    └── cuellos-de-botella.md      dónde se atascó el diseño de origen y cómo auditar el propio
 ```
+
+Las dos últimas referencias de `flujo-de-requerimientos` y los cambios de las demás vienen
+de la [actualización del 2026-10-15](#actualización-del-2026-10-15).
 
 Los ejemplos de estas referencias son ficticios. El `description` de cada skill enumera
 sus disparadores y dice cuándo no aplica, para no competir con `documentar-decisiones`
@@ -166,6 +171,33 @@ licencias con `skills/skill-security-scan/`, que ya la lleva.
 - **Disparadores que compiten.** `flujo-de-requerimientos` y `documentar-decisiones`
   podrían cargarse ambas ante «escribe la spec». Se nota en el paso 3 de la verificación.
 
+## Actualización del 2026-10-15
+
+El riesgo «proceso sin validar» se materializó en parte: el proyecto de referencia modificó
+su flujo entre el 6 y el 15 de octubre (al auditar sus cuellos de botella y escribir siete
+decisiones nuevas) **sin haberlo recorrido todavía con un solo requerimiento**: sus registros
+siguen vacíos. Se trajo a `flujo-de-requerimientos` lo que es patrón y no instancia:
+
+- Etapas 8 y 9 separadas: producto valida la tarea, el área la cierra al archivar, producto
+  cierra el REQ.
+- La tarea la escribe solo producto; lo que reporta el área va en su spec y el avance se
+  deriva (`reporte-del-area.md`), con aprobación de las áreas afectadas.
+- Enmienda acotada del PRD con versión menor; reglas de re-firma de viabilidad tras un rebote.
+- Lista cerrada de firmantes de producto con suplentes; firma única en `E1`.
+- Hotfix: REQ de regularización en `Validado` como mínimo; plazo que bloquea solo el cambio
+  que toca la tarea. Registro de tareas como índice.
+- Un reference nuevo con los cuellos de botella y cómo auditar el flujo propio.
+
+**No se trajo**, por ser instancia: el servidor MCP del proyecto y su identificación con
+tokens (queda una nota genérica de «firma con identidad verificada»), la proyección a una
+herramienta de gestión de tareas, los validadores y las skills de importación y de proyección.
+**Tampoco la pausa de un REQ**, que el origen propuso pero no llegó a decidir: queda
+descrita como propuesta en `cuellos-de-botella.md`.
+
+Las skills de etapa del origen (alta, validación, viabilidad, PRD a tareas, prueba de usuario)
+siguen sin evaluarse, como en el alcance inicial. Si se decide traerlas, es otra pasada con su
+propia spec: tendrían que competir bien con `documentar-decisiones` y con esta skill.
+
 ## Criterio de terminado
 
 Para la fase 1:
@@ -178,5 +210,5 @@ Para la fase 1:
    `flujo-de-requerimientos`; «mi CLAUDE.md es enorme, ¿qué recorto?» carga
    `mantener-claude-md`; y «escribe la spec de esto» carga `documentar-decisiones`, no
    `flujo-de-requerimientos`.
-4. `grep -rniE "prisma|informa colombia|pacman|jenkins/common" skills/mantener-claude-md skills/flujo-de-requerimientos`
+4. `grep -rniE "informa colombia|pacman|jenkins/common" skills/mantener-claude-md skills/flujo-de-requerimientos`
    no devuelve nada. No se busca «informa» a secas: es un verbo español y daría falsos positivos.
