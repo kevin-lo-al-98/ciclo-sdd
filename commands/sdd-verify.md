@@ -12,6 +12,17 @@ Argumento: `$ARGUMENTS` = nombre del cambio.
 - **`cerrar-plan-o-spec-con-regla-de-oro`**
 - **`documentar-decisiones`**
 
+## Roles
+
+Leé la sección «Ciclo de vida: roles» del `CLAUDE.md` del proyecto. Si no existe, el modo
+es `solo`: ignorá esta sección. En `pareja` o `equipo`:
+
+- Escribí en el frontmatter de `verify-report.md` `verificado-por: <git config user.name>`.
+- Si quien verifica es el `dueño` de `proposal.md` o aparece como autor de la
+  implementación en `apply-progress.md`, el veredicto **no puede pasar de PASS WITH
+  WARNINGS**. Registralo como hallazgo: «verificado por quien implementó». Quien escribió
+  el código comparte sus puntos ciegos, y la matriz confirma lo que ya creía.
+
 ## Instrucciones
 
 1. Requiere `spec.md` y `tasks.md`. Generá `openspec/changes/<nombre>/verify-report.md` con

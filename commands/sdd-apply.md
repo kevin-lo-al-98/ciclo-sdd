@@ -15,6 +15,15 @@ Argumento: `$ARGUMENTS` = nombre del cambio.
   de arquitectura no prevista en `design.md`.
 - La o las skills de implementación y testing propias del stack del proyecto.
 
+## Roles
+
+Leé la sección «Ciclo de vida: roles» del `CLAUDE.md` del proyecto. Si no existe, el modo
+es `solo`: ignorá esta sección. En `pareja` o `equipo`, compará el `dueño` del
+frontmatter de `proposal.md` con quien ejecuta (`git config user.name`). Si no coinciden,
+**avisá y preguntá** si es un traspaso. Si lo es, registralo en `apply-progress.md`
+(`traspaso: <de> → <a>, AAAA-MM-DD`) y actualizá `dueño`. No bloquees: traspasar un
+cambio es legítimo; lo que no puede pasar es que dos personas lo trabajen sin saberlo.
+
 ## Instrucciones
 
 1. **No hay `apply` sin `spec`.** Si falta `openspec/changes/<nombre>/spec.md`, **pará**. Si

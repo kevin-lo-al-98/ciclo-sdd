@@ -1,13 +1,14 @@
 ---
 name: adoptar-estructura-de-docs
-description: 'Monta en un proyecto la estructura para registrar decisiones y specs —`docs/decisions/` con ADRs en formato MADR y `docs/specs/`— y deja en su `CLAUDE.md` el aviso para que las sesiones futuras usen el servidor MCP `docs-skills`. Úsala cuando el usuario pida "adoptar los ADRs en este proyecto", "montar la carpeta de decisiones", "empezar a registrar decisiones aquí", "llevar esta convención a otro repo", "configurar docs/decisions", o cuando `documentar-decisiones` no encuentre dónde escribir. Solo prepara la estructura una vez; para escribir un ADR concreto usa `documentar-decisiones`. No la uses si el proyecto ya tiene un sistema de ADRs (`.adrs/`, `docs/adr/`, ADR Zoom): se detiene y pregunta.'
+description: 'Monta en un proyecto la estructura para registrar decisiones y specs —`docs/decisions/` con ADRs en formato MADR y `docs/specs/`—, fija el plugin `docs-skills` para todo el equipo en `.claude/settings.json` y, si trabajan dos personas o más, deja en su `CLAUDE.md` la sección de roles del ciclo SDD. Úsala cuando el usuario pida "adoptar los ADRs en este proyecto", "montar la carpeta de decisiones", "empezar a registrar decisiones aquí", "llevar esta convención a otro repo", "configurar docs/decisions", "que todo el equipo use docs-skills", "configurar los roles del ciclo", "modo pareja", "modo equipo", o cuando `documentar-decisiones` no encuentre dónde escribir. Solo prepara la estructura una vez; para escribir un ADR concreto usa `documentar-decisiones`. No la uses si el proyecto ya tiene un sistema de ADRs (`.adrs/`, `docs/adr/`, ADR Zoom): se detiene y pregunta.'
 ---
 
 # Adoptar la estructura de decisiones en un proyecto
 
-Prepara un proyecto para registrar decisiones con MADR. Es una operación puntual: deja
-la carpeta, la plantilla y el aviso en `CLAUDE.md`, y a partir de ahí el trabajo diario
-es de `documentar-decisiones`.
+Prepara un proyecto para registrar decisiones con MADR y para que todo su equipo use
+docs-skills. Es una operación puntual: deja la carpeta, la plantilla, la forma de
+instalación y, si hace falta, los roles; a partir de ahí el trabajo diario es de
+`documentar-decisiones` y de los comandos `/sdd-*`.
 
 Escribe archivos en un repositorio ajeno, y una convención mal aplicada allí cuesta más
 de deshacer que de preguntar. Por eso el orden es **detectar, proponer, esperar, crear**.
@@ -27,8 +28,13 @@ Mezclar dos formatos en un proyecto deja dos convenciones a medias. Si algo ya e
 en uso, la decisión de cambiarlo es del usuario, no de esta skill. Migrar ADRs
 existentes queda fuera de su alcance.
 
-Comprueba también si el `CLAUDE.md` del proyecto existe y qué dice ya sobre decisiones,
-para no duplicarlo.
+Comprueba también si el `CLAUDE.md` del proyecto existe y qué dice ya sobre decisiones
+o roles, para no duplicarlo; si `.claude/settings.json` ya declara el plugin
+`docs-skills`; y si existe `.claude/docs-skills.version`, que indica una copia por proyecto.
+
+Pregunta **cuántas personas trabajan en el proyecto** y si quien pide y quien construye son
+personas distintas. De eso salen el modo de roles (paso 4.6) y si conviene
+`flujo-de-requerimientos`.
 
 ## 2. Proponer
 
@@ -42,6 +48,10 @@ Muestra en texto, antes de crear nada:
   ```
 - el texto exacto que se añadirá al `CLAUDE.md` (paso 4), o que se creará el archivo si
   no existe.
+- la vía de instalación elegida (ver [Cómo llega docs-skills al
+  proyecto](#cómo-llega-docs-skills-al-proyecto)) y lo que escribe en `.claude/`.
+- con dos personas o más, el modo de roles y la tabla con los nombres que haya dado el
+  usuario.
 - si el proyecto ya tiene una carpeta `docs/`, que estas dos se añaden sin tocar el
   resto.
 
@@ -70,14 +80,38 @@ Un "sí", "dale" o "ok" basta. Un comentario ambiguo no lo es: vuelve a pregunta
    `leer_skill`; no las cargues enteras por costumbre.
    ```
 
-   Si el usuario prefiere **instalar las skills** con `scripts/install.*` en lugar de usar
-   el servidor MCP, el aviso sobra: Claude Code las carga solo por su `description`. Pregunta
-   cuál usa antes de escribirlo.
+   Este aviso solo hace falta en la vía MCP. Con el plugin o con la copia por proyecto,
+   Claude Code carga las skills por su `description` y el aviso sobra: en ese caso
+   escribe la sección sin la frase del servidor MCP.
+5. **La instalación para el equipo**, según la vía elegida:
+   - **Plugin** (por defecto): desde la raíz del proyecto,
+     `claude plugin marketplace add kevin-lo-al-98/docs-skills --scope project` y
+     `claude plugin install docs-skills@docs-skills --scope project`. Los dos escriben en
+     `.claude/settings.json`, que se versiona; a cada miembro que confíe en la carpeta,
+     Claude Code le ofrece el plugin.
+   - **Copia por proyecto**: `scripts/install.ps1 -Project <ruta>` o
+     `scripts/install.sh --project <ruta>` desde el clon de docs-skills. Deja todo en
+     `<ruta>/.claude/` y la versión en `.claude/docs-skills.version`.
+6. **Los roles**, solo con dos personas o más: la sección «Ciclo de vida: roles» al final
+   del `CLAUDE.md`, con la plantilla y el criterio de modo de
+   [`references/roles-del-ciclo.md`](references/roles-del-ciclo.md). En solitario no la
+   escribas: sin ella el modo es `solo`, que es lo correcto.
 
 Al terminar, **no commitees**: deja los archivos sin añadir y dilo. El commit sigue el
 protocolo del proyecto, que aquí no conoces.
 
-## Por qué hace falta el aviso del `CLAUDE.md`
+## Cómo llega docs-skills al proyecto
+
+| Vía | Cuándo | Comandos `/sdd-*` y agentes | Nombres |
+|---|---|---|---|
+| **Plugin** | Por defecto; el equipo tiene acceso a GitHub | Sí | Con prefijo: `/docs-skills:sdd-new`, `docs-skills:documentar-decisiones` |
+| **Copia por proyecto** | Sin red o sin `/plugin`, o si se quiere la copia dentro del repositorio | Sí | Sin prefijo: `/sdd-new` |
+| **MCP local** | Clientes que no son Claude Code | No, solo skills | Se consultan con `buscar_skills` y `leer_skill` |
+
+No combines el plugin con la copia por proyecto, ni con los enlaces de `~/.claude` de quien
+mantiene docs-skills: cada skill aparecería dos veces.
+
+## Por qué hace falta el aviso del `CLAUDE.md` en la vía MCP
 
 Cuando las skills se sirven por MCP, Claude Code **no las activa solo**: las carga por
 `description` únicamente cuando están instaladas en `~/.claude/skills`. Por MCP, el modelo
@@ -95,5 +129,6 @@ claude mcp add docs-skills -s user -- node <ruta-al-repositorio>/mcp/src/stdio.j
 ```
 
 Requiere `npm install` previo dentro de `mcp/`. El servidor lee las skills al arrancar:
-tras cambiar una skill hay que reiniciarlo con `/mcp`. Hoy el servidor es local, así
-que solo sirve en la máquina donde está el repositorio.
+tras cambiar una skill hay que reiniciarlo con `/mcp`. El servidor es local, así que solo
+sirve en la máquina donde está el repositorio; para un equipo con Claude Code, la vía es
+el plugin.

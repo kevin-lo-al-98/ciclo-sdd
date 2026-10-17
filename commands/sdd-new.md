@@ -13,6 +13,23 @@ Si el nombre ya existe bajo `openspec/changes/`, **pará**: o es un `/sdd-contin
 nombre está mal. Si el proyecto tiene `docs/decisions/`, `docs/specs/` o un índice de
 documentación propio, revisalos antes de improvisar un procedimiento propio.
 
+Si el repositorio tiene remoto, buscá el nombre también ahí, porque un compañero puede
+tenerlo abierto en una rama sin mergear: `git fetch`, después
+`git ls-tree -d origin/<rama principal> openspec/changes/<nombre>` y
+`git branch -r --list "*<nombre>*"`. Si aparece, **pará** igual que en local y decí dónde
+está. Dos cambios con el mismo nombre chocan recién en el merge, cuando ya hay trabajo
+hecho en los dos.
+
+## Roles
+
+Leé la sección «Ciclo de vida: roles» del `CLAUDE.md` del proyecto. Si no existe, el modo
+es `solo`: ignorá esta sección. En `pareja` o `equipo`:
+
+- Preguntá quién es el **dueño** del cambio (por defecto, `git config user.name`) y
+  escribilo como `dueño` en el frontmatter de `proposal.md`.
+- En el paso 5, el plan se presenta a quien la tabla de roles designa para aprobarlo, que
+  no es el dueño. Decí a quién le toca; no lo des por aprobado porque el dueño dijo que sí.
+
 ## Skills relacionadas
 
 - **`flujo-de-requerimientos`** — si este cambio viene de un requerimiento o PRD, es de ahí
@@ -50,7 +67,8 @@ documentación propio, revisalos antes de improvisar un procedimiento propio.
    - Cada tarea cierra con el criterio que la justifica (el `MUST` de la spec). Marcá
      **`[P]`** solo si no depende de nada que otra tarea del cambio todavía tenga que crear.
 4. **Frontmatter ligero** en `proposal.md`, `design.md` y `tasks.md`: `tipo: cambio-fase · id
-   · fase · estado`. La fase se declara ahí.
+   · fase · estado`, y `dueño` en `proposal.md` si el modo no es `solo`. La fase se
+   declara ahí.
 5. **Pausá acá y presentá el plan** — resumen, número de tareas, archivos afectados,
    decisiones abiertas — antes de pasar a `/sdd-apply`. Si el cambio toca datos personales,
    autenticación/autorización, pagos o cualquier dominio regulado, exigí revisión humana

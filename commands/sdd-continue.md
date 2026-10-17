@@ -25,3 +25,8 @@ Argumento: `$ARGUMENTS` = nombre del cambio.
 5. Al avanzar, actualizá `fase` en el frontmatter.
 6. Antes de escribir nada, releé `docs/decisions/` si el proyecto las tiene: pudo entrar una
    decisión nueva desde la última vez que se tocó el cambio.
+7. **Roles.** Si el `CLAUDE.md` del proyecto tiene la sección «Ciclo de vida: roles» con
+   modo `pareja` o `equipo`, compará el `dueño` de `proposal.md` con quien ejecuta
+   (`git config user.name`). Si no coinciden, avisá y preguntá si es un traspaso, igual que
+   `/sdd-apply`: se registra en `apply-progress.md` y se actualiza `dueño`. Sin esa
+   sección, el modo es `solo` y este paso no aplica.

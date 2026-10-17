@@ -45,7 +45,23 @@ Si el proyecto tiene un glosario de dominio (`CONTEXT.md`, skill
 y texto de UI lo respeten. Un término prohibido o ambiguo en una interfaz pública es más
 caro de corregir después que durante la revisión.
 
-### 5. El MR/PR hermano (si aplica)
+### 5. Dueño y verificación
+
+Si el `CLAUDE.md` del proyecto tiene la sección «Ciclo de vida: roles» en modo `pareja` o
+`equipo`, comprobá dos cosas:
+
+- `proposal.md` declara `dueño`.
+- El `verificado-por` de `verify-report.md` no coincide con el dueño ni con quien
+  implementó según `apply-progress.md`. Si coincide y el veredicto es PASS a secas, es un
+  hallazgo: la regla del proyecto exige que verifique otra persona.
+
+En modo `solo`, o sin esa sección, este punto no aplica.
+
+Si el proyecto usa la copia por proyecto de docs-skills (`.claude/docs-skills.version`) y
+el MR la toca, compará su `version` con la anterior: una copia que retrocede de versión
+suele ser un merge que se quedó con el lado viejo.
+
+### 6. El MR/PR hermano (si aplica)
 
 Si el proyecto reparte código y documentación de spec en repos distintos, confirmá que
 ambos MR/PR se enlazan entre sí. Si falta el enlace, falta medio cambio. Si el proyecto

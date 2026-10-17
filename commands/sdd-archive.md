@@ -7,6 +7,13 @@ Cerrar un cambio SDD: fundir su delta y archivarlo.
 
 Argumento: `$ARGUMENTS` = nombre del cambio.
 
+## Roles
+
+Si el `CLAUDE.md` del proyecto tiene la sección «Ciclo de vida: roles» con modo `pareja` o
+`equipo`, archiva el `dueño` de `proposal.md`, que es quien mejor sabe qué cambió al fundir
+la delta. Si ejecuta otra persona, avisá y pedí confirmación antes de mover nada, y anotá
+en `archive-report.md` quién archivó. Sin esa sección, el modo es `solo` y esto no aplica.
+
 ## Instrucciones
 
 1. **No hay `archive` sin `verify` en PASS.** Requiere `verify-report.md` con veredicto
