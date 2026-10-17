@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Instala las skills y los comandos de este repositorio en ~/.claude mediante enlaces
-# simbólicos, de modo que editar el repositorio actualice la skill o el comando al
-# instante.
+# Instala las skills, los comandos y los subagentes de este repositorio en ~/.claude
+# mediante enlaces simbólicos, de modo que editar el repositorio actualice lo instalado
+# al instante.
 #
-#   ./scripts/install.sh                   # todas las skills y todos los comandos
-#   ./scripts/install.sh prompt-architect  # solo una skill o un comando con ese nombre
+#   ./scripts/install.sh                   # todo
+#   ./scripts/install.sh prompt-architect  # solo la skill, el comando o el agente con ese nombre
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -48,6 +48,7 @@ install_file_items() {
 
 install_dir_items  "skill"   "$repo_root/skills"   "$HOME/.claude/skills"
 install_file_items "comando" "$repo_root/commands" "$HOME/.claude/commands"
+install_file_items "agente"  "$repo_root/agents"   "$HOME/.claude/agents"
 
 if [ "$installed" -eq 0 ]; then
   echo "No se instaló nada${only:+ (no existe '$only')}." >&2
@@ -56,4 +57,4 @@ fi
 
 echo
 echo "$installed elemento(s) instalados en ~/.claude"
-echo "Reinicia Claude Code para que detecte las skills y los comandos nuevos."
+echo "Reinicia Claude Code para que detecte las skills, los comandos y los agentes nuevos."

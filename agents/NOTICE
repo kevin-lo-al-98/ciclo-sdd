@@ -1,0 +1,26 @@
+agents/ — vendored from addyosmani/agent-skills
+
+code-reviewer.md, security-auditor.md and test-engineer.md are vendored from
+Agent Skills by Addy Osmani (https://github.com/addyosmani/agent-skills),
+licensed under the MIT License.
+
+  Copyright (c) 2025 Addy Osmani
+  SPDX-License-Identifier: MIT
+
+Upstream snapshot: version 0.6.13 (plugin.json), downloaded 2026-10-16.
+Upstream files: agents/code-reviewer.md, agents/security-auditor.md,
+agents/test-engineer.md.
+
+See LICENSE for the full MIT License text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-10-16 — In the "Composition" section of each file, the relative link
+`[docs/agents.md](../docs/agents.md)` was replaced with a plain pointer to the
+upstream repository, because that file is not vendored here.
+
+2026-10-16 — In code-reviewer.md, `/review` was renamed to `/quality-review`,
+matching the local name of that command (see commands/NOTICE-agent-skills).
+
+No other change to the personas, review scopes or output templates.
+Not vendored: agents/web-performance-auditor.md (used only by `/webperf`).

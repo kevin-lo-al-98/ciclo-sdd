@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Instala las skills y los comandos de este repositorio en ~/.claude.
+    Instala las skills, los comandos y los subagentes de este repositorio en ~/.claude.
 
 .DESCRIPTION
     Por defecto crea enlaces simbólicos, de modo que editar el repositorio actualiza
@@ -9,30 +9,34 @@
     se puede crear el enlace, el script copia el archivo y avisa.
 
     Las skills (carpetas en skills/) se enlazan en ~/.claude/skills. Los comandos
-    (archivos .md en commands/) se enlazan en ~/.claude/commands.
+    (archivos .md en commands/) se enlazan en ~/.claude/commands. Los subagentes
+    (archivos .md en agents/) se enlazan en ~/.claude/agents.
 
 .PARAMETER Copy
     Fuerza la copia en lugar del enlace simbólico.
 
 .PARAMETER Skill
-    Instala solo la skill indicada. Si se omite (junto con -Command), instala todas las
-    skills y todos los comandos.
+    Instala solo la skill indicada. Sin -Skill, -Command ni -Agent, instala todo.
 
 .PARAMETER Command
-    Instala solo el comando indicado (sin la extensión .md). Si se omite (junto con
-    -Skill), instala todas las skills y todos los comandos.
+    Instala solo el comando indicado (sin la extensión .md).
+
+.PARAMETER Agent
+    Instala solo el subagente indicado (sin la extensión .md).
 
 .EXAMPLE
     .\scripts\install.ps1
     .\scripts\install.ps1 -Skill prompt-architect
     .\scripts\install.ps1 -Command sdd-new
+    .\scripts\install.ps1 -Agent code-reviewer
     .\scripts\install.ps1 -Copy
 #>
 [CmdletBinding()]
 param(
     [switch]$Copy,
     [string]$Skill,
-    [string]$Command
+    [string]$Command,
+    [string]$Agent
 )
 
 $ErrorActionPreference = 'Stop'
@@ -114,10 +118,12 @@ function Install-Symlinked {
     return [pscustomobject]@{ Installed = $installed; Copied = $copied }
 }
 
-# -Skill sola instala solo esa skill (no toca comandos); -Command sola, al revés. Sin
-# ninguna de las dos, se instala todo. Pasar ambas instala esa skill y ese comando.
-$runSkills   = $Skill -or (-not $Skill -and -not $Command)
-$runCommands = $Command -or (-not $Skill -and -not $Command)
+# Cada filtro instala solo lo suyo; sin ninguno se instala todo. Pasar varios instala
+# cada elemento indicado.
+$installAll  = -not $Skill -and -not $Command -and -not $Agent
+$runSkills   = $Skill -or $installAll
+$runCommands = $Command -or $installAll
+$runAgents   = $Agent -or $installAll
 
 $skillsResult = if ($runSkills) {
     Install-Symlinked -Label 'skill' `
@@ -139,11 +145,20 @@ else {
     [pscustomobject]@{ Installed = 0; Copied = 0 }
 }
 
-$totalInstalled = $skillsResult.Installed + $commandsResult.Installed
-$totalCopied    = $skillsResult.Copied + $commandsResult.Copied
+$agentsResult = if ($runAgents) {
+    Install-Symlinked -Label 'agente' `
+        -SourceDir (Join-Path $repoRoot 'agents') `
+        -TargetDir (Join-Path $HOME '.claude\agents') `
+        -OnlyName $Agent -ItemKind File -ForceCopy:$Copy
+}
+else {
+    [pscustomobject]@{ Installed = 0; Copied = 0 }
+}
+
+$totalCopied = $skillsResult.Copied + $commandsResult.Copied + $agentsResult.Copied
 
 Write-Host ""
-Write-Host "$($skillsResult.Installed) skill(s) en ~/.claude/skills, $($commandsResult.Installed) comando(s) en ~/.claude/commands"
+Write-Host "$($skillsResult.Installed) skill(s) en ~/.claude/skills, $($commandsResult.Installed) comando(s) en ~/.claude/commands, $($agentsResult.Installed) agente(s) en ~/.claude/agents"
 
 if ($totalCopied -gt 0) {
     Write-Host ""
@@ -154,4 +169,4 @@ if ($totalCopied -gt 0) {
 }
 
 Write-Host ""
-Write-Host "Reinicia Claude Code para que detecte las skills y los comandos nuevos."
+Write-Host "Reinicia Claude Code para que detecte las skills, los comandos y los agentes nuevos."

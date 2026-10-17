@@ -1,0 +1,35 @@
+shipping-and-launch — vendored from addyosmani/agent-skills
+
+This skill is vendored from Agent Skills by Addy Osmani
+(https://github.com/addyosmani/agent-skills), licensed under the MIT License.
+
+  Copyright (c) 2025 Addy Osmani
+  SPDX-License-Identifier: MIT
+
+Upstream snapshot: version 0.6.13 (plugin.json), downloaded 2026-10-16.
+Upstream files: skills/shipping-and-launch/SKILL.md,
+references/definition-of-done.md, references/security-checklist.md,
+references/performance-checklist.md and references/accessibility-checklist.md
+(repository root).
+
+See LICENSE for the full MIT License text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-10-16 — The `description` field in SKILL.md was extended with Spanish
+trigger phrases and a scope exclusion. A `license: MIT` frontmatter key was
+added.
+
+2026-10-16 — The four checklists above were copied from the upstream
+repository root into this skill's own `references/` directory, and the paths in
+SKILL.md ("See Also") were rewritten from `../../references/...` to
+`references/...`. Reason: the docs-skills MCP server only serves files under a
+skill's own `references/`. The checklist content itself is unchanged.
+
+No other change to the checklists, rollout thresholds or rollback template.
+
+Skills mentioned by name but NOT included in this repository:
+`observability-and-instrumentation`, `planning-and-task-breakdown`,
+`incremental-implementation`, `code-simplification`, `documentation-and-adrs`,
+`frontend-ui-engineering`. (`security-and-hardening` and
+`performance-optimization` were vendored on 2026-10-16.)

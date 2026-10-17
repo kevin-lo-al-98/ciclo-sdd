@@ -1,0 +1,25 @@
+browser-testing-with-devtools — vendored from addyosmani/agent-skills
+
+This skill is vendored from Agent Skills by Addy Osmani
+(https://github.com/addyosmani/agent-skills), licensed under the MIT License.
+
+  Copyright (c) 2025 Addy Osmani
+  SPDX-License-Identifier: MIT
+
+Upstream snapshot: version 0.6.13 (plugin.json), downloaded 2026-10-16.
+Upstream file: skills/browser-testing-with-devtools/SKILL.md.
+
+See LICENSE for the full MIT License text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-10-16 — The `description` field in SKILL.md was extended with Spanish
+trigger phrases and a scope exclusion (not for backend-only changes, nor for
+automating third-party websites). A `license: MIT` frontmatter key was added.
+
+No other change to the workflow, security boundaries or setup.
+
+Note for adopters: the setup snippet runs `chrome-devtools-mcp@latest` through
+`npx`, which is unpinned. The `security-and-hardening` skill in this
+repository recommends pinning tool versions; pin it in your `.mcp.json` to a
+version you have reviewed. The snippet is kept verbatim on purpose (ADR 0002).

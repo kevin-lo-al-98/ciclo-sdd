@@ -1,0 +1,30 @@
+performance-optimization — vendored from addyosmani/agent-skills
+
+This skill is vendored from Agent Skills by Addy Osmani
+(https://github.com/addyosmani/agent-skills), licensed under the MIT License.
+
+  Copyright (c) 2025 Addy Osmani
+  SPDX-License-Identifier: MIT
+
+Upstream snapshot: version 0.6.13 (plugin.json), downloaded 2026-10-16.
+Upstream files: skills/performance-optimization/SKILL.md,
+skills/performance-optimization/references/optimization-patterns.md and
+references/performance-checklist.md (repository root).
+
+See LICENSE for the full MIT License text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-10-16 — The `description` field in SKILL.md was extended with Spanish
+trigger phrases and a scope exclusion that separates it from the local
+`database-sql` skill. A `license: MIT` frontmatter key was added.
+
+2026-10-16 — `references/performance-checklist.md` was copied from the
+upstream repository root into this skill's own `references/` directory. Paths
+were rewritten accordingly: in SKILL.md from `../../references/...` to
+`references/...`, and in references/optimization-patterns.md from
+`../../../references/...` to the sibling file. Reason: the docs-skills MCP
+server only serves files under a skill's own `references/`. The checklist
+content itself is unchanged.
+
+No other change to the workflow, thresholds or patterns.

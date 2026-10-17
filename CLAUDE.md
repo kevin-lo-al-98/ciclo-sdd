@@ -4,9 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Qué es este repositorio
 
-No contiene una aplicación: contiene **skills de Claude Code** y documentación de
-referencia. El "producto" son archivos Markdown que otras sesiones de Claude Code
-cargan como instrucciones.
+Distribuye el **ciclo de vida del requerimiento al producto** para Claude Code:
+**requerimiento → PRD → tarea → spec → código**. La mitad "qué construir" es la skill
+`skills/flujo-de-requerimientos/`; la mitad "cómo implementarlo" son los comandos
+`commands/sdd-*`. El resto de `skills/` es **complemento**: estándares técnicos que se
+aplican dentro de la cadena, no la cadena misma
+([ADR 0008](docs/decisions/0008-el-ciclo-de-vida-es-el-eje-del-repositorio.md)).
+
+No contiene una aplicación ni los requerimientos o specs de un producto: esos viven en el
+proyecto que adopta el ciclo de vida. El "producto" son archivos Markdown que otras
+sesiones de Claude Code cargan como instrucciones.
 
 Eso cambia el criterio de calidad: aquí un error no rompe un test, se propaga
 silenciosamente a todas las sesiones que carguen esa skill.
@@ -27,9 +34,12 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
   `sdd-archive`). Frontmatter con `description` y, cuando el comando toma un argumento,
   `argument-hint`; **no** lleva `name` ni sigue el frontmatter de skill. El cuerpo usa
   `$ARGUMENTS` para el argumento posicional.
+- `agents/<nombre>.md` — subagentes de Claude Code (`name`, `description`, y el cuerpo
+  como system prompt). Hoy, los tres que lanza `/ship`
+  ([ADR 0009](docs/decisions/0009-agregar-agents-como-tipo-de-contenido.md)).
 - `sources/README.md` — enlaces a documentación oficial.
-- `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`
-  y `commands/*.md` a `~/.claude/commands`.
+- `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`,
+  `commands/*.md` a `~/.claude/commands` y `agents/*.md` a `~/.claude/agents`.
 - `mcp/` — servidor MCP que sirve las mismas skills por protocolo, como alternativa a
   instalarlas. Node con ESM, sin TypeScript. Su `README.md` explica la estructura y por
   qué la lectura de disco vive aislada del resto. Solo carga `references/`: un archivo
@@ -42,7 +52,8 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
 ```powershell
 .\scripts\install.ps1                        # enlaza skills en ~/.claude/skills y comandos en ~/.claude/commands
 .\scripts\install.ps1 -Skill <nombre>        # solo una skill
-.\scripts\install.ps1 -Command <nombre>      # solo un comando (en bash: ./scripts/install.sh <nombre>, busca en ambos)
+.\scripts\install.ps1 -Command <nombre>      # solo un comando
+.\scripts\install.ps1 -Agent <nombre>        # solo un agente (en bash: ./scripts/install.sh <nombre>, busca en los tres)
 ```
 
 Sin Modo de desarrollador en Windows, el script copia en lugar de enlazar y las
@@ -76,12 +87,17 @@ enlázala. El cuerpo principal se carga entero; las referencias solo cuando hace
 
 **`name` y `description` van en una sola línea cada uno.** El servidor MCP no usa un
 parser de YAML completo (`mcp/src/skills.js`): un `description: >` multilínea llega
-vacío por MCP aunque Claude Code lo cargue bien instalado.
+vacío por MCP aunque Claude Code lo cargue bien instalado. Claude Code, en cambio, sí
+usa un parser de YAML: si el valor lleva `: ` o ` #`, va entre comillas simples
+(`description: '…'`, con `''` para un apóstrofo). Sin ellas, Claude Code descarta la
+`description` en silencio y muestra la skill con su título, sin disparadores.
 
 **Una skill o un comando nuevo se añade también a la tabla correspondiente del
-`README.md`.**
+`README.md`**: a las del ciclo de vida si forma parte de la cadena o de su gobierno, a
+"Skills complementarias" si es un estándar técnico.
 
-**Los comandos de `commands/` no se sirven por el servidor MCP.** El MCP (ver más abajo)
+**Los comandos de `commands/` y los agentes de `agents/` no se sirven por el servidor
+MCP.** El MCP (ver más abajo)
 solo expone skills — un comando de barra es una convención de Claude Code, no algo que el
 protocolo MCP sepa representar. Se distribuyen únicamente por el enlazado de
 `scripts/install.*` a `~/.claude/commands`.
@@ -128,9 +144,18 @@ Lo mismo aplica a cualquier versión de framework citada en las skills.
 
 ## Skills vendorizadas
 
-`skills/skill-security-scan/` es material de terceros: taxonomía derivada de NVIDIA
-SkillSpector bajo Apache-2.0. Está **en inglés a propósito** y es la excepción a la
-regla del español; el porqué está en el
+Estas carpetas son material de terceros y están **en inglés a propósito**, como excepción
+a la regla del español:
+
+- `skills/skill-security-scan/` — taxonomía derivada de NVIDIA SkillSpector, Apache-2.0.
+- De addyosmani/agent-skills, MIT: `skills/test-driven-development/`,
+  `skills/code-review-and-quality/`, `skills/shipping-and-launch/`,
+  `skills/security-and-hardening/`, `skills/performance-optimization/`,
+  `skills/browser-testing-with-devtools/`, los comandos
+  `commands/test.md`, `commands/quality-review.md` y `commands/ship.md`
+  (`commands/NOTICE-agent-skills`), y todo `agents/` (`agents/NOTICE`).
+
+El porqué está en el
 [ADR 0002](docs/decisions/0002-skills-vendorizadas-en-su-idioma-original.md).
 
 Reglas para este tipo de carpetas:

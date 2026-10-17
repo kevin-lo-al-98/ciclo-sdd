@@ -1,0 +1,38 @@
+commands/test.md, commands/quality-review.md, commands/ship.md — vendored from addyosmani/agent-skills
+
+These three slash commands are vendored from Agent Skills by Addy Osmani
+(https://github.com/addyosmani/agent-skills), licensed under the MIT License.
+The other commands in this directory (sdd-*) are original to docs-skills.
+
+  Copyright (c) 2025 Addy Osmani
+  SPDX-License-Identifier: MIT
+
+Upstream snapshot: version 0.6.13 (plugin.json), downloaded 2026-10-16.
+Upstream files: .claude/commands/test.md, .claude/commands/review.md,
+.claude/commands/ship.md.
+
+See LICENSE-agent-skills for the full MIT License text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-10-16 — `review.md` was renamed to `quality-review.md`. Upstream notes that
+Claude Code has a built-in `/review`; installed as a plain user command (not a
+namespaced plugin command), the name would collide with it.
+
+2026-10-16 — Plugin-namespaced skill names (`agent-skills:<skill>`) were
+replaced with the bare skill names, because here the skills are installed in
+~/.claude/skills, not as a plugin.
+
+2026-10-16 — In ship.md, the pointer to `references/orchestration-patterns.md`
+now names the upstream repository, because that file is not vendored here.
+
+No other change to the procedures, phases or rules.
+
+Dependencies:
+- test.md uses skill `test-driven-development`; it also mentions
+  `browser-testing-with-devtools` (vendored 2026-10-16), which needs the
+  chrome-devtools MCP server configured in the adopting project.
+- quality-review.md uses skills `code-review-and-quality`,
+  `security-and-hardening` and `performance-optimization`.
+- ship.md uses skill `shipping-and-launch` and the subagents in agents/
+  (`code-reviewer`, `security-auditor`, `test-engineer`).

@@ -1,0 +1,30 @@
+test-driven-development — vendored from addyosmani/agent-skills
+
+This skill is vendored from Agent Skills by Addy Osmani
+(https://github.com/addyosmani/agent-skills), licensed under the MIT License.
+
+  Copyright (c) 2025 Addy Osmani
+  SPDX-License-Identifier: MIT
+
+Upstream snapshot: version 0.6.13 (plugin.json), downloaded 2026-10-16.
+Upstream files: skills/test-driven-development/SKILL.md and
+references/testing-patterns.md (repository root).
+
+See LICENSE for the full MIT License text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-10-16 — The `description` field in SKILL.md was extended with Spanish
+trigger phrases and a scope exclusion, so the skill activates in
+Spanish-language sessions. A `license: MIT` frontmatter key was added.
+
+2026-10-16 — `references/testing-patterns.md` was copied from the upstream
+repository root into this skill's own `references/` directory, and the path in
+SKILL.md ("See Also") was rewritten from `../../references/...` to
+`references/...`. Reason: the docs-skills MCP server only serves files under a
+skill's own `references/`. The checklist content itself is unchanged.
+
+No other change to the process, examples or checklists.
+
+Skills mentioned by name: `browser-testing-with-devtools`, vendored on
+2026-10-16. None missing.
