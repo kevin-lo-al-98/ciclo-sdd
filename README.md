@@ -27,8 +27,11 @@ el servidor MCP ([`mcp/`](mcp/)), que sirve las skills por protocolo.
   no son la cadena: son los estándares que se aplican dentro de ella mientras se construye.
 - **Decisiones registradas.** Cada decisión con alternativas reales queda en un ADR (MADR),
   en este repositorio y en el que lo adopta.
-- **Contexto para agentes.** Se instala por enlace en `~/.claude` o se sirve por MCP, para
-  que el agente consulte reglas y procedimientos en vez de inventarlos.
+- **Contexto para agentes.** Se instala como plugin de Claude Code, se copia al proyecto o
+  se sirve por MCP, para que el agente consulte reglas y procedimientos en vez de
+  inventarlos.
+- **De una persona a un equipo.** Los mismos comandos funcionan en solitario, en pareja o en
+  un equipo con roles; ver [Según el tamaño del equipo](#según-el-tamaño-del-equipo).
 
 ## Ciclo de vida: requerimiento → producto → código
 
@@ -93,7 +96,7 @@ spec y su PRD. Un MR pasa por las dos.
 | Skill | Cubre |
 |---|---|
 | [`documentar-decisiones`](skills/documentar-decisiones/) | ADRs en formato MADR y specs |
-| [`adoptar-estructura-de-docs`](skills/adoptar-estructura-de-docs/) | Montar `docs/decisions/` y `docs/specs/` en otro proyecto |
+| [`adoptar-estructura-de-docs`](skills/adoptar-estructura-de-docs/) | Montar `docs/decisions/` y `docs/specs/` en otro proyecto, fijar el plugin para el equipo y declarar los roles del ciclo |
 | [`cerrar-plan-o-spec-con-regla-de-oro`](skills/cerrar-plan-o-spec-con-regla-de-oro/) | Cerrar un paso de un plan/spec dejando constancia de lo que pasó realmente |
 | [`revisar-mr`](skills/revisar-mr/) | Revisar un MR/PR contra su spec, su PRD y las decisiones vigentes |
 | [`escribir-auditoria-tecnica`](skills/escribir-auditoria-tecnica/) | Documentos de auditoría/análisis técnico independientes bajo `docs/` |
@@ -121,11 +124,77 @@ que corresponde a la tarea que tenga delante; no forman parte de la cadena, la s
 | [`handoff`](skills/handoff/) | Comprimir la conversación en un documento de traspaso para otra sesión |
 | [`documentacion-humana`](skills/documentacion-humana/) | Estructura y estilo para README y la carpeta `/docs` orientada a personas |
 
+## Según el tamaño del equipo
+
+El mismo repositorio sirve para una persona o para un equipo con roles. Lo que cambia es
+qué piezas se usan y el modo de roles que se declara en el `CLAUDE.md` del proyecto
+([ADR 0011](docs/decisions/0011-roles-y-dueno-en-el-ciclo-sdd.md)). La skill
+[`adoptar-estructura-de-docs`](skills/adoptar-estructura-de-docs/) pregunta el tamaño y lo
+deja configurado.
+
+| | Una persona | Dos personas | Equipo con roles |
+|---|---|---|---|
+| Modo de roles | `solo` (por defecto, no se configura nada) | `pareja` | `equipo` |
+| Qué construir | `documentar-decisiones` y `gestionar-roadmap` | Lo mismo; si una pide y la otra construye, `flujo-de-requerimientos` en tamaño **Ligera** | `flujo-de-requerimientos` en tamaño **Completa**, o **Con firmas** si hay que dejar constancia de quién validó |
+| Cómo implementarlo | `/sdd-*` | `/sdd-*`, cada cambio con `dueño`; verifica la otra persona | `/sdd-*` con la tabla de roles: quién aprueba el plan, quién verifica, quién archiva |
+| Revisar y salir | `/test`, `/quality-review` | Además `revisar-mr`, `git-worktree`, `resolver-merge` | Además `/ship` y protección de ramas con revisores obligatorios |
+| Instalación | Plugin a nivel de usuario | Plugin fijado en el proyecto | Plugin fijado en el proyecto |
+
+`flujo-de-requerimientos` sigue siendo **experimental**: el plan para probarlo con trabajo
+real está en [`docs/specs/piloto-flujo-de-requerimientos.md`](docs/specs/piloto-flujo-de-requerimientos.md).
+
 ## Instalación
 
-Las skills viven en `~/.claude/skills`, los comandos en `~/.claude/commands` y los
-subagentes en `~/.claude/agents`. El script los enlaza desde aquí, así que editar el
-repositorio actualiza lo instalado sin reinstalar.
+Hay tres vías ([ADR 0010](docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
+Elige **una** por máquina: combinarlas duplica cada skill.
+
+### Plugin de Claude Code (recomendado)
+
+Trae skills, comandos y subagentes juntos, con versión:
+
+```
+/plugin install docs-skills --marketplace kevin-lo-al-98/docs-skills
+```
+
+o, en dos pasos, `/plugin marketplace add kevin-lo-al-98/docs-skills` y
+`/plugin install docs-skills@docs-skills`.
+
+Como plugin, todo lleva el prefijo `docs-skills:`: los comandos son `/docs-skills:sdd-new`,
+`/docs-skills:ship`, etc. En este README aparecen sin prefijo, como en las otras dos vías.
+
+**Para que lo use todo un equipo**, desde la raíz del proyecto adoptante:
+
+```bash
+claude plugin marketplace add kevin-lo-al-98/docs-skills --scope project
+claude plugin install docs-skills@docs-skills --scope project
+```
+
+Los dos comandos escriben en `.claude/settings.json`; versiónalo, y a cada miembro que
+confíe en la carpeta Claude Code le ofrecerá el plugin. Las actualizaciones llegan cuando
+sube la versión ([`CHANGELOG.md`](CHANGELOG.md)), con `/plugin marketplace update
+docs-skills` o con la actualización automática activada en `/plugin`.
+
+### Copia por proyecto
+
+Para entornos sin acceso a GitHub o sin `/plugin`, o si se quiere la copia dentro del
+repositorio adoptante. Copia (nunca enlaza) a `<proyecto>/.claude/` y deja
+`.claude/docs-skills.version` con la versión y el commit de origen:
+
+```powershell
+.\scripts\install.ps1 -Project ..\mi-proyecto
+```
+
+```bash
+./scripts/install.sh --project ../mi-proyecto
+```
+
+Admite los mismos filtros que la instalación de usuario (`-Skill`, `-Command`, `-Agent`, o
+un nombre en bash). Para actualizar, se vuelve a ejecutar y se versiona el resultado.
+
+### Enlaces en `~/.claude` (para quien mantiene el catálogo)
+
+Enlaza skills, comandos y subagentes desde este clon, así que editar el repositorio
+actualiza lo instalado sin reinstalar:
 
 ```powershell
 # Windows
@@ -147,10 +216,21 @@ eso, el script copia los archivos y avisa de que los cambios no se propagarán s
 
 Reinicia Claude Code después de instalar.
 
-El servidor MCP sirve las skills, pero no los comandos ni los subagentes
+### Servidor MCP
+
+Sirve solo las skills, no los comandos ni los subagentes
 ([ADR 0007](docs/decisions/0007-agregar-commands-como-tipo-de-contenido-nuevo.md),
-[ADR 0009](docs/decisions/0009-agregar-agents-como-tipo-de-contenido.md)): para el ciclo
-de vida completo hace falta el enlazado de los scripts.
+[ADR 0009](docs/decisions/0009-agregar-agents-como-tipo-de-contenido.md)), y es local.
+Sirve para clientes que no son Claude Code; ver [`mcp/README.md`](mcp/README.md).
+
+## Publicar una versión
+
+Con el plugin, quien lo instaló no recibe un cambio hasta que sube `version` en
+[`.claude-plugin/plugin.json`](.claude-plugin/plugin.json). Cada cambio publicado sube la
+versión (semver: parche para correcciones, menor para piezas nuevas, mayor si se renombra
+o quita algo) y añade su entrada a [`CHANGELOG.md`](CHANGELOG.md). Antes de publicar,
+`claude plugin validate .` tiene que pasar; el único aviso esperado es el de `CLAUDE.md`
+en la raíz, que es para quien mantiene el repositorio y el plugin no lo carga.
 
 ## Decisiones y specs
 
