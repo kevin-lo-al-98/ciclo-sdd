@@ -6,5 +6,8 @@
     "name": "Kevin Lopez Alvarez"
   },
   "repository": "https://github.com/kevin-lo-al-98/docs-skills",
-  "keywords": ["sdd", "spec-driven-development", "adr", "madr", "prd", "requerimientos"]
+  "keywords": ["sdd", "spec-driven-development", "adr", "madr", "prd", "requerimientos"],
+  "experimental": {
+    "evals": "evals/plugin"
+  }
 }
