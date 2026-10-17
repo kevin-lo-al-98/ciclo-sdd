@@ -1,6 +1,6 @@
 ---
 name: adoptar-estructura-de-docs
-description: Monta en un proyecto la estructura para registrar decisiones y specs —`docs/decisions/` con ADRs en formato MADR y `docs/specs/`— y deja en su `CLAUDE.md` el aviso para que las sesiones futuras usen el servidor MCP `docs-skills`. Úsala cuando el usuario pida "adoptar los ADRs en este proyecto", "montar la carpeta de decisiones", "empezar a registrar decisiones aquí", "llevar esta convención a otro repo", "configurar docs/decisions", o cuando `documentar-decisiones` no encuentre dónde escribir. Solo prepara la estructura una vez; para escribir un ADR concreto usa `documentar-decisiones`. No la uses si el proyecto ya tiene un sistema de ADRs (`.adrs/`, `docs/adr/`, ADR Zoom): se detiene y pregunta.
+description: 'Monta en un proyecto la estructura para registrar decisiones y specs —`docs/decisions/` con ADRs en formato MADR y `docs/specs/`— y deja en su `CLAUDE.md` el aviso para que las sesiones futuras usen el servidor MCP `docs-skills`. Úsala cuando el usuario pida "adoptar los ADRs en este proyecto", "montar la carpeta de decisiones", "empezar a registrar decisiones aquí", "llevar esta convención a otro repo", "configurar docs/decisions", o cuando `documentar-decisiones` no encuentre dónde escribir. Solo prepara la estructura una vez; para escribir un ADR concreto usa `documentar-decisiones`. No la uses si el proyecto ya tiene un sistema de ADRs (`.adrs/`, `docs/adr/`, ADR Zoom): se detiene y pregunta.'
 ---
 
 # Adoptar la estructura de decisiones en un proyecto

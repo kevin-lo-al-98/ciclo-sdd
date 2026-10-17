@@ -1,6 +1,6 @@
 ---
 name: typescript-estricto
-description: Cómo satisfacer el perfil estricto del compilador de TypeScript sin relajarlo. Úsala cuando el compilador rechace algo y haya que decidir entre arreglar el tipo o bajar un flag; cuando aparezca un `any`, un `as any`, un `@ts-ignore`, un error de `noImplicitOverride`, `noImplicitReturns`, `noFallthroughCasesInSwitch`, `isolatedModules` o `noPropertyAccessFromIndexSignature`; cuando el usuario pregunte "¿esto pasa strict?", "¿necesito un any aquí?", "por qué me pide corchetes", "cómo tipo esto que viene de fuera"; o cuando haya que activar `strict` en un proyecto que no lo tenía. No la uses para decidir la forma del código —factorización, estado, componentes—: eso va en las skills de frontend o backend correspondientes.
+description: 'Cómo satisfacer el perfil estricto del compilador de TypeScript sin relajarlo. Úsala cuando el compilador rechace algo y haya que decidir entre arreglar el tipo o bajar un flag; cuando aparezca un `any`, un `as any`, un `@ts-ignore`, un error de `noImplicitOverride`, `noImplicitReturns`, `noFallthroughCasesInSwitch`, `isolatedModules` o `noPropertyAccessFromIndexSignature`; cuando el usuario pregunte "¿esto pasa strict?", "¿necesito un any aquí?", "por qué me pide corchetes", "cómo tipo esto que viene de fuera"; o cuando haya que activar `strict` en un proyecto que no lo tenía. No la uses para decidir la forma del código —factorización, estado, componentes—: eso va en las skills de frontend o backend correspondientes.'
 ---
 
 # TypeScript estricto

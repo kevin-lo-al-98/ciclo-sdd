@@ -1,6 +1,6 @@
 ---
 name: cerrar-plan-o-spec-con-regla-de-oro
-description: Usa esta skill al terminar de ejecutar un paso de un plan o una spec bajo docs/ u openspec/ y necesitás dejar constancia escrita de lo que pasó realmente, siguiendo la "regla de oro": si la realidad difiere de lo acordado, el documento se actualiza en el mismo cambio, no queda desincronizado. Frases disparadoras: "actualiza el plan con esto", "cierra el paso X del plan", "aplica la regla de oro", "deja constancia de este hallazgo en la spec". No la uses para crear una spec nueva desde cero (eso es la plantilla de spec del proyecto, ver `documentar-decisiones`) — esta skill es solo para cerrar/actualizar un documento que ya existe y ya tiene pasos o criterios definidos.
+description: 'Usa esta skill al terminar de ejecutar un paso de un plan o una spec bajo docs/ u openspec/ y necesitás dejar constancia escrita de lo que pasó realmente, siguiendo la "regla de oro": si la realidad difiere de lo acordado, el documento se actualiza en el mismo cambio, no queda desincronizado. Frases disparadoras: "actualiza el plan con esto", "cierra el paso X del plan", "aplica la regla de oro", "deja constancia de este hallazgo en la spec". No la uses para crear una spec nueva desde cero (eso es la plantilla de spec del proyecto, ver `documentar-decisiones`) — esta skill es solo para cerrar/actualizar un documento que ya existe y ya tiene pasos o criterios definidos.'
 ---
 
 # Cerrar un paso de un plan o spec con la "regla de oro"

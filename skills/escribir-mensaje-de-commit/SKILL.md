@@ -1,6 +1,6 @@
 ---
 name: escribir-mensaje-de-commit
-description: Redacta el mensaje de un commit y ejecuta el commit siguiendo Conventional Commits. Úsala cuando el usuario dé el trabajo por terminado —"listo", "ya está", "terminamos", "haz el commit", "commitea esto"— o pida ayuda con el texto ("cómo redacto este commit", "mejora este mensaje", "divide esto en commits"). Cubre el recorte en commits atómicos, el protocolo de aprobación antes de ejecutar `git commit`, la elección del alcance y qué hacer si estás en `main`. No la uses para revisar la calidad del cambio antes del PR, ni para redactar la descripción de un pull request: son tareas distintas.
+description: 'Redacta el mensaje de un commit y ejecuta el commit siguiendo Conventional Commits. Úsala cuando el usuario dé el trabajo por terminado —"listo", "ya está", "terminamos", "haz el commit", "commitea esto"— o pida ayuda con el texto ("cómo redacto este commit", "mejora este mensaje", "divide esto en commits"). Cubre el recorte en commits atómicos, el protocolo de aprobación antes de ejecutar `git commit`, la elección del alcance y qué hacer si estás en `main`. No la uses para revisar la calidad del cambio antes del PR, ni para redactar la descripción de un pull request: son tareas distintas.'
 ---
 
 # Escribir mensaje de commit

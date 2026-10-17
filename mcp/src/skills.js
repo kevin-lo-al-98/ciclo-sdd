@@ -23,18 +23,29 @@ export function partirFrontmatter(texto) {
 /**
  * Lee `name` y `description` del frontmatter.
  *
- * No usamos un parser de YAML completo: el frontmatter de una skill son dos
- * claves de una línea cada una, y el `description` es largo y lleva comas, dos
- * puntos y comillas. Un parser genérico obligaría a citarlo; este no.
+ * No usamos un parser de YAML completo: el frontmatter de una skill son claves
+ * de una línea cada una. Claude Code sí usa uno, así que un valor con «: » va
+ * citado, y aquí se deshace la cita igual que lo haría YAML.
  */
 export function leerFrontmatter(datos) {
   if (!datos) return {};
   const campo = (clave) => {
     const m = new RegExp(`^${clave}:[ \\t]*(.*)$`, 'm').exec(datos);
     if (!m) return undefined;
-    return m[1].trim().replace(/^["'](.*)["']$/, '$1');
+    return quitarCita(m[1].trim());
   };
   return { name: campo('name'), description: campo('description') };
+}
+
+/** Deshace una cita YAML de una línea: `'…'` con `''` como apóstrofo, o `"…"` con escapes `\`. */
+export function quitarCita(valor) {
+  if (valor.length >= 2 && valor.startsWith("'") && valor.endsWith("'")) {
+    return valor.slice(1, -1).replaceAll("''", "'");
+  }
+  if (valor.length >= 2 && valor.startsWith('"') && valor.endsWith('"')) {
+    return valor.slice(1, -1).replace(/\\(["\\])/g, '$1');
+  }
+  return valor;
 }
 
 /**

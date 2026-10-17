@@ -1,6 +1,6 @@
 ---
 name: escribir-auditoria-tecnica
-description: Usa esta skill al producir un documento de análisis/auditoría independiente bajo docs/ — auditar un sistema existente, un archivo de configuración o una fuente externa (no una spec de feature, no un README) para dejar una base documentada de la que partir más adelante. Frases disparadoras: "documenta y analiza X", "haz un audit de X", "necesito documentación de X antes de migrar", "deja esto documentado para más adelante".
+description: 'Usa esta skill al producir un documento de análisis/auditoría independiente bajo docs/ — auditar un sistema existente, un archivo de configuración o una fuente externa (no una spec de feature, no un README) para dejar una base documentada de la que partir más adelante. Frases disparadoras: "documenta y analiza X", "haz un audit de X", "necesito documentación de X antes de migrar", "deja esto documentado para más adelante".'
 ---
 
 # Escribir un documento de auditoría/análisis técnico
