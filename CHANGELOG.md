@@ -5,6 +5,17 @@ Cada versión publicada del plugin `docs-skills`. La versión vive en
 recibe un cambio hasta que ese número sube
 ([ADR 0010](docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
 
+## 0.1.1 — 2026-10-17
+
+- `prompt-architect`: datos de modelos al día. Opus 5.5, Sonnet 5.5 y Haiku 5.5 pasan a
+  ser la versión recomendada de cada nivel; los modelos anteriores quedan en una tabla
+  aparte.
+- `prompt-architect`: el `SKILL.md` elige nivel (Haiku, Sonnet, Opus, Fable) y deja IDs,
+  precios y esfuerzos por defecto solo en `references/model-selection.md`. Si esa
+  referencia tiene más de 30 días, la skill la verifica antes de recomendar.
+- `prompt-architect`: recomienda siempre un esfuerzo explícito junto al modelo.
+- `resolver-merge`: la tabla de modelo y esfuerzo usa niveles en lugar de versiones.
+
 ## 0.1.0 — 2026-10-16
 
 Primera versión distribuida como plugin.

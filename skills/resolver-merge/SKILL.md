@@ -90,19 +90,22 @@ sepa antes de mergear, no después.
 Si el usuario pregunta con qué modelo abordar el merge, o el merge es lo bastante
 grande como para justificar elegirlo:
 
-| Situación | Modelo | Esfuerzo |
+| Situación | Nivel | Esfuerzo |
 |---|---|---|
-| Conflictos mecánicos ya inspeccionados | Haiku 4.5 | no acepta esfuerzo |
-| El caso normal | Sonnet 5 | `high` |
-| Migraciones, auth, esquema de datos, facturación, ramas con semanas de divergencia | Opus 5 | `xhigh` |
+| Conflictos mecánicos ya inspeccionados | Haiku | `low` |
+| El caso normal | Sonnet | `high` |
+| Migraciones, auth, esquema de datos, facturación, ramas con semanas de divergencia | Opus | `xhigh` |
+
+Usa la versión actual de cada nivel.
 
 El criterio es el coste de equivocarse, no el tamaño del diff: tres líneas en una
 migración pesan más que trescientas en un changelog. Y antes de bajar de modelo para
 ahorrar, baja el esfuerzo — sale mejor.
 
-Los IDs exactos, los precios y el detalle del parámetro de esfuerzo están en la skill
-`prompt-architect` (`references/model-selection.md`), que es la fuente de verdad. No
-los dupliques aquí: caducan.
+Qué versión es la actual de cada nivel, los IDs exactos, los precios y el detalle del
+parámetro de esfuerzo están en la skill `prompt-architect`
+(`references/model-selection.md`), que es la fuente de verdad. No los dupliques aquí:
+caducan.
 
 ## Qué NO hacer
 

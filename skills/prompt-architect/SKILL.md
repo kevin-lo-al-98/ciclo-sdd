@@ -1,6 +1,6 @@
 ---
 name: prompt-architect
-description: Diseña el prompt y elige el modelo de Claude adecuado antes de ejecutar una tarea. Úsala SIEMPRE que el usuario pida "ayúdame a escribir el prompt", "qué modelo uso", "cuál es el mejor modelo para esto", "mejora este prompt", "optimiza el prompt", o cuando plantee una tarea grande/ambigua y convenga estructurarla antes de empezar. Aplícala también cuando el usuario dude entre Opus, Sonnet, Haiku o Fable, cuando pregunte por costes de tokens, o cuando un prompt suyo haya dado un resultado pobre y quiera entender por qué.
+description: Diseña el prompt y elige el modelo de Claude adecuado antes de ejecutar una tarea. Úsala cuando el usuario pida "ayúdame a escribir el prompt", "qué modelo uso", "cuál es el mejor modelo para esto", "mejora este prompt", "optimiza el prompt", o cuando plantee una tarea grande/ambigua y convenga estructurarla antes de empezar. Aplícala también cuando el usuario dude entre Opus, Sonnet, Haiku o Fable, cuando pregunte por costes de tokens, o cuando un prompt suyo haya dado un resultado pobre y quiera entender por qué.
 ---
 
 # Prompt Architect — elegir modelo y construir el prompt
@@ -42,38 +42,39 @@ No bajes de modelo solo para ahorrar: la decisión de coste es del usuario, no t
 
 ## Paso 2 — Elige el modelo
 
-Regla corta, para no tener que releer la tabla cada vez:
+Aquí se elige el **nivel**; la versión concreta, su ID y su precio salen de
+`references/model-selection.md`, que es la única fuente de verdad de esos datos.
+Recomienda siempre la versión actual del nivel salvo que el usuario nombre otra.
 
-| Tarea | Modelo | Por qué |
+| Tarea | Nivel | Por qué |
 |---|---|---|
-| Formateo, renombrados, extracción, clasificación, commits | **Haiku 4.5** | Barato y rápido; la tarea no tiene ramificaciones |
-| Desarrollo diario: features, refactors, tests, bugs acotados | **Sonnet 5** | El equilibrio por defecto para trabajo real |
-| Arquitectura, migraciones, bugs que no sabes reproducir, revisión crítica | **Opus 5** | Razonamiento profundo cuando el error sale caro |
-| Lo mismo, cuando el usuario pide Opus 5.5 por su nombre | **Opus 5.5** | Mismo tier más barato ($4/$20), pero aún en despliegue |
-| Tareas largas y autónomas, problemas donde Opus ya falló | **Fable 5.1** | El más capaz; también el más caro |
+| Formateo, renombrados, extracción, clasificación, commits | **Haiku** | Barato y rápido; la tarea no tiene ramificaciones |
+| Desarrollo diario: features, refactors, tests, bugs acotados | **Sonnet** | El equilibrio por defecto para trabajo real |
+| Arquitectura, migraciones, bugs que no sabes reproducir, revisión crítica | **Opus** | Razonamiento profundo cuando el error sale caro |
+| Tareas largas y autónomas, problemas donde Opus ya falló | **Fable** | El más capaz; también el más caro |
 
-**Por defecto, Sonnet 5.** Es el punto correcto para la mayor parte del desarrollo
-fullstack. Sube a Opus 5 cuando el coste de equivocarse sea alto; baja a Haiku 4.5
-cuando la tarea sea mecánica y verificable de un vistazo.
+**Por defecto, Sonnet.** Es el punto correcto para la mayor parte del desarrollo
+fullstack. Sube a Opus cuando el coste de equivocarse sea alto; baja a Haiku cuando la
+tarea sea mecánica y verificable de un vistazo.
 
-El Opus por defecto es **Opus 5**, no Opus 5.5. Opus 5.5 es más barato y está en el
-mismo tier, pero sigue en despliegue: recomiéndalo solo si el usuario lo nombra. Y si
-lo hace, avísale de que su esfuerzo por defecto es `medium`, un nivel por debajo del de
-Opus 5 —de ahí la sensación de respuestas menos profundas al cambiar.
+**Antes de recomendar, mira la fecha de `references/model-selection.md`.** Si tiene más
+de 30 días, verifica los datos con la skill `claude-api` o con la documentación oficial
+y dile al usuario que lo hiciste. Una recomendación de modelo con datos caducados manda
+trabajo a un modelo más caro o más viejo del necesario, y nadie lo nota.
 
-En Claude Code el modelo se cambia con `/model`. En la API se pasa el ID exacto
-(`claude-sonnet-5`, `claude-opus-5`, `claude-opus-5-5`, `claude-haiku-4-5`,
-`claude-fable-5-1`) — nunca inventes sufijos de fecha.
+En Claude Code el modelo se cambia con `/model`. En la API se pasa el ID exacto de la
+referencia — nunca inventes sufijos de fecha.
 
 ### El segundo dial: el esfuerzo
 
-El modelo no es la única palanca. Los modelos actuales —salvo Haiku 4.5— aceptan un
-nivel de esfuerzo (`low` → `max`) que regula cuánto razonan. Esto importa porque
-**un modelo grande con
+El modelo no es la única palanca. Los modelos actuales aceptan un nivel de esfuerzo
+(`low` → `max`) que regula cuánto razonan. Esto importa porque **un modelo grande con
 esfuerzo bajo suele rendir mejor, y costar menos, que un modelo pequeño al máximo**.
 Antes de recomendar bajar de modelo para ahorrar, considera bajar el esfuerzo.
 
-Detalles por modelo en `references/model-selection.md`.
+Recomienda siempre un esfuerzo explícito junto al modelo: el valor por defecto cambia
+entre modelos, y cambiar de modelo sin fijarlo cambia también la profundidad. Valores
+por defecto y puntos de partida en `references/model-selection.md`.
 
 ## Paso 3 — Escribe el prompt
 
