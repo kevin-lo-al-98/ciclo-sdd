@@ -37,9 +37,15 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
 - `agents/<nombre>.md` — subagentes de Claude Code (`name`, `description`, y el cuerpo
   como system prompt). Hoy, los tres que lanza `/ship`
   ([ADR 0009](docs/decisions/0009-agregar-agents-como-tipo-de-contenido.md)).
+- `.claude-plugin/plugin.json` · `.claude-plugin/marketplace.json` — el repositorio es a
+  la vez plugin y marketplace de Claude Code, ambos llamados `docs-skills`
+  ([ADR 0010](docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
+- `CHANGELOG.md` — una entrada por versión publicada del plugin.
 - `sources/README.md` — enlaces a documentación oficial.
 - `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`,
-  `commands/*.md` a `~/.claude/commands` y `agents/*.md` a `~/.claude/agents`.
+  `commands/*.md` a `~/.claude/commands` y `agents/*.md` a `~/.claude/agents`. Con
+  `-Project` / `--project <ruta>`, copian a `<ruta>/.claude/` y dejan
+  `docs-skills.version`.
 - `mcp/` — servidor MCP que sirve las mismas skills por protocolo, como alternativa a
   instalarlas. Node con ESM, sin TypeScript. Su `README.md` explica la estructura y por
   qué la lectura de disco vive aislada del resto. Solo carga `references/`: un archivo
@@ -58,6 +64,26 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
 
 Sin Modo de desarrollador en Windows, el script copia en lugar de enlazar y las
 ediciones del repositorio dejan de propagarse: hay que reinstalar.
+
+No tengas instalado a la vez el plugin `docs-skills` y estos enlaces: cada skill aparece
+dos veces. Para probar el repositorio como plugin sin instalarlo,
+`claude --plugin-dir .`.
+
+```powershell
+claude plugin validate .                     # único aviso esperado: el CLAUDE.md de la raíz
+```
+
+## Versionado
+
+**Todo cambio que se publica sube `version` en `.claude-plugin/plugin.json` y añade su
+entrada a `CHANGELOG.md`, en el mismo commit.** Con la versión fijada, quien instaló el
+plugin no recibe commits nuevos hasta que el número cambia, y no hay ningún error que
+avise del olvido. Semver: parche para correcciones, menor para piezas nuevas, mayor si se
+renombra o quita una skill, un comando o un agente (rompe a quien lo invoca por nombre).
+
+Como plugin, todo lleva el prefijo `docs-skills:` (`/docs-skills:sdd-new`). En el
+contenido se escriben los nombres sin prefijo, que valen para las otras dos vías; no
+dupliques cada mención.
 
 ```bash
 cd mcp && npm install && npm start           # servidor MCP por stdio (Node >= 20)
@@ -99,8 +125,7 @@ usa un parser de YAML: si el valor lleva `: ` o ` #`, va entre comillas simples
 **Los comandos de `commands/` y los agentes de `agents/` no se sirven por el servidor
 MCP.** El MCP (ver más abajo)
 solo expone skills — un comando de barra es una convención de Claude Code, no algo que el
-protocolo MCP sepa representar. Se distribuyen únicamente por el enlazado de
-`scripts/install.*` a `~/.claude/commands`.
+protocolo MCP sepa representar. Se distribuyen por el plugin y por `scripts/install.*`.
 
 ## Servidor MCP
 

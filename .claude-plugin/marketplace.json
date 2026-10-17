@@ -1,0 +1,14 @@
+{
+  "name": "docs-skills",
+  "description": "Marketplace del plugin docs-skills",
+  "owner": {
+    "name": "Kevin Lopez Alvarez"
+  },
+  "plugins": [
+    {
+      "name": "docs-skills",
+      "source": "./",
+      "description": "Ciclo de vida del requerimiento al producto, comandos /sdd-* y skills técnicas de complemento."
+    }
+  ]
+}
