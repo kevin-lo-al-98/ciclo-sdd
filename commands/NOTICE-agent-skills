@@ -2,7 +2,7 @@ commands/test.md, commands/quality-review.md, commands/ship.md — vendored from
 
 These three slash commands are vendored from Agent Skills by Addy Osmani
 (https://github.com/addyosmani/agent-skills), licensed under the MIT License.
-The other commands in this directory (sdd-*) are original to docs-skills.
+The other commands in this directory (sdd-*) are original to ciclo-sdd.
 
   Copyright (c) 2025 Addy Osmani
   SPDX-License-Identifier: MIT
@@ -13,7 +13,7 @@ Upstream files: .claude/commands/test.md, .claude/commands/review.md,
 
 See LICENSE-agent-skills for the full MIT License text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-10-16 — `review.md` was renamed to `quality-review.md`. Upstream notes that
 Claude Code has a built-in `/review`; installed as a plain user command (not a

@@ -14,7 +14,7 @@
 
     Con -Project, copia todo a <ruta>/.claude/ en lugar de ~/.claude, para versionarlo en
     ese proyecto y que lo reciba todo su equipo. Ahí siempre copia: un enlace a este clon
-    no le sirve a nadie más. Deja <ruta>/.claude/docs-skills.version con la versión del
+    no le sirve a nadie más. Deja <ruta>/.claude/ciclo-sdd.version con la versión del
     plugin y el commit de origen.
 
 .PARAMETER Copy
@@ -195,10 +195,10 @@ if ($Project) {
         "version: $version"
         "commit: $commit"
         "fecha: $(Get-Date -Format 'yyyy-MM-dd')"
-        "origen: https://github.com/kevin-lo-al-98/docs-skills"
+        "origen: https://github.com/kevin-lo-al-98/ciclo-sdd"
     )
-    [System.IO.File]::WriteAllLines((Join-Path $claudeRoot 'docs-skills.version'), $lines)
-    Write-Host "Version $version ($commit) anotada en $claudeLabel/docs-skills.version"
+    [System.IO.File]::WriteAllLines((Join-Path $claudeRoot 'ciclo-sdd.version'), $lines)
+    Write-Host "Version $version ($commit) anotada en $claudeLabel/ciclo-sdd.version"
     Write-Host ""
     Write-Host "Revisa los archivos y versionalos en el proyecto; este script no hace commit."
 }
@@ -211,5 +211,5 @@ elseif ($totalCopied -gt 0) {
 }
 
 Write-Host ""
-Write-Host "Si tambien tienes instalado el plugin docs-skills, cada skill aparecera duplicada: usa una sola via."
+Write-Host "Si tambien tienes instalado el plugin ciclo-sdd, cada skill aparecera duplicada: usa una sola via."
 Write-Host "Reinicia Claude Code para que detecte las skills, los comandos y los agentes nuevos."

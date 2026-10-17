@@ -11,7 +11,7 @@ Upstream file: skills/browser-testing-with-devtools/SKILL.md.
 
 See LICENSE for the full MIT License text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-10-16 — The `description` field in SKILL.md was extended with Spanish
 trigger phrases and a scope exclusion (not for backend-only changes, nor for

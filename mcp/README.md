@@ -29,14 +29,14 @@ npm install
 Registrarlo en Claude Code:
 
 ```bash
-claude mcp add docs-skills -- node <ruta-al-repositorio>/mcp/src/stdio.js
+claude mcp add ciclo-sdd -- node <ruta-al-repositorio>/mcp/src/stdio.js
 ```
 
 Con `SKILLS_DIR` se apunta a otra carpeta de skills, por si el servidor vive separado
 del repositorio:
 
 ```bash
-claude mcp add docs-skills --env SKILLS_DIR=/ruta/a/skills -- node /ruta/a/mcp/src/stdio.js
+claude mcp add ciclo-sdd --env SKILLS_DIR=/ruta/a/skills -- node /ruta/a/mcp/src/stdio.js
 ```
 
 Las skills se leen **al arrancar**. Si editas un `SKILL.md`, reinicia el servidor
@@ -49,7 +49,7 @@ alcance de usuario, de modo que esté disponible en todos tus proyectos y no sol
 actual:
 
 ```bash
-claude mcp add docs-skills -s user -- node <ruta-al-repositorio>/mcp/src/stdio.js
+claude mcp add ciclo-sdd -s user -- node <ruta-al-repositorio>/mcp/src/stdio.js
 ```
 
 **Por MCP las skills no se activan solas.** Claude Code carga por `description` solo las

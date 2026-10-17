@@ -39,14 +39,14 @@ están los scripts de verificación de `scripts/*.mjs`, que importan únicamente
   como system prompt). Hoy, los tres que lanza `/ship`
   ([ADR 0009](docs/decisions/0009-agregar-agents-como-tipo-de-contenido.md)).
 - `.claude-plugin/plugin.json` · `.claude-plugin/marketplace.json` — el repositorio es a
-  la vez plugin y marketplace de Claude Code, ambos llamados `docs-skills`
+  la vez plugin y marketplace de Claude Code, ambos llamados `ciclo-sdd`
   ([ADR 0010](docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
 - `CHANGELOG.md` — una entrada por versión publicada del plugin.
 - `sources/README.md` — enlaces a documentación oficial.
 - `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`,
   `commands/*.md` a `~/.claude/commands` y `agents/*.md` a `~/.claude/agents`. Con
   `-Project` / `--project <ruta>`, copian a `<ruta>/.claude/` y dejan
-  `docs-skills.version`.
+  `ciclo-sdd.version`.
 - `scripts/validar.mjs` · `scripts/evaluar-disparadores.mjs` · `scripts/lib/` — los
   niveles 1 y 2 de la verificación, con sus tests (`*.test.mjs`).
 - `evals/cases/<skill>.json` — prompts que deben (y no deben) disparar cada skill.
@@ -74,7 +74,7 @@ están los scripts de verificación de `scripts/*.mjs`, que importan únicamente
 Sin Modo de desarrollador en Windows, el script copia en lugar de enlazar y las
 ediciones del repositorio dejan de propagarse: hay que reinstalar.
 
-No tengas instalado a la vez el plugin `docs-skills` y estos enlaces: cada skill aparece
+No tengas instalado a la vez el plugin `ciclo-sdd` y estos enlaces: cada skill aparece
 dos veces. Para probar el repositorio como plugin sin instalarlo,
 `claude --plugin-dir .`.
 
@@ -90,7 +90,7 @@ plugin no recibe commits nuevos hasta que el número cambia, y no hay ningún er
 avise del olvido. Semver: parche para correcciones, menor para piezas nuevas, mayor si se
 renombra o quita una skill, un comando o un agente (rompe a quien lo invoca por nombre).
 
-Como plugin, todo lleva el prefijo `docs-skills:` (`/docs-skills:sdd-new`). En el
+Como plugin, todo lleva el prefijo `ciclo-sdd:` (`/ciclo-sdd:sdd-new`). En el
 contenido se escriben los nombres sin prefijo, que valen para las otras dos vías; no
 dupliques cada mención.
 

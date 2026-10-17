@@ -1,12 +1,12 @@
 ---
 name: adoptar-estructura-de-docs
-description: 'Monta en un proyecto la estructura para registrar decisiones y specs —`docs/decisions/` con ADRs en formato MADR y `docs/specs/`—, fija el plugin `docs-skills` para todo el equipo en `.claude/settings.json` y, si trabajan dos personas o más, deja en su `CLAUDE.md` la sección de roles del ciclo SDD. Úsala cuando el usuario pida "adoptar los ADRs en este proyecto", "montar la carpeta de decisiones", "empezar a registrar decisiones aquí", "llevar esta convención a otro repo", "configurar docs/decisions", "que todo el equipo use docs-skills", "configurar los roles del ciclo", "modo pareja", "modo equipo", o cuando `documentar-decisiones` no encuentre dónde escribir. Solo prepara la estructura una vez; para escribir un ADR concreto usa `documentar-decisiones`. No la uses si el proyecto ya tiene un sistema de ADRs (`.adrs/`, `docs/adr/`, ADR Zoom): se detiene y pregunta.'
+description: 'Monta en un proyecto la estructura para registrar decisiones y specs —`docs/decisions/` con ADRs en formato MADR y `docs/specs/`—, fija el plugin `ciclo-sdd` para todo el equipo en `.claude/settings.json` y, si trabajan dos personas o más, deja en su `CLAUDE.md` la sección de roles del ciclo SDD. Úsala cuando el usuario pida "adoptar los ADRs en este proyecto", "montar la carpeta de decisiones", "empezar a registrar decisiones aquí", "llevar esta convención a otro repo", "configurar docs/decisions", "que todo el equipo use ciclo-sdd", "configurar los roles del ciclo", "modo pareja", "modo equipo", o cuando `documentar-decisiones` no encuentre dónde escribir. Solo prepara la estructura una vez; para escribir un ADR concreto usa `documentar-decisiones`. No la uses si el proyecto ya tiene un sistema de ADRs (`.adrs/`, `docs/adr/`, ADR Zoom): se detiene y pregunta.'
 ---
 
 # Adoptar la estructura de decisiones en un proyecto
 
 Prepara un proyecto para registrar decisiones con MADR y para que todo su equipo use
-docs-skills. Es una operación puntual: deja la carpeta, la plantilla, la forma de
+ciclo-sdd. Es una operación puntual: deja la carpeta, la plantilla, la forma de
 instalación y, si hace falta, los roles; a partir de ahí el trabajo diario es de
 `documentar-decisiones` y de los comandos `/sdd-*`.
 
@@ -30,7 +30,7 @@ existentes queda fuera de su alcance.
 
 Comprueba también si el `CLAUDE.md` del proyecto existe y qué dice ya sobre decisiones
 o roles, para no duplicarlo; si `.claude/settings.json` ya declara el plugin
-`docs-skills`; y si existe `.claude/docs-skills.version`, que indica una copia por proyecto.
+`ciclo-sdd`; y si existe `.claude/ciclo-sdd.version`, que indica una copia por proyecto.
 
 Pregunta **cuántas personas trabajan en el proyecto** y si quien pide y quien construye son
 personas distintas. De eso salen el modo de roles (paso 4.6) y si conviene
@@ -48,8 +48,8 @@ Muestra en texto, antes de crear nada:
   ```
 - el texto exacto que se añadirá al `CLAUDE.md` (paso 4), o que se creará el archivo si
   no existe.
-- la vía de instalación elegida (ver [Cómo llega docs-skills al
-  proyecto](#cómo-llega-docs-skills-al-proyecto)) y lo que escribe en `.claude/`.
+- la vía de instalación elegida (ver [Cómo llega ciclo-sdd al
+  proyecto](#cómo-llega-ciclo-sdd-al-proyecto)) y lo que escribe en `.claude/`.
 - con dos personas o más, el modo de roles y la tabla con los nombres que haya dado el
   usuario.
 - si el proyecto ya tiene una carpeta `docs/`, que estas dos se añaden sin tocar el
@@ -76,7 +76,7 @@ Un "sí", "dale" o "ok" basta. Un comentario ambiguo no lo es: vuelve a pregunta
 
    Las decisiones de arquitectura se registran en `docs/decisions/` (formato MADR) y las
    specs en `docs/specs/`. Para escribir o revisar un ADR o una spec, consulta la skill
-   `documentar-decisiones` del servidor MCP `docs-skills` con `buscar_skills` y
+   `documentar-decisiones` del servidor MCP `ciclo-sdd` con `buscar_skills` y
    `leer_skill`; no las cargues enteras por costumbre.
    ```
 
@@ -85,13 +85,13 @@ Un "sí", "dale" o "ok" basta. Un comentario ambiguo no lo es: vuelve a pregunta
    escribe la sección sin la frase del servidor MCP.
 5. **La instalación para el equipo**, según la vía elegida:
    - **Plugin** (por defecto): desde la raíz del proyecto,
-     `claude plugin marketplace add kevin-lo-al-98/docs-skills --scope project` y
-     `claude plugin install docs-skills@docs-skills --scope project`. Los dos escriben en
+     `claude plugin marketplace add kevin-lo-al-98/ciclo-sdd --scope project` y
+     `claude plugin install ciclo-sdd@ciclo-sdd --scope project`. Los dos escriben en
      `.claude/settings.json`, que se versiona; a cada miembro que confíe en la carpeta,
      Claude Code le ofrece el plugin.
    - **Copia por proyecto**: `scripts/install.ps1 -Project <ruta>` o
-     `scripts/install.sh --project <ruta>` desde el clon de docs-skills. Deja todo en
-     `<ruta>/.claude/` y la versión en `.claude/docs-skills.version`.
+     `scripts/install.sh --project <ruta>` desde el clon de ciclo-sdd. Deja todo en
+     `<ruta>/.claude/` y la versión en `.claude/ciclo-sdd.version`.
 6. **Los roles**, solo con dos personas o más: la sección «Ciclo de vida: roles» al final
    del `CLAUDE.md`, con la plantilla y el criterio de modo de
    [`references/roles-del-ciclo.md`](references/roles-del-ciclo.md). En solitario no la
@@ -100,16 +100,16 @@ Un "sí", "dale" o "ok" basta. Un comentario ambiguo no lo es: vuelve a pregunta
 Al terminar, **no commitees**: deja los archivos sin añadir y dilo. El commit sigue el
 protocolo del proyecto, que aquí no conoces.
 
-## Cómo llega docs-skills al proyecto
+## Cómo llega ciclo-sdd al proyecto
 
 | Vía | Cuándo | Comandos `/sdd-*` y agentes | Nombres |
 |---|---|---|---|
-| **Plugin** | Por defecto; el equipo tiene acceso a GitHub | Sí | Con prefijo: `/docs-skills:sdd-new`, `docs-skills:documentar-decisiones` |
+| **Plugin** | Por defecto; el equipo tiene acceso a GitHub | Sí | Con prefijo: `/ciclo-sdd:sdd-new`, `ciclo-sdd:documentar-decisiones` |
 | **Copia por proyecto** | Sin red o sin `/plugin`, o si se quiere la copia dentro del repositorio | Sí | Sin prefijo: `/sdd-new` |
 | **MCP local** | Clientes que no son Claude Code | No, solo skills | Se consultan con `buscar_skills` y `leer_skill` |
 
 No combines el plugin con la copia por proyecto, ni con los enlaces de `~/.claude` de quien
-mantiene docs-skills: cada skill aparecería dos veces.
+mantiene ciclo-sdd: cada skill aparecería dos veces.
 
 ## Por qué hace falta el aviso del `CLAUDE.md` en la vía MCP
 
@@ -125,7 +125,7 @@ Si el usuario aún no lo tiene registrado, indícale el comando (con `-s user` q
 disponible en todos sus proyectos, no solo en el actual):
 
 ```bash
-claude mcp add docs-skills -s user -- node <ruta-al-repositorio>/mcp/src/stdio.js
+claude mcp add ciclo-sdd -s user -- node <ruta-al-repositorio>/mcp/src/stdio.js
 ```
 
 Requiere `npm install` previo dentro de `mcp/`. El servidor lee las skills al arrancar:

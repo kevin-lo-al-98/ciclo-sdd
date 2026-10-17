@@ -1,17 +1,17 @@
-# Compartir docs-skills
+# Compartir ciclo-sdd
 
-Cómo instalar docs-skills en la computadora de otra persona, en otra computadora tuya o en
+Cómo instalar ciclo-sdd en la computadora de otra persona, en otra computadora tuya o en
 un proyecto donde trabajan varios, y cómo hacer llegar las mejoras a todos.
 
 ## Qué es el plugin
 
-Un plugin es un paquete que Claude Code instala de una vez. El de docs-skills trae:
+Un plugin es un paquete que Claude Code instala de una vez. El de ciclo-sdd trae:
 
 - las **skills** de [`skills/`](../skills/), que se activan solas según lo que pidas;
 - los **comandos** de [`commands/`](../commands/) (`/sdd-new`, `/ship`…);
 - los **subagentes** de [`agents/`](../agents/), que lanza `/ship`.
 
-El repositorio [kevin-lo-al-98/docs-skills](https://github.com/kevin-lo-al-98/docs-skills)
+El repositorio [kevin-lo-al-98/ciclo-sdd](https://github.com/kevin-lo-al-98/ciclo-sdd)
 es público: quien lo instala no necesita cuenta en él ni permisos.
 
 ### Qué cambia al usarlo como plugin
@@ -20,10 +20,10 @@ Los comandos llevan delante el nombre del plugin, para no chocar con los de otro
 
 | Instalado con los scripts de `~/.claude` | Instalado como plugin |
 |---|---|
-| `/sdd-new mi-cambio` | `/docs-skills:sdd-new mi-cambio` |
-| `/ship` | `/docs-skills:ship` |
+| `/sdd-new mi-cambio` | `/ciclo-sdd:sdd-new mi-cambio` |
+| `/ship` | `/ciclo-sdd:ship` |
 
-Las skills también llevan el prefijo (`docs-skills:documentar-decisiones`), pero no hace
+Las skills también llevan el prefijo (`ciclo-sdd:documentar-decisiones`), pero no hace
 falta escribirlas: Claude las carga solo cuando el pedido encaja con su descripción.
 
 ## Requisitos
@@ -37,11 +37,11 @@ falta escribirlas: Claude las carga solo cuando el pedido encaja con su descripc
 2. Escribe:
 
    ```
-   /plugin install docs-skills --marketplace kevin-lo-al-98/docs-skills
+   /plugin install ciclo-sdd --marketplace kevin-lo-al-98/ciclo-sdd
    ```
 
 3. Cierra Claude Code y vuelve a abrirlo.
-4. Comprueba que funciona: escribe `/docs-skills:` y deberían aparecer los comandos
+4. Comprueba que funciona: escribe `/ciclo-sdd:` y deberían aparecer los comandos
    `sdd-*`, `test`, `quality-review` y `ship`. O pide algo normal, como «haz el commit», y
    Claude cargará la skill que corresponda.
 
@@ -55,13 +55,13 @@ Depende de lo que vayas a hacer en ella:
 | Vas a… | Usa | Por qué |
 |---|---|---|
 | Solo usar las skills y los comandos | El plugin, igual que [un compañero](#instalarlo-en-la-computadora-de-un-compañero) | No hace falta clonar ni ejecutar scripts |
-| Editar docs-skills | Un clon con los enlaces de `~/.claude` | Tus ediciones se ven al instante, sin publicar versiones |
+| Editar ciclo-sdd | Un clon con los enlaces de `~/.claude` | Tus ediciones se ven al instante, sin publicar versiones |
 
 Para editar:
 
 ```powershell
-git clone https://github.com/kevin-lo-al-98/docs-skills.git
-cd docs-skills
+git clone https://github.com/kevin-lo-al-98/ciclo-sdd.git
+cd ciclo-sdd
 .\scripts\install.ps1        # en macOS o Linux: ./scripts/install.sh
 ```
 
@@ -75,8 +75,8 @@ instale, déjalo declarado en el proyecto. Una persona lo hace una vez, desde la
 proyecto:
 
 ```bash
-claude plugin marketplace add kevin-lo-al-98/docs-skills --scope project
-claude plugin install docs-skills@docs-skills --scope project
+claude plugin marketplace add kevin-lo-al-98/ciclo-sdd --scope project
+claude plugin install ciclo-sdd@ciclo-sdd --scope project
 ```
 
 Los dos comandos escriben en `.claude/settings.json`. Haz commit y push de ese archivo.
@@ -84,14 +84,14 @@ Cuando un compañero haga `git pull` y abra el proyecto con Claude Code, confian
 carpeta, se le ofrecerá instalar el plugin.
 
 También puedes pedírselo a Claude dentro del proyecto («que todo el equipo use
-docs-skills»): la skill [`adoptar-estructura-de-docs`](../skills/adoptar-estructura-de-docs/)
+ciclo-sdd»): la skill [`adoptar-estructura-de-docs`](../skills/adoptar-estructura-de-docs/)
 hace estos dos pasos, pregunta cuántas personas trabajan y deja configurados los roles del
 ciclo (quién aprueba el plan, quién verifica, quién archiva). Los roles se explican en el
 [ADR 0011](decisions/0011-roles-y-dueno-en-el-ciclo-sdd.md).
 
 ### Sin acceso a GitHub
 
-Si el equipo no puede descargar de GitHub, copia docs-skills dentro del proyecto desde un
+Si el equipo no puede descargar de GitHub, copia ciclo-sdd dentro del proyecto desde un
 clon:
 
 ```powershell
@@ -99,7 +99,7 @@ clon:
 ```
 
 Queda todo en `mi-proyecto/.claude/`, con los comandos sin prefijo, y la versión copiada en
-`.claude/docs-skills.version`. Versiona esa carpeta en el proyecto. Para actualizar, se
+`.claude/ciclo-sdd.version`. Versiona esa carpeta en el proyecto. Para actualizar, se
 vuelve a ejecutar el script.
 
 ## Publicar una mejora
@@ -130,8 +130,8 @@ aunque hagas push. Para publicar:
 
 Cada persona que tiene el plugin elige una de estas dos formas:
 
-- **A mano**, cuando quiera: `/plugin marketplace update docs-skills`.
-- **Automático**, activándolo una sola vez: `/plugin` → **Marketplaces** → `docs-skills` →
+- **A mano**, cuando quiera: `/plugin marketplace update ciclo-sdd`.
+- **Automático**, activándolo una sola vez: `/plugin` → **Marketplaces** → `ciclo-sdd` →
   **Enable auto-update**.
 
 ## Resolución de problemas
@@ -154,10 +154,10 @@ export CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1      # macOS / Linux
 
 ### Cada skill aparece dos veces
 
-**Problema:** en la lista de skills o comandos hay duplicados, con y sin `docs-skills:`.
+**Problema:** en la lista de skills o comandos hay duplicados, con y sin `ciclo-sdd:`.
 
 **Solución:** hay dos vías instaladas a la vez. Desinstala el plugin
-(`claude plugin uninstall docs-skills@docs-skills`) o quita los enlaces de
+(`claude plugin uninstall ciclo-sdd@ciclo-sdd`) o quita los enlaces de
 `~/.claude/skills`, `~/.claude/commands` y `~/.claude/agents` que apuntan al clon.
 
 ### Hice push pero mi compañero no ve el cambio
@@ -165,16 +165,16 @@ export CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1      # macOS / Linux
 **Problema:** el cambio está en GitHub pero no le llega a quien tiene el plugin.
 
 **Solución:** revisa que subiste `version` en `.claude-plugin/plugin.json`. Si la subiste,
-tu compañero tiene que actualizar (`/plugin marketplace update docs-skills`) o tener
+tu compañero tiene que actualizar (`/plugin marketplace update ciclo-sdd`) o tener
 activada la actualización automática.
 
 ### No aparecen los comandos `/sdd-*`
 
 **Problema:** las skills funcionan pero los comandos no.
 
-**Solución:** si usas docs-skills por el servidor MCP, es lo esperado: el MCP solo sirve
+**Solución:** si usas ciclo-sdd por el servidor MCP, es lo esperado: el MCP solo sirve
 skills. Instala el plugin. Si ya lo tienes, busca los comandos con el prefijo:
-`/docs-skills:sdd-new`.
+`/ciclo-sdd:sdd-new`.
 
 ## Relacionado
 

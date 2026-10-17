@@ -13,7 +13,7 @@ references/security-checklist.md and references/performance-checklist.md
 
 See LICENSE for the full MIT License text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-10-16 — The `description` field in SKILL.md was extended with Spanish
 trigger phrases and a scope exclusion that separates it from the local
@@ -24,7 +24,7 @@ frontmatter key was added.
 `references/performance-checklist.md` were copied from the upstream repository
 root into this skill's own `references/` directory, and the paths in SKILL.md
 ("See Also") were rewritten from `../../references/...` to `references/...`.
-Reason: the docs-skills MCP server only serves files under a skill's own
+Reason: the ciclo-sdd MCP server only serves files under a skill's own
 `references/`. The checklist content itself is unchanged.
 
 No other change to the review process, axes or checklists.

@@ -1,12 +1,12 @@
 {
-  "name": "docs-skills",
-  "description": "Marketplace del plugin docs-skills",
+  "name": "ciclo-sdd",
+  "description": "Marketplace del plugin ciclo-sdd",
   "owner": {
     "name": "Kevin Lopez Alvarez"
   },
   "plugins": [
     {
-      "name": "docs-skills",
+      "name": "ciclo-sdd",
       "source": "./",
       "description": "Ciclo de vida del requerimiento al producto, comandos /sdd-* y skills técnicas de complemento."
     }

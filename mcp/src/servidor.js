@@ -23,7 +23,7 @@ const error = (contenido) => ({ content: [{ type: 'text', text: contenido }], is
 export function crearServidor(skills) {
   const porNombre = new Map(skills.map((s) => [s.nombre, s]));
 
-  const servidor = new McpServer({ name: 'docs-skills', version: VERSION });
+  const servidor = new McpServer({ name: 'ciclo-sdd', version: VERSION });
 
   servidor.registerTool(
     'listar_skills',

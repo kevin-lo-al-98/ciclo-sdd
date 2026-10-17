@@ -57,7 +57,7 @@ Si el `CLAUDE.md` del proyecto tiene la sección «Ciclo de vida: roles» en mod
 
 En modo `solo`, o sin esa sección, este punto no aplica.
 
-Si el proyecto usa la copia por proyecto de docs-skills (`.claude/docs-skills.version`) y
+Si el proyecto usa la copia por proyecto de ciclo-sdd (`.claude/ciclo-sdd.version`) y
 el MR la toca, compará su `version` con la anterior: una copia que retrocede de versión
 suele ser un merge que se quedó con el lado viejo.
 

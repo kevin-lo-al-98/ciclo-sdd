@@ -13,7 +13,7 @@ agents/test-engineer.md.
 
 See LICENSE for the full MIT License text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-10-16 — In the "Composition" section of each file, the relative link
 `[docs/agents.md](../docs/agents.md)` was replaced with a plain pointer to the

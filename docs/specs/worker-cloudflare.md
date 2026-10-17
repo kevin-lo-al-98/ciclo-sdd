@@ -80,7 +80,7 @@ mcp/
 **D1 — Autenticación (bloqueante).** Un Worker sin auth es público en `workers.dev`.
 Recomendación: **token bearer**, guardado con `wrangler secret put SKILLS_TOKEN` y
 comprobado en `index.js` antes del handler; el cliente lo envía con
-`claude mcp add --transport http docs-skills <url> --header "Authorization: Bearer …"`.
+`claude mcp add --transport http ciclo-sdd <url> --header "Authorization: Bearer …"`.
 Es lo mínimo que cierra el acceso sin montar OAuth. Sin auth solo es defendible si el
 repositorio es público: si es privado, el Worker lo publicaría entero. Y `skill-security-scan`
 es material Apache-2.0 de terceros, con `LICENSE` y `NOTICE` que deben acompañarlo.

@@ -14,7 +14,7 @@ auditó en papel, pero sus registros estaban vacíos (ver el aviso al principio 
 
 - **Al menos dos personas**, una que pide y otra que construye. Con una sola persona, la
   skill no aplica y el piloto no mide nada.
-- Usa docs-skills como plugin o como copia por proyecto, con la sección «Ciclo de vida:
+- Usa ciclo-sdd como plugin o como copia por proyecto, con la sección «Ciclo de vida:
   roles» en modo `pareja` o `equipo`
   ([ADR 0011](../decisions/0011-roles-y-dueno-en-el-ciclo-sdd.md)).
 - Arranca en tamaño **Ligera** (REQ + registro + spec). Se sube a Completa solo cuando se

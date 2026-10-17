@@ -13,7 +13,7 @@ references/performance-checklist.md (repository root).
 
 See LICENSE for the full MIT License text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-10-16 — The `description` field in SKILL.md was extended with Spanish
 trigger phrases and a scope exclusion that separates it from the local
@@ -23,7 +23,7 @@ trigger phrases and a scope exclusion that separates it from the local
 upstream repository root into this skill's own `references/` directory. Paths
 were rewritten accordingly: in SKILL.md from `../../references/...` to
 `references/...`, and in references/optimization-patterns.md from
-`../../../references/...` to the sibling file. Reason: the docs-skills MCP
+`../../../references/...` to the sibling file. Reason: the ciclo-sdd MCP
 server only serves files under a skill's own `references/`. The checklist
 content itself is unchanged.
 

@@ -1,11 +1,11 @@
 {
-  "name": "docs-skills-mcp",
+  "name": "ciclo-sdd-mcp",
   "version": "0.1.0",
   "private": true,
   "description": "Servidor MCP que expone las skills de este repositorio",
   "type": "module",
   "bin": {
-    "docs-skills-mcp": "src/stdio.js"
+    "ciclo-sdd-mcp": "src/stdio.js"
   },
   "scripts": {
     "start": "node src/stdio.js"

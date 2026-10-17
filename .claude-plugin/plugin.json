@@ -1,11 +1,11 @@
 {
-  "name": "docs-skills",
-  "version": "0.1.2",
+  "name": "ciclo-sdd",
+  "version": "0.2.0",
   "description": "Ciclo de vida del requerimiento al producto (requerimiento → PRD → tarea → spec → código) con los comandos /sdd-*, y skills técnicas de complemento.",
   "author": {
     "name": "Kevin Lopez Alvarez"
   },
-  "repository": "https://github.com/kevin-lo-al-98/docs-skills",
+  "repository": "https://github.com/kevin-lo-al-98/ciclo-sdd",
   "keywords": ["sdd", "spec-driven-development", "adr", "madr", "prd", "requerimientos"],
   "experimental": {
     "evals": "evals/plugin"

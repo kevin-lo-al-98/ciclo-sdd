@@ -1,4 +1,4 @@
-# docs-skills
+# ciclo-sdd
 
 Repositorio personal que distribuye el **ciclo de vida del requerimiento al producto**
 para Claude Code, agnóstico de stack y de proyecto.
@@ -157,32 +157,32 @@ de equipo, paso a paso y con resolución de problemas, ver
 Trae skills, comandos y subagentes juntos, con versión:
 
 ```
-/plugin install docs-skills --marketplace kevin-lo-al-98/docs-skills
+/plugin install ciclo-sdd --marketplace kevin-lo-al-98/ciclo-sdd
 ```
 
-o, en dos pasos, `/plugin marketplace add kevin-lo-al-98/docs-skills` y
-`/plugin install docs-skills@docs-skills`.
+o, en dos pasos, `/plugin marketplace add kevin-lo-al-98/ciclo-sdd` y
+`/plugin install ciclo-sdd@ciclo-sdd`.
 
-Como plugin, todo lleva el prefijo `docs-skills:`: los comandos son `/docs-skills:sdd-new`,
-`/docs-skills:ship`, etc. En este README aparecen sin prefijo, como en las otras dos vías.
+Como plugin, todo lleva el prefijo `ciclo-sdd:`: los comandos son `/ciclo-sdd:sdd-new`,
+`/ciclo-sdd:ship`, etc. En este README aparecen sin prefijo, como en las otras dos vías.
 
 **Para que lo use todo un equipo**, desde la raíz del proyecto adoptante:
 
 ```bash
-claude plugin marketplace add kevin-lo-al-98/docs-skills --scope project
-claude plugin install docs-skills@docs-skills --scope project
+claude plugin marketplace add kevin-lo-al-98/ciclo-sdd --scope project
+claude plugin install ciclo-sdd@ciclo-sdd --scope project
 ```
 
 Los dos comandos escriben en `.claude/settings.json`; versiónalo, y a cada miembro que
 confíe en la carpeta Claude Code le ofrecerá el plugin. Las actualizaciones llegan cuando
 sube la versión ([`CHANGELOG.md`](CHANGELOG.md)), con `/plugin marketplace update
-docs-skills` o con la actualización automática activada en `/plugin`.
+ciclo-sdd` o con la actualización automática activada en `/plugin`.
 
 ### Copia por proyecto
 
 Para entornos sin acceso a GitHub o sin `/plugin`, o si se quiere la copia dentro del
 repositorio adoptante. Copia (nunca enlaza) a `<proyecto>/.claude/` y deja
-`.claude/docs-skills.version` con la versión y el commit de origen:
+`.claude/ciclo-sdd.version` con la versión y el commit de origen:
 
 ```powershell
 .\scripts\install.ps1 -Project ..\mi-proyecto

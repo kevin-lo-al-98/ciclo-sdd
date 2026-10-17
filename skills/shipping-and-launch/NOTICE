@@ -14,7 +14,7 @@ references/performance-checklist.md and references/accessibility-checklist.md
 
 See LICENSE for the full MIT License text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-10-16 — The `description` field in SKILL.md was extended with Spanish
 trigger phrases and a scope exclusion. A `license: MIT` frontmatter key was
@@ -23,7 +23,7 @@ added.
 2026-10-16 — The four checklists above were copied from the upstream
 repository root into this skill's own `references/` directory, and the paths in
 SKILL.md ("See Also") were rewritten from `../../references/...` to
-`references/...`. Reason: the docs-skills MCP server only serves files under a
+`references/...`. Reason: the ciclo-sdd MCP server only serves files under a
 skill's own `references/`. The checklist content itself is unchanged.
 
 No other change to the checklists, rollout thresholds or rollback template.

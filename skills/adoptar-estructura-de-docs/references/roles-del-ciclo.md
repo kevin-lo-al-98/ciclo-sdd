@@ -2,7 +2,7 @@
 
 Los comandos `/sdd-*` leen esta sección para saber quién aprueba, quién verifica y quién
 archiva un cambio ([ADR 0011](../../../docs/decisions/0011-roles-y-dueno-en-el-ciclo-sdd.md)
-de docs-skills). **Si la sección no existe, el modo es `solo`** y los comandos funcionan
+de ciclo-sdd). **Si la sección no existe, el modo es `solo`** y los comandos funcionan
 como siempre. Escríbela solo cuando trabajan dos personas o más.
 
 ## Elegir el modo

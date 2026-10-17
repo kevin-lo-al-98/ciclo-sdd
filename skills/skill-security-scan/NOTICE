@@ -27,7 +27,7 @@ Vulnerabilities at Scale" (Liu et al., 2026). Dataset: 42,447 skills;
 
 See LICENSE for the full Apache License 2.0 text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-09-28 — The `description` field in SKILL.md was extended with Spanish
 trigger phrases and a scope exclusion, so the skill activates in

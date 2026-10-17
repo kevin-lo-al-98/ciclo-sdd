@@ -22,7 +22,7 @@ const raiz = process.env.SKILLS_DIR
   : resolve(aqui, '..', '..', 'skills');
 
 const skills = await cargarDesdeDisco(raiz);
-console.error(`docs-skills: ${skills.length} skills cargadas desde ${raiz}`);
+console.error(`ciclo-sdd: ${skills.length} skills cargadas desde ${raiz}`);
 
 const servidor = crearServidor(skills);
 await servidor.connect(new StdioServerTransport());

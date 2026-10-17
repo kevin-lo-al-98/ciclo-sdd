@@ -3,7 +3,7 @@ scripts/validar.mjs, scripts/evaluar-disparadores.mjs, scripts/lib/*.mjs — ada
 These verification scripts adapt the approach and parts of the rules of
 Agent Skills by Addy Osmani (https://github.com/addyosmani/agent-skills),
 licensed under the MIT License. The install scripts (install.ps1, install.sh)
-are original to docs-skills.
+are original to ciclo-sdd.
 
   Copyright (c) 2025 Addy Osmani
   SPDX-License-Identifier: MIT
@@ -15,7 +15,7 @@ evals/README.md, and the evals/cases/*.json "trigger" schema.
 
 See LICENSE-agent-skills for the full MIT License text.
 
-Local modifications in this repository (docs-skills)
+Local modifications in this repository (ciclo-sdd)
 ----------------------------------------------------
 2026-10-17 — Rewritten as ES modules with Spanish identifiers and messages
 (ADR 0001). Frontmatter is parsed with mcp/src/skills.js, the same parser the

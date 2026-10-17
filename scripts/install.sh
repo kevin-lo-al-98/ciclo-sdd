@@ -5,7 +5,7 @@
 #
 # Con --project <ruta>, copia todo a <ruta>/.claude/ para versionarlo en ese proyecto y
 # que lo reciba todo su equipo. Ahí siempre copia: un enlace a este clon no le sirve a
-# nadie más. Deja <ruta>/.claude/docs-skills.version con la versión y el commit de origen.
+# nadie más. Deja <ruta>/.claude/ciclo-sdd.version con la versión y el commit de origen.
 #
 #   ./scripts/install.sh                                   # todo
 #   ./scripts/install.sh prompt-architect                  # solo la skill, el comando o el agente con ese nombre
@@ -112,13 +112,13 @@ if [ -n "$project" ]; then
     echo "version: $version"
     echo "commit: $commit"
     echo "fecha: $(date +%Y-%m-%d)"
-    echo "origen: https://github.com/kevin-lo-al-98/docs-skills"
-  } > "$claude_root/docs-skills.version"
-  echo "Versión $version ($commit) anotada en $claude_label/docs-skills.version"
+    echo "origen: https://github.com/kevin-lo-al-98/ciclo-sdd"
+  } > "$claude_root/ciclo-sdd.version"
+  echo "Versión $version ($commit) anotada en $claude_label/ciclo-sdd.version"
   echo
   echo "Revisa los archivos y versiónalos en el proyecto; este script no hace commit."
 fi
 
 echo
-echo "Si también tienes instalado el plugin docs-skills, cada skill aparecerá duplicada: usa una sola vía."
+echo "Si también tienes instalado el plugin ciclo-sdd, cada skill aparecerá duplicada: usa una sola vía."
 echo "Reinicia Claude Code para que detecte las skills, los comandos y los agentes nuevos."

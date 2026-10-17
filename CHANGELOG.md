@@ -1,9 +1,20 @@
 # Changelog
 
-Cada versión publicada del plugin `docs-skills`. La versión vive en
+Cada versión publicada del plugin `ciclo-sdd`. La versión vive en
 [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json); quien instaló el plugin no
 recibe un cambio hasta que ese número sube
 ([ADR 0010](docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
+
+## 0.2.0 — 2026-10-17
+
+Cambio incompatible: el plugin pasa de `docs-skills` a `ciclo-sdd`
+([ADR 0013](docs/decisions/0013-renombrar-el-plugin-a-ciclo-sdd.md)).
+
+- Plugin y marketplace se llaman `ciclo-sdd`; los comandos y las skills llevan el
+  prefijo `/ciclo-sdd:` en lugar de `/docs-skills:`.
+- El servidor MCP pasa a `ciclo-sdd-mcp` y la copia por proyecto deja
+  `.claude/ciclo-sdd.version`.
+- Para migrar un proyecto que ya lo adoptó, ver el ADR 0013.
 
 ## 0.1.2 — 2026-10-17
 
