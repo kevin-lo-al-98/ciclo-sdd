@@ -1,0 +1,26 @@
+{
+  "skill_name": "sonarqube-community",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "cómo monto SonarQube en local"
+      },
+      {
+        "prompt": "el sonar me marca este code smell, ¿lo arreglo?"
+      },
+      {
+        "prompt": "¿por qué sonar no analiza mi rama?"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "despliega a producción con un canary",
+        "owner": "shipping-and-launch"
+      },
+      {
+        "prompt": "revisa la seguridad de este endpoint",
+        "owner": "security-and-hardening"
+      }
+    ]
+  }
+}

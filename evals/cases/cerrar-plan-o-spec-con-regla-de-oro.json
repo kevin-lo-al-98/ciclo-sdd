@@ -1,0 +1,26 @@
+{
+  "skill_name": "cerrar-plan-o-spec-con-regla-de-oro",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "terminé el paso 3 del plan, deja constancia de lo que cambió"
+      },
+      {
+        "prompt": "la implementación se desvió de la spec, actualízala con lo que hicimos de verdad"
+      },
+      {
+        "prompt": "aplica la regla de oro al plan de migración"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "escribe una spec nueva para la exportación a CSV",
+        "owner": "documentar-decisiones"
+      },
+      {
+        "prompt": "agrega esta tarea al roadmap",
+        "owner": "gestionar-roadmap"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "test-driven-development",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "escribe primero un test que reproduzca este bug"
+      },
+      {
+        "prompt": "agrega tests a esta función"
+      },
+      {
+        "prompt": "hazlo con TDD, rojo-verde-refactor"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "abre el navegador y verifica el formulario",
+        "owner": "browser-testing-with-devtools"
+      },
+      {
+        "prompt": "revisa este diff",
+        "owner": "code-review-and-quality"
+      }
+    ]
+  }
+}

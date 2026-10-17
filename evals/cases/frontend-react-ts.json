@@ -1,0 +1,26 @@
+{
+  "skill_name": "frontend-react-ts",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "crea un componente React con TypeScript para la tabla de usuarios"
+      },
+      {
+        "prompt": "¿uso context o zustand para el estado global?"
+      },
+      {
+        "prompt": "cómo hago data fetching con TanStack Query en Next.js"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "cómo uso signals en Angular",
+        "owner": "frontend-angular"
+      },
+      {
+        "prompt": "el compilador de TypeScript me pide corchetes en esta propiedad",
+        "owner": "typescript-estricto"
+      }
+    ]
+  }
+}

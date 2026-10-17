@@ -1,0 +1,26 @@
+{
+  "skill_name": "performance-optimization",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "la página carga muy lenta, mejora el LCP"
+      },
+      {
+        "prompt": "hay consultas N+1 en este endpoint"
+      },
+      {
+        "prompt": "el bundle es muy grande, optimízalo"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "diseña el esquema de tablas para facturas",
+        "owner": "database-sql"
+      },
+      {
+        "prompt": "abre Chrome y mira qué sale en la consola",
+        "owner": "browser-testing-with-devtools"
+      }
+    ]
+  }
+}

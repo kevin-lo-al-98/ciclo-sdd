@@ -1,0 +1,26 @@
+{
+  "skill_name": "git-worktree",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "necesito trabajar en dos ramas a la vez sin hacer stash"
+      },
+      {
+        "prompt": "quiero revisar un PR sin cambiar de rama"
+      },
+      {
+        "prompt": "aplasta la rama en un solo commit antes del force-push"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "tengo conflictos en el rebase",
+        "owner": "resolver-merge"
+      },
+      {
+        "prompt": "haz el commit de esto",
+        "owner": "escribir-mensaje-de-commit"
+      }
+    ]
+  }
+}

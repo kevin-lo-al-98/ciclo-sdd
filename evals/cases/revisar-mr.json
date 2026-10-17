@@ -1,0 +1,26 @@
+{
+  "skill_name": "revisar-mr",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "revisa este MR contra su spec"
+      },
+      {
+        "prompt": "¿lo implementado cubre lo que dice el PRD?"
+      },
+      {
+        "prompt": "antes de aprobar el PR, comprueba que respeta las decisiones de docs/decisions"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "revisa la legibilidad y el rendimiento de este diff",
+        "owner": "code-review-and-quality"
+      },
+      {
+        "prompt": "escribe la spec del cambio",
+        "owner": "documentar-decisiones"
+      }
+    ]
+  }
+}

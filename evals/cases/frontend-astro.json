@@ -1,0 +1,26 @@
+{
+  "skill_name": "frontend-astro",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "monta una landing con Astro"
+      },
+      {
+        "prompt": "cuándo uso client:visible en una isla"
+      },
+      {
+        "prompt": "configura content collections para el blog"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "convierte este componente de Angular a standalone",
+        "owner": "frontend-angular"
+      },
+      {
+        "prompt": "estado global con zustand en next.js",
+        "owner": "frontend-react-ts"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "documentar-decisiones",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "registra que elegimos Postgres frente a MongoDB"
+      },
+      {
+        "prompt": "escribe un ADR sobre pasar a monorepo"
+      },
+      {
+        "prompt": "este ADR quedó viejo, supersédelo con la decisión nueva"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "haz un audit del sistema de colas actual y déjalo documentado",
+        "owner": "escribir-auditoria-tecnica"
+      },
+      {
+        "prompt": "convierte este correo del cliente en un requerimiento",
+        "owner": "flujo-de-requerimientos"
+      }
+    ]
+  }
+}

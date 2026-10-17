@@ -1,0 +1,26 @@
+{
+  "skill_name": "shipping-and-launch",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "vamos a desplegar a producción el viernes, ¿qué falta?"
+      },
+      {
+        "prompt": "prepara un plan de rollback"
+      },
+      {
+        "prompt": "quiero un despliegue gradual con feature flag"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "configura el quality gate de sonar",
+        "owner": "sonarqube-community"
+      },
+      {
+        "prompt": "revisa este diff",
+        "owner": "code-review-and-quality"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "browser-testing-with-devtools",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "abre la página en Chrome y dime qué errores salen en la consola"
+      },
+      {
+        "prompt": "verifica en el navegador que el formulario se ve bien después del cambio"
+      },
+      {
+        "prompt": "inspecciona las peticiones de red que hace el login"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "la página tarda en cargar, mejora el LCP",
+        "owner": "performance-optimization"
+      },
+      {
+        "prompt": "agrega tests unitarios a esta función",
+        "owner": "test-driven-development"
+      }
+    ]
+  }
+}

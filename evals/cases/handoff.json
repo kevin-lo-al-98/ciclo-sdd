@@ -1,0 +1,26 @@
+{
+  "skill_name": "handoff",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "voy a cerrar la sesión, prepara un resumen para que mañana otra sesión retome esto"
+      },
+      {
+        "prompt": "deja un traspaso para la próxima sesión"
+      },
+      {
+        "prompt": "la conversación se va a cortar: resume lo pendiente para que otro agente siga"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "escribe el README del proyecto",
+        "owner": "documentacion-humana"
+      },
+      {
+        "prompt": "mi CLAUDE.md es enorme",
+        "owner": "mantener-claude-md"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "escribir-mensaje-de-commit",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "listo, haz el commit"
+      },
+      {
+        "prompt": "cómo redacto el mensaje de este commit"
+      },
+      {
+        "prompt": "divide estos cambios en varios commits con Conventional Commits"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "revisa este diff antes de subirlo",
+        "owner": "code-review-and-quality"
+      },
+      {
+        "prompt": "aplasta todos los commits de la rama en uno",
+        "owner": "git-worktree"
+      }
+    ]
+  }
+}

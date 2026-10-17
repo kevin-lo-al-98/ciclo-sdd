@@ -1,0 +1,26 @@
+{
+  "skill_name": "security-and-hardening",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "¿este endpoint es seguro frente a inyección SQL?"
+      },
+      {
+        "prompt": "haz el modelo de amenazas del login"
+      },
+      {
+        "prompt": "npm audit sacó doce vulnerabilidades, ¿cuáles importan?"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "voy a instalar una skill de terceros, ¿es segura?",
+        "owner": "skill-security-scan"
+      },
+      {
+        "prompt": "revisa el código antes del merge",
+        "owner": "code-review-and-quality"
+      }
+    ]
+  }
+}

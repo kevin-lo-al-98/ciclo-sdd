@@ -1,0 +1,26 @@
+{
+  "skill_name": "entrevistar-con-contexto",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "pon a prueba mi plan contra el glosario del proyecto"
+      },
+      {
+        "prompt": "interrógame sobre este diseño usando el CONTEXT.md"
+      },
+      {
+        "prompt": "cuestiona mi plan con la terminología del dominio que ya tenemos documentada"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "escribe el PRD de esta funcionalidad",
+        "owner": "flujo-de-requerimientos"
+      },
+      {
+        "prompt": "qué modelo de Claude uso para esta tarea",
+        "owner": "prompt-architect"
+      }
+    ]
+  }
+}

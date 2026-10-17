@@ -1,0 +1,30 @@
+name: Validar skills
+
+# Niveles 1 y 2 de la verificación (evals/README.md): deterministas y sin
+# tokens. El nivel 3, `claude plugin eval`, gasta tokens y no corre aquí.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Tests de los validadores
+        run: node --test "scripts/lib/*.test.mjs"
+
+      - name: 'Nivel 1: estructura de skills, comandos y agentes'
+        run: node scripts/validar.mjs
+
+      - name: 'Nivel 2: disparadores y ruteo'
+        # Piso unos 5 puntos por debajo de la línea base (93,1 % el 2026-10-17).
+        # Súbelo cuando mejore el ruteo; no lo bajes para que pase una regresión.
+        run: node scripts/evaluar-disparadores.mjs --min-rank1 88

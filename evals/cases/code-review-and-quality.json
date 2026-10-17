@@ -1,0 +1,26 @@
+{
+  "skill_name": "code-review-and-quality",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "revisa este diff antes de mergearlo"
+      },
+      {
+        "prompt": "haz un code review de lo que escribió el otro agente"
+      },
+      {
+        "prompt": "¿este cambio está listo para main? revisa la calidad del código"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "revisa si este MR cubre lo que pide su spec",
+        "owner": "revisar-mr"
+      },
+      {
+        "prompt": "redacta el mensaje del commit para este diff",
+        "owner": "escribir-mensaje-de-commit"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "database-sql",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "diseña el esquema de tablas para pedidos y clientes en Postgres"
+      },
+      {
+        "prompt": "qué índice le pongo a esta query lenta"
+      },
+      {
+        "prompt": "escribe una migración para añadir una columna sin bloquear la tabla"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "crea el endpoint de express que devuelve los pedidos",
+        "owner": "backend-node-ts"
+      },
+      {
+        "prompt": "el bundle de la web pesa demasiado",
+        "owner": "performance-optimization"
+      }
+    ]
+  }
+}

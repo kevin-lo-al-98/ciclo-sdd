@@ -1,0 +1,26 @@
+{
+  "skill_name": "gestionar-roadmap",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "agrega esto al roadmap"
+      },
+      {
+        "prompt": "¿qué tarea me toca ahora en el proyecto?"
+      },
+      {
+        "prompt": "saca del roadmap los cambios ya archivados"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "dame de alta un requerimiento nuevo",
+        "owner": "flujo-de-requerimientos"
+      },
+      {
+        "prompt": "cierra el paso 2 del plan con lo que pasó realmente",
+        "owner": "cerrar-plan-o-spec-con-regla-de-oro"
+      }
+    ]
+  }
+}

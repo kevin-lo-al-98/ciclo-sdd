@@ -1,0 +1,26 @@
+{
+  "skill_name": "frontend-angular",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "migra este componente de Angular a standalone con signals"
+      },
+      {
+        "prompt": "cómo hago un formulario reactivo en Angular"
+      },
+      {
+        "prompt": "este observable de RxJS no se desuscribe nunca"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "crea un hook de React para el carrito",
+        "owner": "frontend-react-ts"
+      },
+      {
+        "prompt": "monta un blog estático con content collections",
+        "owner": "frontend-astro"
+      }
+    ]
+  }
+}

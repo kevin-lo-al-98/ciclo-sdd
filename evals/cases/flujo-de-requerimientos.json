@@ -1,0 +1,26 @@
+{
+  "skill_name": "flujo-de-requerimientos",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "convierte este correo del cliente en un requerimiento"
+      },
+      {
+        "prompt": "escribe el PRD para la exportación a Excel que pidió ventas"
+      },
+      {
+        "prompt": "el pedido cambió a mitad de camino, ¿cómo enmiendo el PRD?"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "registra por qué elegimos GraphQL",
+        "owner": "documentar-decisiones"
+      },
+      {
+        "prompt": "agrega esta idea al roadmap",
+        "owner": "gestionar-roadmap"
+      }
+    ]
+  }
+}

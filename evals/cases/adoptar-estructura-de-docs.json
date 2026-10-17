@@ -1,0 +1,26 @@
+{
+  "skill_name": "adoptar-estructura-de-docs",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "quiero empezar a llevar ADRs en este repo nuevo, prepárame las carpetas"
+      },
+      {
+        "prompt": "configura docs/decisions y docs/specs en mi proyecto"
+      },
+      {
+        "prompt": "somos tres en el equipo: fija el plugin para todos y configura los roles del ciclo"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "escribe el ADR de por qué elegimos Kafka",
+        "owner": "documentar-decisiones"
+      },
+      {
+        "prompt": "mi CLAUDE.md tiene 400 líneas, recórtalo",
+        "owner": "mantener-claude-md"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "skill-security-scan",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "revisa esta skill antes de instalarla"
+      },
+      {
+        "prompt": "escanea este SKILL.md en busca de patrones maliciosos"
+      },
+      {
+        "prompt": "is this skill safe to install?"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "valida esta entrada de usuario contra XSS",
+        "owner": "security-and-hardening"
+      },
+      {
+        "prompt": "audita las dependencias con npm audit",
+        "owner": "security-and-hardening"
+      }
+    ]
+  }
+}

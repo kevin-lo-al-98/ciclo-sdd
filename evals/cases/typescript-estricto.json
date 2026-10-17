@@ -1,0 +1,26 @@
+{
+  "skill_name": "typescript-estricto",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "el compilador rechaza esto, ¿necesito un any aquí?"
+      },
+      {
+        "prompt": "cómo quito este @ts-ignore sin relajar strict"
+      },
+      {
+        "prompt": "activa strict en este proyecto que no lo tenía"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "crea un componente React para el login",
+        "owner": "frontend-react-ts"
+      },
+      {
+        "prompt": "crea un endpoint express para el login",
+        "owner": "backend-node-ts"
+      }
+    ]
+  }
+}

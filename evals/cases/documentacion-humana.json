@@ -1,0 +1,26 @@
+{
+  "skill_name": "documentacion-humana",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "escribe el README de este proyecto"
+      },
+      {
+        "prompt": "organiza la carpeta docs para que la entienda alguien que llega nuevo"
+      },
+      {
+        "prompt": "mejora la documentación para personas de esta librería"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "recorta el CLAUDE.md, se carga entero en cada sesión",
+        "owner": "mantener-claude-md"
+      },
+      {
+        "prompt": "registra la decisión de pasar a monorepo",
+        "owner": "documentar-decisiones"
+      }
+    ]
+  }
+}

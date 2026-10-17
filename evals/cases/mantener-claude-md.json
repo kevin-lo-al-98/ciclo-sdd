@@ -1,0 +1,26 @@
+{
+  "skill_name": "mantener-claude-md",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "mi CLAUDE.md es enorme, recórtalo"
+      },
+      {
+        "prompt": "¿esta regla va en CLAUDE.md o en otro sitio?"
+      },
+      {
+        "prompt": "el agente lee demasiados archivos, monta un índice de la documentación"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "genera el README del proyecto",
+        "owner": "documentacion-humana"
+      },
+      {
+        "prompt": "registra esta convención como ADR",
+        "owner": "documentar-decisiones"
+      }
+    ]
+  }
+}

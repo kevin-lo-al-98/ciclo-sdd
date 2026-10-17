@@ -1,0 +1,35 @@
+scripts/validar.mjs, scripts/evaluar-disparadores.mjs, scripts/lib/*.mjs — adapted from addyosmani/agent-skills
+
+These verification scripts adapt the approach and parts of the rules of
+Agent Skills by Addy Osmani (https://github.com/addyosmani/agent-skills),
+licensed under the MIT License. The install scripts (install.ps1, install.sh)
+are original to docs-skills.
+
+  Copyright (c) 2025 Addy Osmani
+  SPDX-License-Identifier: MIT
+
+Upstream snapshot: downloaded 2026-10-16.
+Upstream files: scripts/lib/skill-lint.js, scripts/validate-skills.js,
+scripts/run-evals.js (Tier 2 only), scripts/validate-versions.js,
+evals/README.md, and the evals/cases/*.json "trigger" schema.
+
+See LICENSE-agent-skills for the full MIT License text.
+
+Local modifications in this repository (docs-skills)
+----------------------------------------------------
+2026-10-17 — Rewritten as ES modules with Spanish identifiers and messages
+(ADR 0001). Frontmatter is parsed with mcp/src/skills.js, the same parser the
+MCP server uses, instead of upstream's own parser.
+
+2026-10-17 — Lint rules: dropped upstream's required English sections
+(## Overview, ## Red Flags, …) and its command parity with .gemini/*.toml.
+The "when to use" trigger check accepts Spanish phrasing. Added rules from
+this repository's CLAUDE.md: single-line name/description, unquoted values
+with ": " or " #", argument-hint when a command uses $ARGUMENTS, LICENSE and
+NOTICE kept in vendored folders, README tables.
+
+2026-10-17 — Trigger ranking: new tokenizer that strips diacritics (NFD)
+instead of dropping non-ASCII characters, bilingual stopwords, and a light
+Spanish suffix stemmer. Negative prompts must declare their "owner".
+The behavioral tier (--behavioral) was not adapted: Claude Code's
+`claude plugin eval` covers it.

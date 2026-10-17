@@ -1,0 +1,26 @@
+{
+  "skill_name": "backend-node-ts",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "crea un endpoint REST en express para dar de alta usuarios con validación zod"
+      },
+      {
+        "prompt": "revisa este middleware de autenticación jwt en fastify"
+      },
+      {
+        "prompt": "cómo estructuro por capas un servicio en Node con TypeScript"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "esta consulta SQL tarda ocho segundos, mira el explain",
+        "owner": "database-sql"
+      },
+      {
+        "prompt": "el componente de React se re-renderiza demasiado",
+        "owner": "frontend-react-ts"
+      }
+    ]
+  }
+}

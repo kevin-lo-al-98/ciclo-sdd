@@ -1,0 +1,26 @@
+{
+  "skill_name": "prompt-architect",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "qué modelo uso para esto, ¿Opus o Sonnet?"
+      },
+      {
+        "prompt": "ayúdame a escribir el prompt para esta tarea"
+      },
+      {
+        "prompt": "mi prompt dio un resultado pobre, mejóralo"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "pon a prueba mi plan contra el glosario",
+        "owner": "entrevistar-con-contexto"
+      },
+      {
+        "prompt": "deja un traspaso para la próxima sesión",
+        "owner": "handoff"
+      }
+    ]
+  }
+}

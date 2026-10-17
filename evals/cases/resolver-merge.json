@@ -1,0 +1,26 @@
+{
+  "skill_name": "resolver-merge",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "tengo conflictos en el merge, ayúdame"
+      },
+      {
+        "prompt": "me salió CONFLICT (content) en el rebase"
+      },
+      {
+        "prompt": "¿me quedo con HEAD o con la otra rama?"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "necesito dos ramas a la vez",
+        "owner": "git-worktree"
+      },
+      {
+        "prompt": "redacta el commit",
+        "owner": "escribir-mensaje-de-commit"
+      }
+    ]
+  }
+}

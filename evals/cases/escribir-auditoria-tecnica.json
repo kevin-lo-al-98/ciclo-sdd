@@ -1,0 +1,26 @@
+{
+  "skill_name": "escribir-auditoria-tecnica",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "haz un audit del sistema de colas actual antes de migrarlo"
+      },
+      {
+        "prompt": "documenta y analiza este archivo de configuración de CI"
+      },
+      {
+        "prompt": "deja documentada la integración con el proveedor de pagos para retomarla más adelante"
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "registra la decisión de migrar a RabbitMQ",
+        "owner": "documentar-decisiones"
+      },
+      {
+        "prompt": "revisa la seguridad de este endpoint de login",
+        "owner": "security-and-hardening"
+      }
+    ]
+  }
+}
