@@ -1,6 +1,11 @@
 # Spec: Worker de Cloudflare para el servidor MCP de skills
 
-Estado: **propuesta**, sin implementar. Datos verificados el 2026-09-28 contra la
+Estado: **diferida** (2026-10-16). Desde el
+[ADR 0010](../decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md), Claude Code
+recibe skills, comandos y agentes como plugin, así que este Worker solo serviría a otros
+clientes MCP. Se retoma si aparece uno que lo necesite.
+
+Datos verificados el 2026-09-28 contra la
 documentación de Cloudflare y el registro de npm; las versiones caducan, vuelve a
 comprobarlas al implementar.
 

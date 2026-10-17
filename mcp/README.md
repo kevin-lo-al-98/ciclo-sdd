@@ -29,7 +29,7 @@ npm install
 Registrarlo en Claude Code:
 
 ```bash
-claude mcp add docs-skills -- node C:/Users/Kevin/Documents/AGENTS/docs-skills/mcp/src/stdio.js
+claude mcp add docs-skills -- node <ruta-al-repositorio>/mcp/src/stdio.js
 ```
 
 Con `SKILLS_DIR` se apunta a otra carpeta de skills, por si el servidor vive separado
@@ -49,7 +49,7 @@ alcance de usuario, de modo que esté disponible en todos tus proyectos y no sol
 actual:
 
 ```bash
-claude mcp add docs-skills -s user -- node C:/Users/Kevin/Documents/AGENTS/docs-skills/mcp/src/stdio.js
+claude mcp add docs-skills -s user -- node <ruta-al-repositorio>/mcp/src/stdio.js
 ```
 
 **Por MCP las skills no se activan solas.** Claude Code carga por `description` solo las
@@ -59,8 +59,11 @@ que las consuma necesita un aviso corto en su `CLAUDE.md`. La skill
 [`adoptar-estructura-de-docs`](../skills/adoptar-estructura-de-docs/SKILL.md) lo deja
 puesto junto con la carpeta `docs/decisions/`.
 
-Solo funciona en la máquina donde está el repositorio: el servidor es local. Para
-otras máquinas hace falta la variante remota, que sigue pendiente.
+Solo funciona en la máquina donde está el repositorio: el servidor es local. Para un
+equipo con Claude Code, la vía es el plugin
+([ADR 0010](../docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)),
+que además trae los comandos y los agentes que el MCP no sirve. El MCP queda para
+clientes que no son Claude Code.
 
 ## Estructura
 
@@ -75,9 +78,11 @@ La separación existe por el despliegue remoto: un Worker de Cloudflare no tiene
 sistema de archivos, así que `cargar-disco.js` es el único archivo que no puede viajar
 allí. `skills.js` y `servidor.js` sí, sin tocarlos.
 
-## Desplegar en Cloudflare (pendiente)
+## Desplegar en Cloudflare (diferido)
 
 La propuesta completa está en [`docs/specs/worker-cloudflare.md`](../docs/specs/worker-cloudflare.md).
+Está diferida: el plugin cubre a Claude Code, y el Worker solo serviría a otros clientes
+MCP ([ADR 0010](../docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
 
 Es posible: Workers sirve servidores MCP remotos por HTTP y Claude Code se conecta con
 `claude mcp add --transport http <nombre> <url>`. Lo que falta por montar:
