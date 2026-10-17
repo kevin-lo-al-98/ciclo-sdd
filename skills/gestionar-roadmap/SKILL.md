@@ -177,6 +177,10 @@ termine; hasta entonces, el roadmap refleja el estado anterior.
 - **Nombres de cambio duplicados entre secciones.** Una entrada está en exactamente una
   sección en cada momento. Promover / Limpiar son los únicos movimientos legales entre
   secciones.
+- **Reordenar o editar entradas ajenas dentro de la rama de un cambio.** Con varias personas,
+  cada una edita solo sus entradas y la reorganización va en su propio commit; si no,
+  `ROADMAP.md` choca en cada merge y el conflicto se resuelve borrando la entrada del otro.
+  Reglas completas en [`references/operations.md`](references/operations.md#roadmap-compartido-entre-varias-personas).
 - **Dejar que `ROADMAP.md` crezca sin límite.** Limpiar tiene que correr cuando se archivan
   cambios SDD. Las entradas En curso desactualizadas son síntoma de un Limpiar que no se
   corrió, no de trabajo legítimo.
@@ -213,5 +217,5 @@ No las precargues. Leé la que necesites.
 
 | Archivo | Cuándo leerlo |
 |---|---|
-| [`references/operations.md`](references/operations.md) | Estás a punto de ejecutar Inicializar / Agregar tarea / Promover / Reorganizar / Limpiar / Auditar. Contiene el paso a paso completo de cada una, más las reglas de validación. |
+| [`references/operations.md`](references/operations.md) | Estás a punto de ejecutar Inicializar / Agregar tarea / Promover / Reorganizar / Limpiar / Auditar. Contiene el paso a paso completo de cada una, las reglas para un roadmap compartido entre varias personas y las reglas de validación. |
 | [`assets/example-ROADMAP.md`](assets/example-ROADMAP.md) | Querés una referencia concreta de cómo se ve un `ROADMAP.md` poblado en las tres secciones, con entradas SDD y no-SDD realistas y el cableado de dependencias. |

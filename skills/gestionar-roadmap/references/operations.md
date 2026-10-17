@@ -149,6 +149,32 @@ un período largo sin mantenimiento del roadmap.
 
 ---
 
+## Roadmap compartido entre varias personas
+
+Que varias personas escriban en el mismo `ROADMAP.md` es inevitable: es el índice de todos.
+A cambio, dos ramas que lo tocan a la vez chocan en el merge, y la resolución rápida
+(«me quedo con mi versión») borra la entrada del otro sin que nadie lo note. Las reglas
+reducen los choques y hacen visible el que quede:
+
+1. **Cada uno edita solo sus entradas.** Agregar o actualizar la línea `Estado:` del cambio
+   propio, sí; tocar la entrada de un compañero, no: se le avisa. Dos personas que editan
+   bloques distintos rara vez chocan en git.
+2. **Reorganizar va en su propio commit, y en la rama principal o en una rama corta
+   dedicada**, nunca dentro de la rama de un cambio. Una renumeración de Pendiente toca
+   todas las líneas `### N.` y choca con cualquier otra edición del archivo.
+3. **Antes de escribir, traé la última versión** (`git fetch` y comparar con
+   `origin/<rama principal>:ROADMAP.md`). Si alguien agregó o promovió algo desde la
+   última lectura, se parte de su versión.
+4. **Un conflicto en `ROADMAP.md` se resuelve conservando las entradas de los dos lados**
+   (skill `resolver-merge`) y después corriendo [Validación](#validación--tiene-que-cumplirse-después-de-cada-escritura):
+   la numeración de Pendiente y las secciones duplicadas son lo primero que se rompe al
+   fusionar a mano.
+5. **Un mismo nombre de cambio en dos ramas** no es un conflicto del roadmap, es dos
+   cambios con el mismo nombre. Se detecta antes, en `/sdd-new`, que busca el nombre en el
+   remoto.
+
+---
+
 ## Validación — tiene que cumplirse después de cada escritura
 
 Corré **todas** estas antes de declarar terminada una operación. Si alguna falla, no
