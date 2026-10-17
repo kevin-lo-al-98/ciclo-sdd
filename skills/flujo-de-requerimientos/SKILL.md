@@ -27,6 +27,15 @@ documentación existente, y pregunta si no está claro. Las plantillas de las re
 tienen comentarios guía en español; al rellenarlas, tradúcelos o bórralos. Los
 identificadores (`REQ-001`, `PRD-001`, `TAREA-001`) se conservan.
 
+## Dónde termina esta skill y dónde arranca el ciclo de vida SDD
+
+Esta cadena cubre **qué construir**: de un requerimiento a una spec por área, con un dueño
+por etapa. De ahí en adelante —**cómo implementarlo**: spec → código → verificación →
+archivo— es el trabajo de los comandos `/sdd-explore`, `/sdd-new`, `/sdd-apply`,
+`/sdd-verify`, `/sdd-continue` y `/sdd-archive`. Cuando la etapa "Spec" de esta cadena
+termina, el siguiente paso natural es `/sdd-new <nombre-del-cambio>` sobre esa spec; no
+hace falta reescribirla ni repetir la cadena de nuevo dentro del cambio SDD.
+
 ## ¿Te hace falta?
 
 Monta la cadena solo si se cumplen **las dos**:
