@@ -87,7 +87,7 @@ cancelación parcial es posible — ¿cuál es correcto?"
 
 Cuando se resuelve un término, actualizá `CONTEXT.md` ahí mismo. No lo acumules para
 después — capturalo en el momento. Usá el formato de
-[CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
+[CONTEXT-FORMAT.md](references/CONTEXT-FORMAT.md).
 
 `CONTEXT.md` debe estar completamente libre de detalles de implementación. No lo trates
 como una spec, un borrador de trabajo ni un repositorio de decisiones de implementación. Es
@@ -104,6 +104,6 @@ Ofrecé crear un ADR solo cuando las tres condiciones se cumplan:
    razones concretas.
 
 Si falta cualquiera de las tres, no ofrezcas el ADR. Usá el formato de
-[ADR-FORMAT.md](./ADR-FORMAT.md).
+[ADR-FORMAT.md](references/ADR-FORMAT.md).
 
 </informacion-de-apoyo>
