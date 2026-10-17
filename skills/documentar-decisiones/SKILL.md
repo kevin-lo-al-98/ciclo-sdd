@@ -79,6 +79,33 @@ cambiar porque hoy se decida lo contrario.
 
 Un ADR `rejected` o `deprecated` se conserva: documenta lo que ya se intentó.
 
+## Antes de proponer algo que huela a decisión
+
+El costo de saltarse esto no es escribir de más: es implementar algo que contradice una
+decisión ya `accepted` y descubrirlo en la revisión.
+
+1. **Buscá en `docs/decisions/`** por una o dos palabras clave de tu propuesta, aunque creas
+   que no hay nada registrado — puede haber una decisión que hable de lo mismo sin que el
+   título lo deje ver.
+2. Si alguna ADR declara `trigger`/`scope` opcionales en su frontmatter (claves adicionales
+   válidas en MADR: `trigger` para cuándo traerla, `scope` para a qué rutas aplica),
+   contrastá si tu propuesta lo dispara. Si el proyecto mantiene un índice de
+   `docs/decisions/` con esa columna, empezá ahí en vez de abrir cada ADR a mano.
+3. De las que disparan, mirá su `status`:
+   - **`accepted`** — tu propuesta **no puede** contradecirla. Si hace falta cambiarla, se
+     abre un ADR nuevo que la supersede; nunca se ignora en silencio.
+   - **`proposed`** — todavía no es vinculante, pero avisá que existe una propuesta en
+     curso sobre lo mismo antes de avanzar por tu cuenta.
+   - **`rejected`** o **`deprecated`** — documenta qué ya se intentó y por qué no siguió;
+     no es una obligación, pero sí una señal para no repetir el mismo camino sin saber por
+     qué se abandonó.
+4. Si no hay ninguna decisión que choque, seguí adelante: no hace falta un ADR para cada
+   cosa que no contradice nada (ver "Cuándo merece la pena un ADR" arriba).
+
+Esto reemplaza a un registro de dos niveles con `Enforcement: block/warn` — alcanza con el
+`status` de MADR y el `trigger`/`scope` del frontmatter para decidir si algo aplica, sin
+mantener una segunda copia de la decisión que pueda divergir de su ADR.
+
 ## Specs
 
 Un ADR responde "¿por qué esto y no otra cosa?"; una **spec** responde "¿qué vamos a
