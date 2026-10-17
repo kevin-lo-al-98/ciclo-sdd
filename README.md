@@ -148,6 +148,10 @@ real está en [`docs/specs/piloto-flujo-de-requerimientos.md`](docs/specs/piloto
 Hay tres vías ([ADR 0010](docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
 Elige **una** por máquina: combinarlas duplica cada skill.
 
+Para compartirlo con un compañero, usarlo desde otra computadora o fijarlo en un proyecto
+de equipo, paso a paso y con resolución de problemas, ver
+[`docs/compartir-el-plugin.md`](docs/compartir-el-plugin.md).
+
 ### Plugin de Claude Code (recomendado)
 
 Trae skills, comandos y subagentes juntos, con versión:

@@ -52,6 +52,8 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
   en otra subcarpeta (`assets/`, `scripts/`) no llega al cliente.
 - `docs/decisions/` — ADRs en formato MADR, uno por decisión, numerados `NNNN-…`.
 - `docs/specs/` — specs de trabajo por hacer o en curso.
+- `docs/compartir-el-plugin.md` — guía para personas: instalar, compartir y actualizar el
+  plugin. Si cambia cómo se instala o se publica, actualízala en el mismo cambio.
 
 ## Instalar y correr
 
