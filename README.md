@@ -31,10 +31,30 @@ tenga delante.
 `prompt-architect` es la que más se usa fuera de una tarea concreta: responde "¿qué
 modelo uso para esto?" y "¿cómo le pido esto bien?".
 
+## Comandos
+
+Además de las skills (que Claude carga solo cuando la tarea las dispara), `commands/`
+tiene el ciclo de vida de un cambio SDD (Spec Driven Development) como comandos
+explícitos, agnósticos de stack y de proyecto:
+
+| Comando | Fase |
+|---|---|
+| [`/sdd-explore`](commands/sdd-explore.md) | Explorar un tema con evidencia, sin crear el cambio (desechable) |
+| [`/sdd-new`](commands/sdd-new.md) | Abrir el cambio y llevarlo hasta `tasks`, pausando para aprobación |
+| [`/sdd-apply`](commands/sdd-apply.md) | Implementar las tareas pendientes con evidencia |
+| [`/sdd-verify`](commands/sdd-verify.md) | Construir la Spec Compliance Matrix y el veredicto PASS/FAIL |
+| [`/sdd-continue`](commands/sdd-continue.md) | Retomar un cambio existente desde su fase pendiente |
+| [`/sdd-archive`](commands/sdd-archive.md) | Fundir la delta en `openspec/specs/` y archivar el cambio |
+
+El orden es siempre `explore → new → apply → verify → continue (si se interrumpe) →
+archive`. Los artefactos de cada cambio viven en `openspec/changes/<nombre>/`, en la raíz
+del proyecto que adopta estos comandos (no en este repositorio).
+
 ## Instalación
 
-Las skills viven en `~/.claude/skills`. El script las enlaza desde aquí, así que
-editar el repositorio actualiza la skill instalada sin reinstalar.
+Las skills viven en `~/.claude/skills` y los comandos en `~/.claude/commands`. El
+script los enlaza desde aquí, así que editar el repositorio actualiza lo instalado sin
+reinstalar.
 
 ```powershell
 # Windows
@@ -46,7 +66,9 @@ editar el repositorio actualiza la skill instalada sin reinstalar.
 ./scripts/install.sh
 ```
 
-Para instalar solo una: `.\scripts\install.ps1 -Skill prompt-architect`.
+Para instalar solo una skill o un comando: `.\scripts\install.ps1 -Skill prompt-architect`
+o `.\scripts\install.ps1 -Command sdd-new` (en bash, `./scripts/install.sh sdd-new`
+funciona para ambos tipos porque busca por nombre en los dos directorios).
 
 En Windows, los enlaces simbólicos requieren el Modo de desarrollador activado
 (Configuración → Sistema → Para desarrolladores) o una consola de administrador. Sin
@@ -87,3 +109,11 @@ Una descripción vaga produce una skill que nunca se activa.
 
 El contenido extenso va en `references/` y se enlaza desde el `SKILL.md`; así el cuerpo
 principal se mantiene corto y solo se lee el detalle cuando hace falta.
+
+## Añadir un comando
+
+Un comando es un único archivo `commands/<nombre>.md` con frontmatter `description` (y
+`argument-hint` si toma un argumento posicional) — sin `name`, que es un campo de skill,
+no de comando. El cuerpo usa `$ARGUMENTS` para ese argumento. Se reserva para flujos que
+conviene invocar a propósito, con fases ordenadas o argumentos explícitos, en vez de
+dejar que se disparen solos como una skill.

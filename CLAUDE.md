@@ -21,8 +21,15 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
   `description`, y el cuerpo en Markdown.
 - `skills/<nombre>/references/` — material extenso que el `SKILL.md` enlaza en lugar
   de incluir.
+- `commands/<nombre>.md` — comandos de barra (`/<nombre>`) explícitos, para flujos que
+  conviene invocar a propósito en vez de dejar que se disparen solos (hoy, el ciclo de
+  vida SDD: `sdd-explore`, `sdd-new`, `sdd-apply`, `sdd-verify`, `sdd-continue`,
+  `sdd-archive`). Frontmatter con `description` y, cuando el comando toma un argumento,
+  `argument-hint`; **no** lleva `name` ni sigue el frontmatter de skill. El cuerpo usa
+  `$ARGUMENTS` para el argumento posicional.
 - `sources/README.md` — enlaces a documentación oficial.
-- `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`.
+- `scripts/install.ps1` · `scripts/install.sh` — enlazan `skills/*` a `~/.claude/skills`
+  y `commands/*.md` a `~/.claude/commands`.
 - `mcp/` — servidor MCP que sirve las mismas skills por protocolo, como alternativa a
   instalarlas. Node con ESM, sin TypeScript. Su `README.md` explica la estructura y por
   qué la lectura de disco vive aislada del resto. Solo carga `references/`: un archivo
@@ -30,11 +37,12 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
 - `docs/decisions/` — ADRs en formato MADR, uno por decisión, numerados `NNNN-…`.
 - `docs/specs/` — specs de trabajo por hacer o en curso.
 
-## Comandos
+## Instalar y correr
 
 ```powershell
-.\scripts\install.ps1                        # enlaza todas las skills en ~/.claude/skills
-.\scripts\install.ps1 -Skill <nombre>        # solo una (en bash: ./scripts/install.sh)
+.\scripts\install.ps1                        # enlaza skills en ~/.claude/skills y comandos en ~/.claude/commands
+.\scripts\install.ps1 -Skill <nombre>        # solo una skill
+.\scripts\install.ps1 -Command <nombre>      # solo un comando (en bash: ./scripts/install.sh <nombre>, busca en ambos)
 ```
 
 Sin Modo de desarrollador en Windows, el script copia en lugar de enlazar y las
@@ -70,7 +78,13 @@ enlázala. El cuerpo principal se carga entero; las referencias solo cuando hace
 parser de YAML completo (`mcp/src/skills.js`): un `description: >` multilínea llega
 vacío por MCP aunque Claude Code lo cargue bien instalado.
 
-**Una skill nueva se añade también a la tabla del `README.md`.**
+**Una skill o un comando nuevo se añade también a la tabla correspondiente del
+`README.md`.**
+
+**Los comandos de `commands/` no se sirven por el servidor MCP.** El MCP (ver más abajo)
+solo expone skills — un comando de barra es una convención de Claude Code, no algo que el
+protocolo MCP sepa representar. Se distribuyen únicamente por el enlazado de
+`scripts/install.*` a `~/.claude/commands`.
 
 ## Servidor MCP
 
@@ -143,3 +157,12 @@ No hay tests. Antes de dar por buena una skill nueva o modificada:
    ante una petición que debería dispararla.
 
 El paso 3 es el único que detecta una `description` mal escrita.
+
+Antes de dar por bueno un comando nuevo o modificado en `commands/`:
+
+1. El frontmatter tiene `description` (y `argument-hint` si el comando toma un
+   argumento posicional) — sin `name`, que es un campo de skill, no de comando.
+2. El cuerpo usa `$ARGUMENTS` donde corresponda y no referencia rutas ni herramientas
+   específicas de un proyecto (si el comando es de propósito general, como los `/sdd-*`).
+3. El comando se activa: instalalo y probalo con `/<nombre> <argumento>` en una sesión
+   nueva.
