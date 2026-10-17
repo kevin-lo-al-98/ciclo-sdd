@@ -30,6 +30,7 @@ tenga delante.
 | [`cerrar-plan-o-spec-con-regla-de-oro`](skills/cerrar-plan-o-spec-con-regla-de-oro/) | Cerrar un paso de un plan/spec dejando constancia de lo que pasó realmente |
 | [`escribir-auditoria-tecnica`](skills/escribir-auditoria-tecnica/) | Documentos de auditoría/análisis técnico independientes bajo `docs/` |
 | [`entrevistar-con-contexto`](skills/entrevistar-con-contexto/) | Poner a prueba un plan contra el glosario y las decisiones del proyecto, actualizándolos en línea |
+| [`gestionar-roadmap`](skills/gestionar-roadmap/) | `ROADMAP.md` único que indexa (sin duplicar) los cambios SDD y los PRDs |
 | [`documentacion-humana`](skills/documentacion-humana/) | Estructura y estilo para README y la carpeta `/docs` orientada a personas |
 
 `prompt-architect` es la que más se usa fuera de una tarea concreta: responde "¿qué
