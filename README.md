@@ -19,7 +19,7 @@ tenga delante.
 | [`database-sql`](skills/database-sql/) | Modelado, índices, consultas, migraciones sin downtime |
 | [`typescript-estricto`](skills/typescript-estricto/) | Satisfacer el perfil estricto del compilador sin relajarlo |
 | [`escribir-mensaje-de-commit`](skills/escribir-mensaje-de-commit/) | Mensajes con Conventional Commits y protocolo de aprobación |
-| [`git-worktree`](skills/git-worktree/) | Varias ramas a la vez con `git worktree`, sin `stash` |
+| [`git-worktree`](skills/git-worktree/) | Varias ramas a la vez con `git worktree`, sin `stash`; y aplastar una rama en un commit |
 | [`resolver-merge`](skills/resolver-merge/) | Resolver conflictos de merge |
 | [`sonarqube-community`](skills/sonarqube-community/) | SonarQube Community: puesta en marcha, ramas y PRs, triage |
 | [`skill-security-scan`](skills/skill-security-scan/) | Auditar la seguridad de una skill de terceros (material vendorizado) |

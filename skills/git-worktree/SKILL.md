@@ -1,6 +1,6 @@
 ---
 name: git-worktree
-description: Trabajar en varias ramas a la vez con `git worktree` — crear, listar, sincronizar, bloquear, mover y eliminar worktrees— en lugar de `git stash`, cambiar de rama o clonar otra vez. Úsala cuando el usuario diga "worktree", "necesito dos ramas a la vez", "un hotfix sin perder lo que tengo a medias", "revisar un PR sin cambiar de rama", "correr los tests de otra rama mientras sigo", "no quiero hacer stash", "tengo worktrees viejos, ¿cuáles borro?". Incluye la trampa de los enlaces dentro de `node_modules`, que hace que `git worktree remove` borre archivos fuera del worktree. No la uses para commit, merge o rebase dentro de un solo directorio de trabajo.
+description: Trabajar en varias ramas a la vez con `git worktree` — crear, listar, sincronizar, bloquear, mover y eliminar worktrees— en lugar de `git stash`, cambiar de rama o clonar otra vez; y aplastar (squash) todos los commits de la rama actual en uno solo antes de integrar. Úsala cuando el usuario diga "worktree", "necesito dos ramas a la vez", "un hotfix sin perder lo que tengo a medias", "revisar un PR sin cambiar de rama", "correr los tests de otra rama mientras sigo", "no quiero hacer stash", "tengo worktrees viejos, ¿cuáles borro?", "aplasta la rama en un commit", "squash de esta rama", "consolidá estos commits en uno solo antes del force-push". Incluye la trampa de los enlaces dentro de `node_modules`, que hace que `git worktree remove` borre archivos fuera del worktree. No la uses para un merge o un rebase normal dentro de un solo directorio de trabajo.
 ---
 
 # Worktrees de git
@@ -144,6 +144,40 @@ distintas.
    pases a `-D` sin un sí explícito, porque eso descarta commits que no están en
    ninguna otra rama.
 5. `git worktree prune` por si quedó metadata suelta.
+
+## Aplastar una rama en un commit
+
+Antes de integrar, a veces conviene consolidar todos los commits de la rama actual en uno
+solo, con un mensaje bien armado. No es una operación de worktree en sí, pero suele pasar
+justo antes de cerrar una rama que vivía en uno.
+
+1. Identificá la rama actual (`git branch --show-current`). **Negate a aplastar una rama
+   protegida** (`main`, `master`, `stable`): si es una de esas, parate con un error en vez
+   de seguir.
+2. Si hay cambios sin commitear (`git status --porcelain`), guardalos con
+   `git stash push -m "squash-branch: auto-stash before reset"` antes de tocar nada, salvo
+   que el usuario pida explícitamente lo contrario.
+3. Determiná la rama base probando en orden `main`, `master`, `stable` con
+   `git merge-base HEAD <candidata>`; si ninguna es ancestro de `HEAD`, usá
+   `git remote show origin | grep 'HEAD branch'`. Si no se puede determinar, parate y
+   pedile al usuario que la indique a mano.
+4. El diff completo entre la base y `HEAD` (`git diff <merge-base>..HEAD`) es la **fuente de
+   verdad** del mensaje: refleja el cambio neto real. Si es muy grande, mirá primero
+   `git diff --stat` y entrá a archivos individuales solo si hace falta.
+5. El log de commits de la rama (`git log <merge-base>..HEAD --oneline`) es **contexto
+   complementario** — puede explicar el *por qué*, pero descartá cualquier cosa sobre
+   cambios que después se revirtieron o se superaron: el diff manda.
+6. Para el idioma y el formato del mensaje, mirá el historial reciente de la rama base
+   (`git log <base> --oneline -20`) y seguí la misma convención. Si no hay una consistente,
+   usá la convención de commits de la skill `escribir-mensaje-de-commit`.
+7. **Pedile confirmación al usuario** antes de tocar nada: mostrale el hash del
+   merge-base, cuántos commits se van a aplastar, y el mensaje propuesto.
+8. Con la confirmación, hacé `git reset --soft <merge-base>` y commiteá con el mensaje
+   aprobado (`-m` separado para asunto y cuerpo, para preservar el formato multilínea).
+9. Si guardaste un stash en el paso 2, recuperalo (`git stash pop`). Si hay conflictos,
+   avisá que el stash quedó en `git stash list` para resolverlo a mano.
+10. Indicale al usuario el comando para el force-push (`git push --force-with-lease`).
+    **Nunca lo ejecutes vos** salvo que el usuario te dé permiso explícito para hacerlo.
 
 ## Diagnosticar worktrees viejos
 
