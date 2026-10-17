@@ -127,7 +127,10 @@ Las decisiones 1 a 3 se confirmaron el 2026-10-06 (las ADRs 0005 y 0006 pasaron 
    traducción de la librería queda para una ADR futura.
 2. **Código.** La fase 1 no lleva código. Hacer validadores y hook exige una ADR que
    sustituya o enmiende la [ADR 0003](../decisions/0003-solo-mcp-contiene-codigo.md); se
-   decide al terminar la fase 2.
+   decide al terminar la fase 2. *Actualización 2026-10-17:* la
+   [ADR 0012](../decisions/0012-scripts-de-verificacion-sin-dependencias.md) sustituye
+   a la 0003 y cubre los validadores (`scripts/validar.mjs`). El hook de lecturas
+   pesadas sigue sin decidir.
 3. **Nivel 3.** Se incluye marcado como experimental, con el motivo escrito en el `SKILL.md`.
 4. **Menciones al proyecto de referencia y a su estándar. Sin decidir.** La ADR 0000 los
    nombra, junto con un componente de su integración continua, en 5 líneas; `adoptar-estructura-de-docs` y

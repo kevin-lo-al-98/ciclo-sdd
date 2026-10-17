@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by ADR-0012
 date: 2026-09-28
 decision-makers: Kevin Lopez Alvarez
 ---
