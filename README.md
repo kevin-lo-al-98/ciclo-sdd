@@ -28,6 +28,7 @@ tenga delante.
 | [`mantener-claude-md`](skills/mantener-claude-md/) | Mantener corto el `CLAUDE.md`, índice de documentación y protocolo de lectura |
 | [`flujo-de-requerimientos`](skills/flujo-de-requerimientos/) | Cadena requerimiento → PRD → tarea → spec con trazabilidad (experimental) |
 | [`cerrar-plan-o-spec-con-regla-de-oro`](skills/cerrar-plan-o-spec-con-regla-de-oro/) | Cerrar un paso de un plan/spec dejando constancia de lo que pasó realmente |
+| [`documentacion-humana`](skills/documentacion-humana/) | Estructura y estilo para README y la carpeta `/docs` orientada a personas |
 
 `prompt-architect` es la que más se usa fuera de una tarea concreta: responde "¿qué
 modelo uso para esto?" y "¿cómo le pido esto bien?".
