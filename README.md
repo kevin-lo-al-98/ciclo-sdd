@@ -31,6 +31,7 @@ tenga delante.
 | [`escribir-auditoria-tecnica`](skills/escribir-auditoria-tecnica/) | Documentos de auditoría/análisis técnico independientes bajo `docs/` |
 | [`entrevistar-con-contexto`](skills/entrevistar-con-contexto/) | Poner a prueba un plan contra el glosario y las decisiones del proyecto, actualizándolos en línea |
 | [`gestionar-roadmap`](skills/gestionar-roadmap/) | `ROADMAP.md` único que indexa (sin duplicar) los cambios SDD y los PRDs |
+| [`revisar-mr`](skills/revisar-mr/) | Revisar un MR/PR contra su spec, su PRD y las decisiones vigentes |
 | [`handoff`](skills/handoff/) | Comprimir la conversación en un documento de traspaso para otra sesión |
 | [`documentacion-humana`](skills/documentacion-humana/) | Estructura y estilo para README y la carpeta `/docs` orientada a personas |
 
