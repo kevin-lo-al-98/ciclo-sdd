@@ -1,0 +1,3 @@
+# Los scripts de bash fallan con CRLF ($'\r': command not found), y con
+# core.autocrlf=true un checkout en Windows los convierte. Se fijan en LF.
+*.sh text eol=lf
