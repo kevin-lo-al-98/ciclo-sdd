@@ -1,6 +1,6 @@
 ---
 name: revisar-mr
-description: Revisa un merge/pull request contra su spec y su PRD, no solo contra el estilo del código. Úsala cuando te toque revisar un MR/PR de un cambio SDD, cuando quieras comprobar que lo implementado cubre lo especificado, o antes de aprobar algo que toca una decisión ya documentada en docs/decisions/. Para la calidad del código en sí (legibilidad, arquitectura, seguridad, rendimiento) usa `code-review-and-quality`; las dos se complementan.
+description: 'Revisa un merge/pull request contra su spec y su PRD. Úsala cuando te toque revisar un MR/PR de un cambio SDD, cuando quieras comprobar que lo implementado cubre lo especificado, o antes de aprobar algo que toca una decisión ya documentada en docs/decisions/. No la uses para la calidad del código en sí (legibilidad, arquitectura, seguridad, rendimiento): eso es `code-review-and-quality`, y las dos se complementan.'
 ---
 
 # Revisar un MR/PR contra lo que debía hacer
