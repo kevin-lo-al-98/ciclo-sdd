@@ -28,6 +28,7 @@ tenga delante.
 | [`mantener-claude-md`](skills/mantener-claude-md/) | Mantener corto el `CLAUDE.md`, índice de documentación y protocolo de lectura |
 | [`flujo-de-requerimientos`](skills/flujo-de-requerimientos/) | Cadena requerimiento → PRD → tarea → spec con trazabilidad (experimental) |
 | [`cerrar-plan-o-spec-con-regla-de-oro`](skills/cerrar-plan-o-spec-con-regla-de-oro/) | Cerrar un paso de un plan/spec dejando constancia de lo que pasó realmente |
+| [`escribir-auditoria-tecnica`](skills/escribir-auditoria-tecnica/) | Documentos de auditoría/análisis técnico independientes bajo `docs/` |
 | [`entrevistar-con-contexto`](skills/entrevistar-con-contexto/) | Poner a prueba un plan contra el glosario y las decisiones del proyecto, actualizándolos en línea |
 | [`documentacion-humana`](skills/documentacion-humana/) | Estructura y estilo para README y la carpeta `/docs` orientada a personas |
 
