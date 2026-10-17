@@ -234,7 +234,9 @@ Con el plugin, quien lo instaló no recibe un cambio hasta que sube `version` en
 versión (semver: parche para correcciones, menor para piezas nuevas, mayor si se renombra
 o quita algo) y añade su entrada a [`CHANGELOG.md`](CHANGELOG.md). Antes de publicar,
 `claude plugin validate .` tiene que pasar; el único aviso esperado es el de `CLAUDE.md`
-en la raíz, que es para quien mantiene el repositorio y el plugin no lo carga.
+en la raíz, que es para quien mantiene el repositorio y el plugin no lo carga. También
+tienen que pasar `node scripts/validar.mjs` y `node scripts/evaluar-disparadores.mjs`,
+que el CI corre en cada push ([`evals/README.md`](evals/README.md)).
 
 ## Decisiones y specs
 
@@ -276,6 +278,11 @@ description: Qué cubre y, sobre todo, cuándo debe activarse.
 El `description` es lo que decide si la skill se carga o no, así que enumera los
 disparadores concretos: tecnologías, palabras que usarías al pedirlo, tipos de archivo.
 Una descripción vaga produce una skill que nunca se activa.
+
+Para comprobarlo sin esperar a una sesión real, añade `evals/cases/<nombre>.json`. Lleva
+al menos tres frases que deberían dispararla y dos que pertenecen a otra skill, cada una
+con su `owner`. Después corre `node scripts/evaluar-disparadores.mjs`. El formato está en
+[`evals/README.md`](evals/README.md).
 
 El contenido extenso va en `references/` y se enlaza desde el `SKILL.md`; así el cuerpo
 principal se mantiene corto y solo se lee el detalle cuando hace falta.

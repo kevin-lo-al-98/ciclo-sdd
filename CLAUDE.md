@@ -18,9 +18,10 @@ sesiones de Claude Code cargan como instrucciones.
 Eso cambia el criterio de calidad: aquí un error no rompe un test, se propaga
 silenciosamente a todas las sesiones que carguen esa skill.
 
-La única excepción es `mcp/`, que sí es código con dependencias. El resto del
-repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa carpeta
-([ADR 0003](docs/decisions/0003-solo-mcp-contiene-codigo.md)).
+La única excepción es `mcp/`, que sí es código con dependencias. Fuera de ella solo
+están los scripts de verificación de `scripts/*.mjs`, que importan únicamente módulos
+`node:*` y `mcp/src/skills.js`: nada de `package.json`, dependencias ni build fuera de
+`mcp/` ([ADR 0012](docs/decisions/0012-scripts-de-verificacion-sin-dependencias.md)).
 
 ## Estructura
 
@@ -46,6 +47,12 @@ repositorio sigue sin build: no metas herramientas de JavaScript fuera de esa ca
   `commands/*.md` a `~/.claude/commands` y `agents/*.md` a `~/.claude/agents`. Con
   `-Project` / `--project <ruta>`, copian a `<ruta>/.claude/` y dejan
   `docs-skills.version`.
+- `scripts/validar.mjs` · `scripts/evaluar-disparadores.mjs` · `scripts/lib/` — los
+  niveles 1 y 2 de la verificación, con sus tests (`*.test.mjs`).
+- `evals/cases/<skill>.json` — prompts que deben (y no deben) disparar cada skill.
+  `evals/plugin/<caso>/` — casos de `claude plugin eval`. `evals/README.md` explica los
+  tres niveles.
+- `.github/workflows/validar.yml` — corre los niveles 1 y 2 en cada push.
 - `mcp/` — servidor MCP que sirve las mismas skills por protocolo, como alternativa a
   instalarlas. Node con ESM, sin TypeScript. Su `README.md` explica la estructura y por
   qué la lectura de disco vive aislada del resto. Solo carga `references/`: un archivo
@@ -196,25 +203,23 @@ Reglas para este tipo de carpetas:
 
 ## Verificación
 
-No hay tests. Antes de dar por buena una skill nueva o modificada:
+Antes de dar por buena una skill, un comando o un agente nuevo o modificado:
 
-1. El frontmatter tiene `name` (kebab-case, igual al nombre de la carpeta) y
-   `description`. Límites de la especificación de skills: `name` de hasta 64
-   caracteres y sin `--`; `description` de hasta 1024. La tool `listar_skills` del
-   servidor MCP marca con ⚠ la skill sin `description` o cuyo `name` no coincide con
-   la carpeta.
-2. Los enlaces relativos a `references/` resuelven, y el `SKILL.md` tiene menos de 500
-   líneas.
-3. La skill se activa: instálala y comprueba en una sesión nueva que Claude la carga
-   ante una petición que debería dispararla.
+```bash
+node --test "scripts/lib/*.test.mjs"     # tests de los validadores
+node scripts/validar.mjs                 # nivel 1: frontmatter, enlaces, comandos, versión
+node scripts/evaluar-disparadores.mjs    # nivel 2: ¿la description rutea a esta skill y no a otra?
+```
 
-El paso 3 es el único que detecta una `description` mal escrita.
+El CI corre los tres. **Toda skill nueva lleva su `evals/cases/<skill>.json`**: sin él,
+el nivel 2 falla. Si el nivel 2 falla, se arregla la `description`, no el prompt.
 
-Antes de dar por bueno un comando nuevo o modificado en `commands/`:
+Si la skill es crítica o compite con otra, mide su par de casos en `evals/plugin/` con
+`claude plugin eval` (nivel 3). Gasta tokens y nunca corre en CI. Formato, comandos y
+cómo leer los números: [`evals/README.md`](evals/README.md).
 
-1. El frontmatter tiene `description` (y `argument-hint` si el comando toma un
-   argumento posicional) — sin `name`, que es un campo de skill, no de comando.
-2. El cuerpo usa `$ARGUMENTS` donde corresponda y no referencia rutas ni herramientas
-   específicas de un proyecto (si el comando es de propósito general, como los `/sdd-*`).
-3. El comando se activa: instalalo y probalo con `/<nombre> <argumento>` en una sesión
-   nueva.
+Lo que ningún nivel comprueba y queda para la revisión:
+
+- que un comando de propósito general, como los `/sdd-*`, no referencie rutas ni
+  herramientas de un proyecto concreto;
+- que la skill explique el porqué de cada regla.
