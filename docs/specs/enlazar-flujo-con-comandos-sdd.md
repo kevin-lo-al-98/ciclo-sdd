@@ -1,7 +1,8 @@
 # Spec: enlazar `flujo-de-requerimientos` con los comandos `/sdd-*`
 
-Estado: **propuesta**, sin empezar. Se abrió el 2026-10-25, a partir de una lectura de
+Estado: **en curso**. Se abrió el 2026-10-25, a partir de una lectura de
 `commands/sdd-*.md` y de `skills/flujo-de-requerimientos/` en la versión 0.2.0 del plugin.
+Implementada en 0.3.0 el mismo día; falta el recorrido manual del criterio de terminado.
 
 ## Objetivo
 
@@ -121,6 +122,19 @@ Cerradas el 2026-10-25. Ninguna justifica un ADR: las dos se revierten editando 
 - **Un criterio de origen sin cubrir es `CRÍTICO`.** Si el piloto
   (`docs/specs/piloto-flujo-de-requerimientos.md`) muestra que bloquea por falsos
   positivos, se baja a advertencia y el motivo se anota aquí.
+
+## Desvíos al implementar
+
+- **Detección del registro.** La ruta que declara «Carpetas de este proyecto» vive dentro
+  del propio registro, así que no sirve para encontrarlo. `/sdd-new` busca
+  `requerimientos/_registro.md` o el `_registro.md` que tenga la línea «Próximo número
+  libre».
+- **Plantilla del registro.** `references/registro-de-trazabilidad.md` proponía
+  `docs/specs/` como carpeta de specs, que reabría el hueco 2. Ahora propone
+  `openspec/changes/`, con `docs/specs/` para quien no use los comandos.
+- **Cambio superado.** `/sdd-archive` no exige la prueba de usuario ni cierra nada en el
+  registro cuando archiva un cambio como `Superado`: no entregó nada.
+- La `description` de `commands/sdd-archive.md` menciona el nuevo motivo de bloqueo.
 
 ## Fuera de alcance
 

@@ -150,6 +150,10 @@ ir a la vez: para eso existe el reparto entre áreas.
   decisión visible desde fuera), se declara al abrirlo y esa otra área lo aprueba. Ver
   [`reporte-del-area.md`](reporte-del-area.md).
 
+Con los comandos SDD, esta etapa es `/sdd-new`: escribe el reporte como frontmatter de
+`proposal.md`, abre la spec con la tabla «Criterios de origen» y completa la celda del
+registro.
+
 Al abrir la spec, el área crea el **archivo de reporte** de su cambio con la tarea que
 construye y quién responde por el área. A partir de ahí, lo que el área tiene que decir
 sobre la tarea —avance, responsable, cierre— va **ahí** y no en la tarea. Por qué: ver
@@ -162,7 +166,9 @@ celda del registro completa.
 
 Cada área implementa en su repositorio. **Dos cambios enlazados**: el del documento y el del
 código, cada uno apuntando al otro, para que doc y código no se separen. La verificación
-rastrea hasta la tarea y el PRD, no solo hasta la spec.
+rastrea hasta la tarea y el PRD, no solo hasta la spec: con los comandos SDD, la sección
+«Trazabilidad» de `/sdd-verify`, donde un criterio de la tarea sin escenario ni hueco
+declarado da `FAIL`.
 
 **Sale con** la verificación en verde y, en la variante con firmas, la firma de construcción
 en el archivo de reporte. El avance del área en la tarea pasa a «construido» **por derivación**
@@ -186,7 +192,8 @@ entendido es lo que se pidió.
 
 Con la tarea `Validada`, cada área impactada archiva su cambio. Eso es **el área cerrando la
 tarea**: el archivo no puede completarse mientras la tarea no esté validada, y no toca ni la
-tarea ni el REQ, que son de otro dueño.
+tarea ni el REQ, que son de otro dueño. Con los comandos SDD, `/sdd-archive` comprueba la
+validación antes de mover nada.
 
 La tarea queda **entregada sola** cuando cada área impactada cerró su cambio: nadie escribe
 «Entregada» en ella. El cierre que deja la última pieza mueve su fila a «entregadas» en el

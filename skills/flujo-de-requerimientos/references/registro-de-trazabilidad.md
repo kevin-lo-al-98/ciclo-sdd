@@ -16,7 +16,7 @@ Carpetas de este proyecto:
 - Requerimientos: `requerimientos/`
 - PRD: `prd/`
 - Tareas: `tareas/`
-- Specs: `docs/specs/`   <!-- o la ruta de cada área -->
+- Specs: `openspec/changes/`   <!-- con los comandos /sdd-*; si no, docs/specs/ o la ruta de cada área -->
 
 Un `—` significa «todavía no existe». Un `n/a` significa «esa área no está impactada»: es
 una afirmación, no un pendiente, y por eso puede contradecirse.

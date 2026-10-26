@@ -32,9 +32,18 @@ identificadores (`REQ-001`, `PRD-001`, `TAREA-001`) se conservan.
 Esta cadena cubre **qué construir**: de un requerimiento a una spec por área, con un dueño
 por etapa. De ahí en adelante —**cómo implementarlo**: spec → código → verificación →
 archivo— es el trabajo de los comandos `/sdd-explore`, `/sdd-new`, `/sdd-apply`,
-`/sdd-verify`, `/sdd-continue` y `/sdd-archive`. Cuando la etapa "Spec" de esta cadena
-termina, el siguiente paso natural es `/sdd-new <nombre-del-cambio>` sobre esa spec; no
-hace falta reescribirla ni repetir la cadena de nuevo dentro del cambio SDD.
+`/sdd-verify`, `/sdd-continue` y `/sdd-archive`. La etapa "Spec" de esta cadena **es**
+`/sdd-new <nombre-del-cambio>`: no se escribe una spec aparte para después pasarla al
+comando. Cuando el proyecto tiene registro de trazabilidad, los comandos piden la tarea (o
+el REQ) que construye el cambio y desde ahí aplican las reglas de esta cadena:
+
+- `/sdd-new` traduce cada criterio de la tarea a un escenario o lo declara como hueco, y
+  completa la celda del área en el registro.
+- `/sdd-verify` da `FAIL` si un criterio de la tarea se perdió por el camino.
+- `/sdd-archive` no archiva hasta que producto validó la tarea, y al archivar la última
+  pieza la mueve a «entregadas».
+
+Sin registro, los comandos no preguntan nada y funcionan igual que fuera de la cadena.
 
 ## ¿Te hace falta?
 
@@ -128,7 +137,7 @@ Cada una evita un fallo concreto; sin su porqué se ignoran en cuanto estorban.
 | **Viabilidad** | Cada área impactada dice si lo entiende, si es viable y qué le toca. Las respuestas se incorporan al REQ, no se quedan en un hilo | la misma |
 | **PRD** | Producto destila los REQ en comportamiento, con reparto entre áreas y criterios de aceptación | [`plantilla-prd.md`](references/plantilla-prd.md) |
 | **Tarea** | Se parte el PRD en entregas verticales observables | [`plantilla-tarea.md`](references/plantilla-tarea.md) |
-| **Spec** | Cada área especifica lo suyo; se acuerdan los contratos compartidos **antes** de las tareas técnicas. Al abrirla, crea su [reporte](references/reporte-del-area.md) | `documentar-decisiones` |
+| **Spec** | Cada área especifica lo suyo; se acuerdan los contratos compartidos **antes** de las tareas técnicas. Al abrirla, crea su [reporte](references/reporte-del-area.md) | `/sdd-new`; si el proyecto no usa los comandos, `documentar-decisiones` |
 | **Construcción** | Cada área implementa; la verificación rastrea hasta la tarea y el PRD. El avance se deriva | [`reporte-del-area.md`](references/reporte-del-area.md) |
 | **Prueba de usuario** | Producto prueba como lo haría el usuario y valida la tarea. Un rechazo reabre el cambio del área, no toca su avance | [`plantilla-tarea.md`](references/plantilla-tarea.md) |
 | **Cierre** | Cada área archiva su cambio (cierra la tarea); producto cierra el REQ cuando todas sus tareas están entregadas | [`flujo-y-duenos.md`](references/flujo-y-duenos.md) |

@@ -5,6 +5,23 @@ Cada versión publicada del plugin `ciclo-sdd`. La versión vive en
 recibe un cambio hasta que ese número sube
 ([ADR 0010](docs/decisions/0010-distribuir-como-plugin-y-copia-por-proyecto.md)).
 
+## 0.3.0 — 2026-10-25
+
+Los comandos `/sdd-*` aplican las reglas de `flujo-de-requerimientos` cuando el cambio
+construye una tarea o un requerimiento
+([spec](docs/specs/enlazar-flujo-con-comandos-sdd.md)). Sin registro de trazabilidad en
+el proyecto, nada cambia.
+
+- `/sdd-new` pregunta la `TAREA-NNN` o el `REQ-NNN` de origen, se detiene si la tarea no
+  está en `Lista`, abre la spec con la tabla «Criterios de origen» y completa la celda del
+  área en el registro.
+- `/sdd-verify` añade la sección «Trazabilidad»: un criterio de origen sin escenario ni
+  hueco declarado es `CRÍTICO`.
+- `/sdd-archive` no archiva hasta que producto validó la tarea, y al cerrar la última pieza
+  la mueve a «entregadas» (o pasa el REQ a `Entregado`, en tamaño Ligera).
+- `flujo-de-requerimientos`: la etapa Spec pasa a ser `/sdd-new`, en lugar de una spec
+  aparte en `docs/specs/`.
+
 ## 0.2.0 — 2026-10-17
 
 Cambio incompatible: el plugin pasa de `docs-skills` a `ciclo-sdd`
