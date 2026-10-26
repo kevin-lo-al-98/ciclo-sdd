@@ -1,6 +1,6 @@
 {
   "name": "ciclo-sdd",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Ciclo de vida del requerimiento al producto (requerimiento → PRD → tarea → spec → código) con los comandos /sdd-*, y skills técnicas de complemento.",
   "author": {
     "name": "Kevin Lopez Alvarez"
